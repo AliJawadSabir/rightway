@@ -1,0 +1,36 @@
+<!-- <div > -->
+
+    
+<html>
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap" rel="stylesheet">
+    <div class="image">
+
+        <!-- <mat-toolbar color="#c6c0be">
+            <mat-toolbar-row>
+                <h1 class="right-way">Right Way</h1>
+                <span class="example-spacer"></span>
+            </mat-toolbar-row>
+        </mat-toolbar> -->
+
+        <div class="heading">
+            <p id="awesome">Building Something Awesome</p>
+            <h1>Coming Soon!</h1>
+            <hr>
+            <p id="timer"></p>
+            <form novalidate [formGroup]="fg" fxLayout="row" fxLayoutGap="10px" (ngSubmit)="onSave(fg.value)">
+
+            <mat-form-field fxFlex="70%">
+                <input class="emailInput" matInput placeholder="Get Notify by Email" formControlName="email" required>
+                <mat-error *ngIf="fg.get('email').hasError('email')">Invalid Email</mat-error>
+                <mat-error *ngIf="fg.get('email').hasError('required')">Enter Email</mat-error>
+              </mat-form-field>
+              <button fxFlex="30%" class="saveButton" type="submit" [disabled]="fg.invalid" mat-raised-button color="primary">Notify Me!</button>
+            </form>
+        </div>
+        
+    </div>
+
+
+    </html>
+
+  <!-- <router-outlet></router-outlet> -->

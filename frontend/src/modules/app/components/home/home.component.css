@@ -1,0 +1,78 @@
+    .right-way {
+        color: rgb(226, 202, 62);
+        font-size: 25px;
+        font-family: 'Playfair Display', serif;
+        text-align: center;
+        /* background-image: url(../../../../assets/logo);  */
+        /* height: 64px;
+        padding-left: 0px;
+        margin-left: 0px;
+        overflow: hidden;
+        background-position: center;
+        background-size: cover; */
+    }
+
+  .image {
+    background-image: url(../../../../assets/im8.jpeg); 
+    height: 100%;
+    opacity: .8;
+    overflow:hidden;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .heading {
+      text-align: center;
+      top: 50%;
+      left: 50%;
+      position: absolute;
+      color: rgb(255, 255, 255);
+      transform: translate(-50%,-50%);
+      font-family: 'Playfair Display', serif;
+  }
+
+  h1 {
+      font-size: 50px;
+  }
+
+  hr {
+    width: 50%;
+    border: 1.5px solid #fff;
+
+  }
+
+  #awesome {
+      font-size: 20px;
+  }
+
+  #timer {
+      font-size: 30px;
+      word-spacing: 10px;
+  }
+
+  .saveButton {
+      margin: 16px;
+      margin-right: 20px;
+      /* height: 40px; */
+  }
+
+  .emailInput {
+      height: 25px;
+    /* margin-left: 40px; */
+  }
+
+
+  /* input color class */
+/* ::ng-deep input.mat-input-element {
+    background-color: #fff !important;
+  } */
+  
+  /* Change label color on focused */
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+    color: #fff !important;
+  }
+
+/* underline border color on focused */
+::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple{
+    background-color: #fff !important;
+  }
