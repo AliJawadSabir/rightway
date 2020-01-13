@@ -5,7 +5,7 @@ var cors = require('cors');
 var bodyparser = require('body-parser');
 var path = require('path');
 // var server = require('./src/server.ts').Server;
-var route = require('./src/modules/base/router/base-route.ts').BaseRoute;
+var route = require('./dist/modules/base/router/base-route.js');
 // import {BaseRoute} from './src/modules/base/router/base-route.ts';
 //var bodyparser = require('bodyparser');
 
@@ -35,7 +35,7 @@ router = express.Router();
 // router.use(this.authorize);
 // new BaseRoute(router);
 // below line is bcz we need to import base route
-route.BaseRoute(router);
+new route.BaseRoute(router);
 app.use('/', router);
 
 
