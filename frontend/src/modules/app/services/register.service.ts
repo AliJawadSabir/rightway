@@ -1,10 +1,7 @@
-import 'rxjs/add/operator/map';
-
-// import 'rxjs/Rx';
-// import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+
+import { environment } from "../../../environments/environment";
 import {NotifyUserModel} from '../models';
 
 @Injectable({
@@ -12,7 +9,7 @@ import {NotifyUserModel} from '../models';
 })
 export class RegisterService {
 
-  private routeURL: String = 'notifyuser';
+  private routeURL: String = `${environment.apiBaseUrl}notifyuser`;
 
   constructor(protected http: HttpClient) {}
 
