@@ -1,0 +1,58 @@
+
+.matCard {
+    background-color: black;
+}
+
+.matCardButtons button:hover{
+    color: rgb(232, 235, 84);
+}
+
+.matHeading {
+    color: rgb(232, 235, 84);
+    margin-right: 20px;
+}
+
+.image {
+    background-image: url(../../../../assets/im8.jpeg); 
+    /* position: absolute; */
+    height: 100%;
+    /* width: 100%; */
+    /* opacity: .8; */
+    overflow:hidden;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .login-form{
+      margin-top: 30px;
+  }
+
+  .login {
+      margin-left: 20px;
+  }
+
+  .cancelButton{
+      margin-left: 10px;
+      background-color: rgb(54, 44, 44);
+      color: rgb(232, 235, 84);
+  }
+
+  .cancelButton:hover{
+    background-color: rgb(54, 44, 44);
+    color: rgb(232, 235, 84);
+  }
+
+  .saveButton{
+      background-color: rgb(54, 44, 44);
+      color: rgb(232, 235, 84);
+  }
+
+  .label{
+    width: -moz-fit-content;
+  }
+
+  .label:hover{
+    cursor: pointer;
+    text-decoration: underline;
+    /* color: rgb(232, 235, 84); */
+  }

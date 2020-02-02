@@ -1,7 +1,99 @@
-<mat-toolbar color="primary">  
-    <h1>  
-    My Angular Store  
-    </h1>  
-    <button mat-button routerLink="/">Home</button>  
-    <button mat-button routerLink="/about">About</button></mat-toolbar><router-outlet></router-outlet>
-    
+<!-- <div fxLayout="column"> -->
+<mat-toolbar color="primary" class="matCard">
+    <span fxLayout="row" fxFlex="90" class="matCardButtons">
+    <h1 class="matHeading">  Right Way  </h1>  
+    <button mat-button routerLink="/">Sales</button>  
+    <button mat-button routerLink="/about">Winter Collection</button>
+    <button mat-button routerLink="/about">New Designs</button>
+    <button mat-button routerLink="/about">UnStitched</button>
+    <button mat-button routerLink="/about">Stitched</button>
+    </span>
+    <span fxFlex="15" fxLayout="row" fxLayoutGap="10px">
+        <!-- /<mat-icon  fxLayoutAlign="end" aria-hidden="false" aria-label="Example home icon">account_circle</mat-icon> -->
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>account_circle</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item routerLink="/login">
+              <!-- <mat-icon>dialpad</mat-icon> -->
+              <span>Login</span>
+            </button>
+            <button mat-menu-item routerLink="/register">
+              <!-- <mat-icon>voicemail</mat-icon> -->
+              <span>Sign Up</span>
+            </button>
+            <!-- <button mat-menu-item>
+              <mat-icon>shopping_cart</mat-icon>
+              <span>Disable alerts</span>
+            </button> -->
+          </mat-menu>
+          <button mat-icon-button aria-label="Example icon-button with a menu">
+            <mat-icon>shopping_cart</mat-icon>
+          </button>
+          
+    </span>
+</mat-toolbar>
+
+
+
+<div class="image">
+<div fxLayout="row" fxLayoutAlign="center center">
+        <div fxFlex="50" class="login-form">
+        <mat-card class="example-card" >
+            <mat-card-header>
+              <mat-card-title>Login Form</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <form novalidate [formGroup]="fg" (ngSubmit)="onSave(fg.value)" fxLayout="column" fxLayoutGap="20px">
+
+                    <mat-form-field>
+                        <input class="emailInput" matInput [placeholder]="componentLabels.email" formControlName="email" required>
+                        <mat-error *ngIf="fg.get('email').hasError('email')">Invalid Email</mat-error>
+                        <mat-error *ngIf="fg.get('email').hasError('required')">Enter Email</mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input type="password" class="passwordInput" matInput [placeholder]="componentLabels.password" formControlName="password" required>
+                        <mat-error *ngIf="fg.get('password').hasError('required')">Enter Email</mat-error>
+                    </mat-form-field>
+                    <div fxLayout="row">
+                        <button class="saveButton" mat-raised-button type="submit" [disabled]="fg.invalid">Login</button>
+                        <button class="cancelButton" mat-raised-button [routerLink]="['/register']">Create New Account</button>
+            
+                      </div>
+                      <!-- <label class="label" [routerLink]="['/forgotPassword']">Forgot Password?</label> -->
+                      <label class="label" [routerLink]="['/home']">Return to Store</label>
+                </form>
+            </mat-card-content>
+          </mat-card>
+        </div>
+</div>
+</div>
+
+<!-- <div class="login">
+    <h1>Login Form</h1>
+    <div fxLayout="row">
+    <form novalidate [formGroup]="fg" (ngSubmit)="onSave(fg.value)" fxLayout="column" fxFlex="50" fxLayoutGap="20px">
+        <mat-form-field>
+            <input matInput [placeholder]="componentLabels.email" formControlName="email" required>
+            <mat-error *ngIf="fg.get('email').hasError('email')">Invalid Email</mat-error>
+            <mat-error *ngIf="fg.get('email').hasError('required')">Enter Email</mat-error>
+            <mat-error *ngIf="fg.get('email').hasError('maxLength')">Email is too long</mat-error>
+          </mat-form-field>
+        <mat-form-field>
+            <input type="password" matInput [placeholder]="componentLabels.password" formControlName="password" required>
+            <mat-error *ngIf="fg.get('password').hasError('minLength')">Atleast six Characters Required</mat-error>
+            <mat-error *ngIf="fg.get('password').hasError('required')">Enter Password</mat-error>
+          </mat-form-field>
+
+          <div fxLayout="row">
+            <button class="saveButton" mat-raised-button type="submit" [disabled]="fg.invalid">Login</button>
+            <button class="cancelButton" mat-raised-button [routerLink]="['/register']">Create New Account</button>
+
+          </div>
+          <label class="label" [routerLink]="['/forgotPassword']">Forgot Password?</label>
+          <label class="label" [routerLink]="['/home']">Return to Store</label>
+    </form>
+</div>
+</div> -->
+<!-- </div> -->
+    <!-- <router-outlet></router-outlet> -->

@@ -1,16 +1,32 @@
 // import * as nodemailer from 'nodemailer';
 // import { Promise } from 'bluebird';
 import { BaseModel } from '../../base/models/base.model';
+import { User } from './schema/user';
+import { ErrorHandler } from '../../base/conf';
 // import { BaseModel, CONFIGURATIONS } from '../../base';
 // import { User } from '../../security';
 // import { ErrorHandler } from '../../base/conf/error-handler';
 // import { EmailSenderModel } from '../../setting';
 // import { Helper } from '../../base/helpers/helper';
 
-export class ProfileModel extends BaseModel {
+export class UserModel extends BaseModel {
   constructor() {
-    // super(User);
-    super(1);
+    super(User);
+    // super(1);
+  }
+
+  create(item){
+    return super.findByCondition(['email'],{email: item.email}).then(res=>{
+      if(res){
+        
+        return ErrorHandler.duplicateEmail;
+      }else {
+        return super.create(item).then(user=>{
+          console.log('---------------------------------------');
+          console.log(user);
+        })
+      }
+    })
   }
 
   forgotPassword(item) {

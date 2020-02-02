@@ -1,14 +1,14 @@
 // import { Router } from 'express';
 
 // const express = require('express');
-import { ProfileController } from '../index';
+import { UserController } from '../index';
 // const router = express.Router();
 /**
  * / route
  *
  * @class Profile
  */
-export class ProfileRoute {
+export class UserRoute {
   router;
 //   router: Router;
 
@@ -32,7 +32,9 @@ export class ProfileRoute {
    *
    */
   public create() {
-    let controller = new ProfileController();
+    let controller = new UserController();
+    console.log('11111111111111111111111111111111111111111')
+    this.router.route('/user/register').post(controller.create);
 
     this.router.route('/profile/profile/find/:id').get(controller.find);
 

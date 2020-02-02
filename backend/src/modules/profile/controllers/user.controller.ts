@@ -4,11 +4,35 @@ import * as express from 'express';
 /**
  * Importing related Models
  */
-import { ProfileModel } from '..';
+import { UserModel } from '../index';
 
-export class ProfileController {
+export class UserController {
   constructor() { }
 
+
+  /**
+   * find One
+   *
+   * @param req express.Request
+   * @param res express.Response
+   * @param next express.NextFunction
+   */
+  create(req: express.Request, res: express.Response, next: express.NextFunction) {
+    // let id = req.params.id;
+    console.log('-------createeeeeeeeeeeeeee calleddddddddddddddd');
+    new UserModel()
+      .create(req.body)
+      .then(result => {
+        if (result) {
+          res.json(result);
+        } else {
+          //res.status(ErrorHandler.recordNotFound.status).send(ErrorHandler.recordNotFound);
+        }
+      })
+      .catch(err => {
+        //ErrorHandler.sendServerError(err, res, next);
+      });
+  }
 
   /**
    * find One
@@ -20,7 +44,7 @@ export class ProfileController {
   find(req: express.Request, res: express.Response, next: express.NextFunction) {
     let id = req.params.id;
 
-    new ProfileModel()
+    new UserModel()
       .find(id, ['id', 'username', 'name', 'phoneNumber', 'address', 'gender'])
       .then(result => {
         if (result) {
@@ -47,7 +71,7 @@ export class ProfileController {
     let reqBody = req.body;
     // restrict user only update these fields from profile update
     let item = { name: reqBody.name, phoneNumber: reqBody.phoneNumber, address: reqBody.address, gender: reqBody.gender }
-    new ProfileModel()
+    new UserModel()
       .update(id, item)
       .then(result => {
         res.json(result);
@@ -63,7 +87,7 @@ export class ProfileController {
    * @param req {User}
    */
   forgotPassword(req: express.Request, res: express.Response, next: express.NextFunction) {
-    new ProfileModel()
+    new UserModel()
       .forgotPassword(req.body)
       .then(result => {
         if (result && !result['error']) {
@@ -89,7 +113,7 @@ export class ProfileController {
 
     let item = req.body;
 
-    new ProfileModel()
+    new UserModel()
       .changePassword(id, item)
       .then(result => {
         if (result && !result['error']) {
@@ -113,7 +137,7 @@ export class ProfileController {
   resetPassword(req: express.Request, res: express.Response, next: express.NextFunction) {
     let item = req.body;
 
-    new ProfileModel()
+    new UserModel()
       .resetPassword(item)
       .then(result => {
         if (result && !result['error']) {
@@ -137,7 +161,7 @@ export class ProfileController {
   validateVerificationCode(req: express.Request, res: express.Response, next: express.NextFunction) {
     let verificationCode = req.body.verificationCode;
 
-    new ProfileModel()
+    new UserModel()
       .findByCondition(['id'], { verificationCode: verificationCode })
       .then(result => {
         if (result) {

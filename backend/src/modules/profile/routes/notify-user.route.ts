@@ -21,7 +21,7 @@ export class NotifyUserRoute {
   constructor(router) {
 //   constructor(router: Router) {
     this.router = router;
-    console.log('---------------------------------------in register route');
+    // console.log('---------------------------------------in register route');
     this.create();
   }
 
@@ -34,7 +34,7 @@ export class NotifyUserRoute {
    */
   public create() {
     let controller = new NotifyUserController();
-    
+    console.log('---------------------------------------in register route create');
     this.router.route('/notifyuser/create').post(controller.create);
 
     // this.router.route('/profile/profile/find/:id').get(controller.find);

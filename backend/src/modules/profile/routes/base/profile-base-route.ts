@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response, Router } from 'express';
 
-import { ProfileRoute } from '../../index';
+import { UserRoute } from '../../index';
 import { NotifyUserRoute } from '../../index';
 
 /**
@@ -26,7 +26,7 @@ export class ProfileBaseRoute {
    * init all routes
    */
   public initAll() {
-    new ProfileRoute(this.router);
+    new UserRoute(this.router);
     new NotifyUserRoute(this.router);
   }
 }

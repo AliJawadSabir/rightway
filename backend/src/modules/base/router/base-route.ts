@@ -19,6 +19,7 @@ export class BaseRoute {
    * @constructor
    */
   constructor(router: Router) {
+    console.log('base route called----------------------------------------------')
     this.router = router;
     this.initAll();
   }

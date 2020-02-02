@@ -5,7 +5,7 @@ import{ErrorHandler} from '../../base/conf';
 /**
  * Importing related Models
  */
-import { NotifyUserModel } from '..';
+import { NotifyUserModel } from '../index';
 
 export class NotifyUserController {
   constructor() { }
@@ -38,7 +38,7 @@ export class NotifyUserController {
    * @param next express.NextFunction
    */
   create(req: express.Request, res: express.Response, next: express.NextFunction) {
-
+    console.log('Notfiy user controller create called------------------')
     new NotifyUserModel().create(req.body).then(result => {
 
       res.json(result);

@@ -1,0 +1,1 @@
+src/modules/profile/controllers/motify-user.controller.ts src/modules/profile/routes/notify-user.route.ts --sourcemap --emitDecoratorMetadata --removeComments --experimentalDecorators --rootDir src --target ES6 --module commonjs --outDir ./dist

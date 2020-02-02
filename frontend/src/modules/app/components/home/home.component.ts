@@ -14,6 +14,27 @@ export class HomeComponent implements OnInit {
   public fg: FormGroup;
   public notifyUser: NotifyUserModel;
   email:string;
+  public products = [
+    [
+    {"id":1,"name":"../../assets/im8.jpeg",
+    "description":"Incidunt et magni",
+    "price":"170.00","quantity":56840},
+    {"id":2,"name":"../../assets/im8.jpeg",
+    "description":"Incidunt et magni",
+    "price":"170.00","quantity":56840},
+    {"id":3,"name":"../../assets/im6.jpeg",
+    "description":"Sint libero mollitia",
+    "price":"302.00","quantity":9358}],[
+    {"id":4,"name":"../../assets/im8.jpeg",
+    "description":"In consequuntur cupiditat",
+    "price":"279.00","quantity":90316},
+    {"id":5,"name":"../../assets/im8.jpeg",
+    "description":"In consequuntur cupiditat",
+    "price":"279.00","quantity":90316},
+    {"id":6,"name":"../../assets/im8.jpeg",
+    "description":"Saepe nemo praesentium",
+    "price":"760.00","quantity":5899}]
+];
   constructor(
     private fb: FormBuilder,
     private registerService: RegisterService
@@ -27,7 +48,7 @@ export class HomeComponent implements OnInit {
     this.notifyUser = new NotifyUserModel();
     // this.fg = this.fb.group({email: new FormControl('', [<any>Validators.required, Validators.email])});
     this.fg = this.fb.group(new NotifyUserModel().validationRules());
-    this.showTimer();
+    // this.showTimer();
   }
 
   // getErrorMessage() {

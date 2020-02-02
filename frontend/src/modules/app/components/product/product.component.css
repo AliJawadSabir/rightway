@@ -1,0 +1,121 @@
+/**  
+    These are the design implementation for Top bar.
+**/
+.matCard {
+    background-color: black;
+  }
+  
+  .matCardButtons button:hover{
+    color: rgb(232, 235, 84);
+  }
+  
+  .matHeading {
+    color: rgb(232, 235, 84);
+    margin-right: 20px;
+  }    
+      
+      
+      
+    .right-way {
+          color: rgb(226, 202, 62);
+          font-size: 25px;
+          font-family: 'Playfair Display', serif;
+          text-align: center;
+          /* background-image: url(../../../../assets/logo);  */
+          /* height: 64px;
+          padding-left: 0px;
+          margin-left: 0px;
+          overflow: hidden;
+          background-position: center;
+          background-size: cover; */
+    }
+
+    /**
+    These are the other designs for the page
+    **/
+
+    .productPage{
+        margin: 30px;
+    }
+
+    #right{
+        font-size: 12px;
+    }
+
+    .prodLabel{
+        padding-bottom: 10px;
+        margin-left: 20px;
+        font-size: 12px;
+    }
+
+    .img{
+        width: 100%;
+        height: 500px;
+    }
+
+    .descriptionClass{
+        margin-left: 25px;
+        font-family: 'Playfair Display', serif;
+    }
+
+    /* .pkr{
+        margin-top: 20px;
+    } */
+
+    .PKRHeading{
+        margin-left: 20px;
+        color: #e95144;
+        font-weight: bold;
+    }
+
+    .addCartButton{
+        background-color: black;
+        /* color: rgb(226, 202, 62); */
+        color: white;
+        /* background-color: rgb(186, 189, 8);
+        color: black; */
+        height: 40px;
+    }
+
+    .addCartButton:hover{
+        background-color: rgb(186, 189, 8);
+        color: black;
+    }
+
+    .quantityHeading{
+        margin-top: 20px;
+        font-size: 12px;
+    }
+
+    .btn-qty {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        display: block;
+        border: 1px solid  #ddd;
+        text-align: center;
+        color: #999;
+        font-size: 12px;
+        transition: all .5s ease;
+        backface-visibility: hidden;
+        border-radius: 0;
+        margin-top: 12px;
+    }
+
+    .btn-qty:hover{
+        cursor: pointer;
+        background-color: black;
+        color: rgb(226, 202, 62);
+    }
+
+    .matField{
+        width: 150px;
+        /* height: 10px; */
+        text-align: center;
+    }
+
+    .spinner {
+        display: flex;
+        justify-content: center;
+        margin: 10%;
+      }

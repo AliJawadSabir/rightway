@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TextMaskModule } from 'angular2-text-mask';
 
 import { 
   MatToolbarModule,
@@ -16,7 +17,7 @@ import {
   MatProgressSpinnerModule,
   MatFormFieldModule,
   MatInputModule,
-  
+  MatMenuModule
   
 } from '@angular/material';
 
@@ -24,14 +25,20 @@ import {
   HomeComponent,
   AboutComponent, 
   LoginComponent,
-  RegisterComponent
+  RegisterComponent,
+  ProductComponent,
+  AddProductComponent,
+  AddCategoryComponent
 } from './components';
 
 import {
   HomeService,
   AboutService, 
   LoginService,
-  RegisterService
+  RegisterService,
+  ProductService,
+  AddProductService,
+  AddCategoryService
 } from './services';
 
 @NgModule({
@@ -40,7 +47,10 @@ import {
     HomeComponent,
     AboutComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProductComponent,
+    AddProductComponent,
+    AddCategoryComponent
   ],
   imports: [
     BrowserModule,
@@ -56,14 +66,19 @@ import {
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatMenuModule,
+    TextMaskModule
   ],
 
   providers: [
     HomeService, 
     AboutService,
     LoginService,
-    RegisterService
+    RegisterService,
+    ProductService,
+    AddProductService,
+    AddCategoryService
   ],
 
   bootstrap: [AppComponent]

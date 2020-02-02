@@ -1,4 +1,4 @@
-import { Table, Column, Model, ForeignKey, HasMany, BelongsTo, HasOne } from 'sequelize-typescript';
+import { Table, Column, Model } from 'sequelize-typescript';
 /**
  * Importing related Models
  */
@@ -10,25 +10,25 @@ export class User extends Model<User> {
   /**
    * Adding Columns and their properties of User Table
    */
-  @Column firstName: string;
+  @Column name: string;
 
-  @Column lastName: string;
+  @Column email: string;
 
-  @Column phoneNumber: string;
+  @Column mobileNumber: string;
 
   @Column address: string;
 
   @Column gender: string;
 
-  @Column verificationCode: string;
+  // @Column verificationCode: string;
 
   @Column password: string;
 
   @Column isSuperUser: boolean;
 
-  @Column isActive: boolean;
+  // @Column isActive: boolean;
 
-  @Column portal: string;
+  // @Column portal: string;
 
 //   @ForeignKey(() => CRApplicant)
 //   @Column

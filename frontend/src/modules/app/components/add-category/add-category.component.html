@@ -1,4 +1,5 @@
 <!-- <div > -->
+    <!-- <mat-spinner class="spinner" *ngIf="!loaded"></mat-spinner> -->
     <mat-toolbar color="primary" class="matCard">
         <span fxLayout="row" fxFlex="90" class="matCardButtons">
         <h1 class="matHeading">  Right Way  </h1>  
@@ -34,23 +35,61 @@
         </span>
     </mat-toolbar>
     
-<div class="homePage" fxLayout="column">
+    <!-- <div class="productPage" fxLayout="row">
+        <div fxFlex="50">
+            <img class="img" src="{{imageLink}}">
+        </div>
+        <div fxFlex="50">
+            <div fxLayout="column">
+
+            </div>
+        </div>
+    </div> -->
+
+    <div class="productPage">
+        <div fxLayout="row">
+            <a id="right">Right Way</a>
+            <label class="prodLabel">{{im.description}}</label>
+        </div>
+        <mat-card fxLayout="row">
+            <div fxFlex="50">
+                <img class="img" src="{{imageLink}}">
+            </div>
+            <div fxFlex="50" class="formClass">
+                <form novalidate [formGroup]="fg" (ngSubmit)="addCategory(fg.value)" fxLayout="column" fxLayoutGap="20px">
+                <h4>Add Category</h4>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Category</mat-label>
+                        <input matInput [placeholder]="componentLabels.category" formControlName="category" required>
+                        <mat-error *ngIf="fg.get('category').hasError('required')">Enter Category</mat-error>
+                        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Description</mat-label>
+                        <input matInput [placeholder]="componentLabels.description" formControlName="description" required>
+                        <mat-error *ngIf="fg.get('description').hasError('required')">Enter Description</mat-error>
+                        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                    </mat-form-field>
+                    <div fxLayout="row">
+                        <button mat-raised-button class="addCategoryButton" type="submit" [disabled]="fg.invalid">ADD Category</button>
+                        <button class="cancelButton" mat-raised-button [routerLink]="['/home']">Cancel</button>
+                    </div>
+                </form>
+                </div>
+        </mat-card>
+    </div>
+<!-- <div class="homePage" fxLayout="column">
     <span *ngFor="let product of products; let i = index">
     <div class="imageRow" fxLayout="row" fxLayoutGap="10px">
         <span *ngFor="let prod of product; let j = index" fxFlex="31.5">
             <img class="img" src="{{prod.name}}" [routerLink]="['/home/product', prod.id]">
-            <!-- <h1>{{prod.name}}</h1> -->
-            <!-- <div class="text-block">
-                <h4>Nature</h4>
-                <p>What a beautiful sunrise</p>
-            </div> -->
             <div class="middle">
                 <div class="text">John Doe</div>
             </div>
         </span>
     </div>
     </span>
-</div>
+</div> -->
 
 <!-- <html>
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap" rel="stylesheet">

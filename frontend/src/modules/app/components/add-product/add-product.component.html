@@ -1,0 +1,151 @@
+<!-- <div > -->
+    <!-- <mat-spinner class="spinner" *ngIf="!loaded"></mat-spinner> -->
+    <mat-toolbar color="primary" class="matCard">
+        <span fxLayout="row" fxFlex="82" class="matCardButtons">
+        <h1 class="matHeading">  Right Way  </h1>  
+        <button mat-button routerLink="/">Sales</button>  
+        <button mat-button routerLink="/about">Winter Collection</button>
+        <button mat-button routerLink="/about">New Designs</button>
+        <button mat-button routerLink="/about">UnStitched</button>
+        <button mat-button routerLink="/about">Stitched</button>
+        </span>
+        <span fxFlex="18" fxLayout="row" fxLayoutGap="10px">
+            <!-- /<mat-icon  fxLayoutAlign="end" aria-hidden="false" aria-label="Example home icon">account_circle</mat-icon> -->
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <mat-icon>account_circle</mat-icon>
+            </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item routerLink="/login">
+                  <!-- <mat-icon>dialpad</mat-icon> -->
+                  <span>Login</span>
+                </button>
+                <button mat-menu-item routerLink="/register">
+                  <!-- <mat-icon>voicemail</mat-icon> -->
+                  <span>Sign Up</span>
+                </button>
+                <!-- <button mat-menu-item>
+                  <mat-icon>shopping_cart</mat-icon>
+                  <span>Disable alerts</span>
+                </button> -->
+              </mat-menu>
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <mat-icon>account_box</mat-icon>
+            </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item routerLink="/addCategory">
+                  <span>Add Category</span>
+                </button>
+                <button mat-menu-item routerLink="/addProduct">
+                  <span>Add Product</span>
+                </button>
+              </mat-menu>
+              <button mat-icon-button aria-label="Example icon-button with a menu">
+                <mat-icon>shopping_cart</mat-icon>
+              </button>
+              
+        </span>
+    </mat-toolbar>
+    
+    <!-- <div class="productPage" fxLayout="row">
+        <div fxFlex="50">
+            <img class="img" src="{{imageLink}}">
+        </div>
+        <div fxFlex="50">
+            <div fxLayout="column">
+
+            </div>
+        </div>
+    </div> -->
+
+    <div class="productPage">
+        <div fxLayout="row">
+            <a id="right">Right Way</a>
+            <label class="prodLabel">{{obj.description}}</label>
+        </div>
+        <mat-card fxLayout="row">
+            <div fxFlex="50">
+                <img class="img" src="{{imageLink}}">
+            </div>
+
+            <div fxFlex="50" class="formClass">
+                <form novalidate [formGroup]="fg" (ngSubmit)="addProduct(fg.value)" fxLayout="column" fxLayoutGap="0px">
+                    <h4>Add Product</h4>
+                        <mat-form-field appearance="outline">
+                            <mat-label>{{componentLabels.name}}</mat-label>
+                            <input matInput [placeholder]="componentLabels.name" formControlName="name" required>
+                            <mat-error *ngIf="fg.get('name').hasError('required')">Enter Name</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>{{componentLabels.description}}</mat-label>
+                            <input matInput [placeholder]="componentLabels.description" formControlName="description" required>
+                            <mat-error *ngIf="fg.get('description').hasError('required')">Enter Description</mat-error>
+                            <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>{{componentLabels.price}}</mat-label>
+                            <input matInput [placeholder]="componentLabels.price" formControlName="description" required>
+                            <mat-error *ngIf="fg.get('price').hasError('required')">Enter Description</mat-error>
+                            <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>{{componentLabels.available}}</mat-label>
+                            <input matInput [placeholder]="componentLabels.available" formControlName="description" required>
+                            <mat-error *ngIf="fg.get('available').hasError('required')">Enter Description</mat-error>
+                            <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>{{componentLabels.sold}}</mat-label>
+                            <input matInput [placeholder]="componentLabels.sold" formControlName="description" required>
+                            <mat-error *ngIf="fg.get('sold').hasError('required')">Enter Description</mat-error>
+                            <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>{{componentLabels.description}}</mat-label>
+                            <input matInput [placeholder]="componentLabels.description" formControlName="description" required>
+                            <mat-error *ngIf="fg.get('description').hasError('required')">Enter Description</mat-error>
+                            <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                        </mat-form-field>
+                        <div fxLayout="row">
+                            <button mat-raised-button class="addProductButton" type="submit" [disabled]="fg.invalid">ADD Product</button>
+                            <button class="cancelButton" mat-raised-button [routerLink]="['/home']">Cancel</button>
+                        </div>
+                    </form>
+            </div>
+
+        </mat-card>
+    </div>
+<!-- <div class="homePage" fxLayout="column">
+    <span *ngFor="let product of products; let i = index">
+    <div class="imageRow" fxLayout="row" fxLayoutGap="10px">
+        <span *ngFor="let prod of product; let j = index" fxFlex="31.5">
+            <img class="img" src="{{prod.name}}" [routerLink]="['/home/product', prod.id]">
+            <div class="middle">
+                <div class="text">John Doe</div>
+            </div>
+        </span>
+    </div>
+    </span>
+</div> -->
+
+<!-- <html>
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap" rel="stylesheet">
+    <div class="image">
+        <div class="heading">
+            <p id="awesome">Building Something Awesome</p>
+            <h1>Coming Soon!</h1>
+            <hr>
+            <p id="timer"></p>
+            <form novalidate [formGroup]="fg" fxLayout="row" fxLayoutGap="10px" (ngSubmit)="onSave(fg.value)">
+
+            <mat-form-field fxFlex="70%">
+                <input class="emailInput" matInput placeholder="Get Notify by Email" formControlName="email" required>
+                <mat-error *ngIf="fg.get('email').hasError('email')">Invalid Email</mat-error>
+                <mat-error *ngIf="fg.get('email').hasError('required')">Enter Email</mat-error>
+              </mat-form-field>
+              <button fxFlex="30%" class="saveButton" type="submit" [disabled]="fg.invalid" mat-raised-button color="primary">Notify Me!</button>
+            </form>
+        </div>
+    </div>
+</html> -->
+
+  <!-- <router-outlet></router-outlet> -->

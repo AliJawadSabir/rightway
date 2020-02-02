@@ -5,7 +5,7 @@ import * as bodyParser from 'body-parser';
 // import * as logger from 'morgan';
 import * as path from 'path';
 // import * as errorHandler from 'errorhandler';
-import * as cors from 'cors';
+// import * as cors from 'cors';
 // import * as jwt from 'jsonwebtoken';
 
 import { BaseRoute } from './base/router/base-route';
