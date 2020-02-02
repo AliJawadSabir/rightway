@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { environment } from "../../../environments/environment";
 import {NotifyUserModel} from '../models';
 import {RegisterModel} from '../models';
 import { environment } from '../../../environments/environment';
@@ -11,13 +10,8 @@ import { environment } from '../../../environments/environment';
 })
 export class RegisterService {
 
-<<<<<<< HEAD
-  private routeURL: String = `http://localhost:3000/user`;
+  private routeURL: String = `${environment.apiBaseUrl}user`;
   private route: String = `${environment.apiBaseUrl}notifyuser`;
-=======
-  private routeURL: String = `${environment.apiBaseUrl}notifyuser`;
->>>>>>> 82e25e6d1c1903a5db65e9904feddeb15d2bf47f
-
   constructor(protected http: HttpClient) {}
 
   create(item: NotifyUserModel) {
