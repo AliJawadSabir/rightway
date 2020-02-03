@@ -37,6 +37,8 @@ export class RegisterComponent implements OnInit {
 
   onSave(user) {
     this.registerUser = user;
+    this.registerUser.gender = 'Female';
+    this.registerUser.isSuperUser = false;
     // console.log('Button is clicked '+ this.registerUser);
     this.registerService.register(this.registerUser).subscribe(response => {
       console.log('Response for Register user '+ response)

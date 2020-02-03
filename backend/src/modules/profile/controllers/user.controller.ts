@@ -18,11 +18,20 @@ export class UserController {
    * @param next express.NextFunction
    */
   create(req: express.Request, res: express.Response, next: express.NextFunction) {
-    // let id = req.params.id;
-    console.log('-------createeeeeeeeeeeeeee calleddddddddddddddd');
+    // let obj = {
+    //   "name": req.body.name,
+    //   "email": req.body.email,
+    //   "mobileNumber": req.body.mobileNumber,
+    //   "address": req.body.address,
+    //   "password": req.body.password,
+    //   "gender": req.body.gender,
+    //   "isSuperUser": req.body.isSuperUser,
+    // };
+    console.log('-------createeeeeeeeeeeeeee calleddddddddddddddd'+ req.body);
     new UserModel()
       .create(req.body)
       .then(result => {
+        console.log('-------createeeeeeeeeeeeeee calleddddddddddddddd againnnnnnn');
         if (result) {
           res.json(result);
         } else {

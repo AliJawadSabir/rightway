@@ -3,24 +3,25 @@
 import { BaseModel } from '../../base/models/base.model';
 import { User } from './schema/user';
 import { ErrorHandler } from '../../base/conf';
-// import { BaseModel, CONFIGURATIONS } from '../../base';
-// import { User } from '../../security';
-// import { ErrorHandler } from '../../base/conf/error-handler';
-// import { EmailSenderModel } from '../../setting';
-// import { Helper } from '../../base/helpers/helper';
 
 export class UserModel extends BaseModel {
   constructor() {
-    super(User);
+    super(User)
     // super(1);
   }
 
   create(item){
-    return super.findByCondition(['email'],{email: item.email}).then(res=>{
+    
+    // return super.create(item);
+    // console.log('-------createeeeeeeeeeeeeee calleddddddddddddddd'+ item.email);
+    // console.log(item.email);
+    return super.findByCondition(['id'],{email: item.email}).then(res=>{
+      console.log('-------createeeeeeeeeeeeeee workedddddddddddddddd');
       if(res){
         
         return ErrorHandler.duplicateEmail;
       }else {
+        console.log('-------createeeeeeeeeeeeeee workedddddddddddddddd');
         return super.create(item).then(user=>{
           console.log('---------------------------------------');
           console.log(user);

@@ -1,5 +1,7 @@
 // import { Sequelize } from 'sequelize-typescript';
-// import { Connection, CONFIGURATIONS } from '../';
+import { Connection} from '../conf/connection';
+import { CONFIGURATIONS} from '../conf/configurations';
+// import { Connection, CONFIGURATIONS } from '../../base/conf';
 // var mysql = require('mysql');
 // var connection = mysql.createConnection({
 //     host: 'localhost',
@@ -15,6 +17,7 @@ export class BaseModel {
   constructor(model) {
     this.sequelizeModel = model;
     this.openConnection();
+    
   }
   
 
@@ -23,14 +26,14 @@ export class BaseModel {
 
   protected openConnection() {
     // this.connection.connect();
-    // if (!CONFIGURATIONS.connection) 
-    // {
-    //   console.log('-----------------------------------------------------------');
-    //   console.log('Db Connection is created (' + new Date() + ')');
-    //   console.log('-----------------------------------------------------------');
-    //   CONFIGURATIONS.connection = new Connection().createConnection();
-    // }
-    // this.connection = CONFIGURATIONS.connection;
+    if (!CONFIGURATIONS.connection) 
+    {
+      console.log('-----------------------------------------------------------');
+      console.log('Db Connection is created (' + new Date() + ')');
+      console.log('-----------------------------------------------------------');
+      CONFIGURATIONS.connection = new Connection().createConnection();
+    }
+    this.connection = CONFIGURATIONS.connection;
   }
 
   
@@ -64,7 +67,7 @@ export class BaseModel {
    * @param attributes
    */
   findByCondition(attributes, conditions, include?) {
-
+    
     return this.sequelizeModel.findOne(
       this.sequelizeQueryBuilder(attributes, conditions, include)
     );
@@ -107,7 +110,7 @@ export class BaseModel {
   create(item) {
 
     item = BaseModel.extendItem(item, true);
-
+    console.log('baseeeeeeeeeeeeeee', item);
     return this.sequelizeModel.create(item);
   }
 

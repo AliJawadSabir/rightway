@@ -9,6 +9,7 @@ export class RegisterModel {
   address?: string;
   password?: string;
   confirmPassword?: string;
+  gender?: string;
   isSuperUser?: boolean;
   createdBy?: number;
   updatedBy?: number;

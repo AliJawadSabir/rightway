@@ -33,7 +33,6 @@ export class UserRoute {
    */
   public create() {
     let controller = new UserController();
-    console.log('11111111111111111111111111111111111111111')
     this.router.route('/user/register').post(controller.create);
 
     this.router.route('/profile/profile/find/:id').get(controller.find);
