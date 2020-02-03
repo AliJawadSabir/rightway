@@ -3,6 +3,7 @@ import {FormControl, Validators} from '@angular/forms';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import {LoginService} from '../../services';
 import {LoginModel} from '../../models';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,8 @@ export class LoginComponent implements OnInit {
   email:string;
   public componentLabels = LoginModel.attributesLabels;
   constructor(
+    private router: Router,
+    private route: ActivatedRoute,
     private fb: FormBuilder,
     private loginService: LoginService
     ) { 
@@ -50,7 +53,8 @@ export class LoginComponent implements OnInit {
     this.loginUser = user;
     console.log('Buton is clicked '+ this.loginUser.password);
     this.loginService.login(this.loginUser).subscribe(response => {
-      console.log('Response for login user '+ response)
+      console.log('Response for login user '+ response);
+      this.router.navigate([`/home`]);
     },
     error =>{
       console.log('error in login user '+ error)

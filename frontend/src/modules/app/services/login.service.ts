@@ -3,17 +3,19 @@ import { HttpClient } from '@angular/common/http';
 import { LoginModel } from '../models';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map'
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  private routeURL: String = 'user';
+  private routeURL: String = `${environment.apiBaseUrl}user`;
 
   constructor(protected http: HttpClient) {}
 
   login(item: LoginModel): Observable<boolean> {
+    console.log('login service', item);
     return this.http.post(`${this.routeURL}/login`, item)
       .map(response => {
         // let res = response.json();
@@ -21,15 +23,12 @@ export class LoginService {
         let res = response;
 
         localStorage.setItem('id', res['id']);
-        localStorage.setItem('portal', res['portal']);
-        localStorage.setItem('username', res['username']);
+        localStorage.setItem('name', res['name']);
+        localStorage.setItem('email', res['email']);
         localStorage.setItem('isSuperUser', res['isSuperUser']);
         localStorage.setItem('token', res['token']);
 
-        let perms = JSON.stringify(res['permissions']);
-        localStorage.setItem('permissions', perms);
-
-        return res['portal'];
+        return res['isSuperUser'];
         // return true;
       })
       //.catch(this.handleError);

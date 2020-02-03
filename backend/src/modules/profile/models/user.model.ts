@@ -3,14 +3,19 @@
 import { BaseModel } from '../../base/models/base.model';
 import { User } from './schema/user';
 import { ErrorHandler } from '../../base/conf';
+import * as bcrypt from 'bcrypt';
+import * as jwt from 'jsonwebtoken';
+import { CONFIGURATIONS } from '../../base/conf/configurations';
 
 export class UserModel extends BaseModel {
+
+   SALTROUNDS = 10;
   constructor() {
     super(User)
     // super(1);
   }
 
-  create(item){
+  create(item: User){
     
     // return super.create(item);
     // console.log('-------createeeeeeeeeeeeeee calleddddddddddddddd'+ item.email);
@@ -22,12 +27,53 @@ export class UserModel extends BaseModel {
         return ErrorHandler.duplicateEmail;
       }else {
         console.log('-------createeeeeeeeeeeeeee workedddddddddddddddd');
-        return super.create(item).then(user=>{
-          console.log('---------------------------------------');
-          console.log(user);
-        })
+        return this.encrypt(item.password).then(hashedPassword => {
+          console.log('-------HASHED PASSWORD--------', hashedPassword);
+          item.password = hashedPassword;
+          return super.create(item);
+
+        });
       }
     })
+
+  }
+
+
+
+  /**
+   * Validate user to login and return jwt token and permissions
+   * 
+   * @param item 
+   */
+  public login(item: User) {
+
+    return super.findByCondition(['id', 'email', 'password', 'address','name','mobileNumber', 'gender', 'isSuperUser'], { email: item.email }).then(res => {
+
+      if (res) {
+
+        let userRes = res;
+        // let userRes = <User>res;
+
+        return this.verifyPassword(item.password, userRes.password).then(match => {
+
+          if (res && match) {
+
+            let token = jwt.sign({ id: res['id'], email: res['email'], iat: Math.floor(Date.now() / 1000) - 30 }, CONFIGURATIONS.SECRET);
+
+            let result = {
+              id: userRes.id, email: userRes.email, isSuperUser: userRes.isSuperUser,
+              token: token, gender:userRes.gender, address: userRes.address,
+              mobileNumber: userRes.mobileNumber, name:userRes.name
+            }
+          } else {
+            // Return invalid credentials message
+            return ErrorHandler.invalidLogin;
+          }
+        });
+      } else {
+        return ErrorHandler.invalidLogin;
+      }
+    });
   }
 
   forgotPassword(item) {
@@ -136,5 +182,23 @@ export class UserModel extends BaseModel {
     //     });
     //   });
     });
+  }
+
+
+    /**
+     * Encrypt str with bcrypt
+     * @param str 
+     */
+  encrypt(str) {
+      return bcrypt.hash(str, this.SALTROUNDS);
+  }
+
+  /**
+   * Verify password
+   * @param password 
+   * @param hashedPassword 
+   */
+  verifyPassword(password, hashedPassword) {
+      return bcrypt.compare(password, hashedPassword);
   }
 }

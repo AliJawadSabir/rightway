@@ -35,6 +35,8 @@ export class UserRoute {
     let controller = new UserController();
     this.router.route('/user/register').post(controller.create);
 
+    this.router.route('/user/login').post(controller.login);
+
     this.router.route('/profile/profile/find/:id').get(controller.find);
 
     this.router.route('/profile/profile/update/:id').put(controller.update);

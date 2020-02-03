@@ -20,13 +20,13 @@ export const CONFIGURATIONS = {
   GDataObject: {},
 
 
-  SECRET: 'eis_secret',
+  SECRET: 'rightway_secret',
 
   // TODO:high: following is not a proper way for public urls.
   PUBLIC_URLS: [
-    '/security/users/getPortal',
-    '/security/users/login',
-    '/security/users/forgotPassword',
+    // '/security/users/getPortal',
+    // '/security/users/login',
+    // '/security/users/forgotPassword',
     '/tables',
     '/settings/configurations/index/city',
     '/settings/configurations/city',

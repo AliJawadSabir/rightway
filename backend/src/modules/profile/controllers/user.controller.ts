@@ -5,13 +5,40 @@ import * as express from 'express';
  * Importing related Models
  */
 import { UserModel } from '../index';
+import { ErrorHandler } from '../../base/conf';
 
 export class UserController {
   constructor() { }
 
 
   /**
-   * find One
+   * Login
+   *
+   * @param req {User}
+   */
+  login(req: express.Request, res: express.Response, next: express.NextFunction) {
+
+    new UserModel().login(req.body).then(result => {
+
+      if (result && !result['error']) {
+
+        res.json(result);
+
+      } else {
+
+        ErrorHandler.send(result, res, next);
+
+      }
+    }).catch(err => {
+
+      ErrorHandler.sendServerError(err, res, next);
+
+    });
+  }
+
+
+  /**
+   * Create new
    *
    * @param req express.Request
    * @param res express.Response
@@ -35,11 +62,12 @@ export class UserController {
         if (result) {
           res.json(result);
         } else {
-          //res.status(ErrorHandler.recordNotFound.status).send(ErrorHandler.recordNotFound);
+          res.status(ErrorHandler.recordNotFound.status)
+          .send(ErrorHandler.recordNotFound);
         }
       })
       .catch(err => {
-        //ErrorHandler.sendServerError(err, res, next);
+        ErrorHandler.sendServerError(err, res, next);
       });
   }
 
