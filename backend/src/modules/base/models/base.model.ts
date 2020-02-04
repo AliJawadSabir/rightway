@@ -20,10 +20,6 @@ export class BaseModel {
     
   }
   
-
-
-  
-
   protected openConnection() {
     // this.connection.connect();
     if (!CONFIGURATIONS.connection) 
@@ -35,8 +31,6 @@ export class BaseModel {
     }
     this.connection = CONFIGURATIONS.connection;
   }
-
-  
 
   protected closeConnection() {
 
@@ -110,7 +104,8 @@ export class BaseModel {
   create(item) {
 
     item = BaseModel.extendItem(item, true);
-    console.log('baseeeeeeeeeeeeeee', item);
+    console.log('this.sequelizeModel', this.sequelizeModel);
+
     return this.sequelizeModel.create(item);
   }
 

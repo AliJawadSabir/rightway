@@ -16,7 +16,7 @@ export class Connection {
   constructor() { }
   public createConnection(): Sequelize {
     /** Instantiating Sequelize instance for creating connection */
-    this.sequelize = new Sequelize('rightway_db','SA', 'Jawad@52923',
+    this.sequelize = new Sequelize(CONNECTION_STRING.database, CONNECTION_STRING.username, CONNECTION_STRING.password,
     {dialect:'mssql',storage: 'memory'});
     // this.sequelize = new Sequelize(CONNECTION_STRING);
 
