@@ -8,24 +8,29 @@ import * as jwt from 'jsonwebtoken';
 import { CONFIGURATIONS } from '../../base/conf/configurations';
 
 export class UserModel extends BaseModel {
+  
+  public model;
+  SALTROUNDS = 10;
 
-   SALTROUNDS = 10;
   constructor() {
     super(User)
+    this.model = User;
     // super(1);
   }
 
   create(item: User){
     
     // return super.create(item);
-    // console.log('-------createeeeeeeeeeeeeee calleddddddddddddddd'+ item.email);
+    console.log('-------createeeeeeeeeeeeeee'+ item.email);
     // console.log(item.email);
-    return super.findByCondition(['id'],{email: item.email}).then(res=>{
-      console.log('-------createeeeeeeeeeeeeee workedddddddddddddddd');
+    return this.model.findOne({where:{email: item.email}}).then(res=>{
+      console.log('-------createeeeeeeeeeeeeee workedddddddddddddddd', res);
       if(res){
         
         return ErrorHandler.duplicateEmail;
+
       }else {
+
         console.log('-------createeeeeeeeeeeeeee workedddddddddddddddd');
         return this.encrypt(item.password).then(hashedPassword => {
           console.log('-------HASHED PASSWORD--------', hashedPassword);
@@ -47,7 +52,7 @@ export class UserModel extends BaseModel {
    */
   public login(item: User) {
 
-    return super.findByCondition(['id', 'email', 'password', 'address','name','mobileNumber', 'gender', 'isSuperUser'], { email: item.email }).then(res => {
+    return this.model.findOne({where:{email: item.email}}).then(res=>{
 
       if (res) {
 
@@ -58,6 +63,8 @@ export class UserModel extends BaseModel {
 
           if (res && match) {
 
+            console.log('------------------------------success');
+            console.log(res);
             let token = jwt.sign({ id: res['id'], email: res['email'], iat: Math.floor(Date.now() / 1000) - 30 }, CONFIGURATIONS.SECRET);
 
             let result = {
@@ -65,12 +72,18 @@ export class UserModel extends BaseModel {
               token: token, gender:userRes.gender, address: userRes.address,
               mobileNumber: userRes.mobileNumber, name:userRes.name
             }
+            return result;
+
           } else {
             // Return invalid credentials message
+            console.log('------------------------------password');
+            console.log(res);
             return ErrorHandler.invalidLogin;
           }
         });
       } else {
+        console.log('------------------------------email');
+            console.log(res);
         return ErrorHandler.invalidLogin;
       }
     });

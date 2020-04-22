@@ -1,4 +1,5 @@
-import { Table, Column, Model } from 'sequelize-typescript';
+import { Table, Column, Model, ForeignKey } from 'sequelize-typescript';
+import { Category } from './category';
 /**
  * Importing related Models
  */
@@ -6,25 +7,29 @@ import { Table, Column, Model } from 'sequelize-typescript';
 // import { CRApplicant } from '../../../campus';
 
 @Table({ timestamps: true, freezeTableName: true }) // for adding createdAt and updatedAt Columns
-export class User extends Model<User> {
+export class Product extends Model<Product> {
   /**
    * Adding Columns and their properties of User Table
    */
+  @ForeignKey(() => Category)
+  @Column
+  categoryId: number;
+
   @Column name: string;
 
-  @Column email: string;
+  @Column available: number;
 
-  @Column mobileNumber: string;
+  @Column sold: number;
 
-  @Column address: string;
+  @Column price: number;
 
-  @Column gender: string;
+  @Column description: string;
 
   // @Column verificationCode: string;
 
-  @Column password: string;
+  @Column path: string;
 
-  @Column isSuperUser: boolean;
+  // @Column isSuperUser: boolean;
 
   @Column createdBy: number;
 

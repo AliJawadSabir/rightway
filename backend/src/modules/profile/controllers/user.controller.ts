@@ -54,11 +54,10 @@ export class UserController {
     //   "gender": req.body.gender,
     //   "isSuperUser": req.body.isSuperUser,
     // };
-    console.log('-------createeeeeeeeeeeeeee calleddddddddddddddd'+ req.body);
     new UserModel()
       .create(req.body)
       .then(result => {
-        console.log('-------createeeeeeeeeeeeeee calleddddddddddddddd againnnnnnn');
+        console.log('-------createeeeeeeeeeeeeee calleddddddddddddddd', result);
         if (result) {
           res.json(result);
         } else {

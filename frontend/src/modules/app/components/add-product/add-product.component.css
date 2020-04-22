@@ -38,6 +38,10 @@
         margin: 30px;
     }
 
+    .matClass{
+        margin-top: 10px;
+    }
+
     #right{
         font-size: 12px;
     }
@@ -58,16 +62,54 @@
         font-family: 'Playfair Display', serif;
     }
 
-    .addProductButton{
+    .imageButton{
         background-color: black;
         color: white;
         height: 40px;
+        margin-top: 10px;
+        margin-bottom: 15px;
+    }
+    .imageButton:hover{
+        background-color: rgb(232, 235, 84);
+        color: black;
+        height: 40px;
+        margin-top: 10px;
     }
 
-    /* .addProductButton:hover{
-        background-color: rgb(186, 189, 8);
+      .done-status{
+          color: rgb(113, 185, 18);
+          margin-top: 20px;
+          font-weight: bold;
+      }
+
+      .removeButton{
+          height: 40px;
+          margin-top: 10px;
+      }
+
+      .uploadButton{
+        background-color: rgb(113, 185, 18);
+        color: white;
+        height: 40px;
+        margin-top: 10px;
+        margin-left: 15px;
+      }
+
+      .progress-bar {
+        /* padding: 10px; */
+        margin-top: 10px;
+        margin-bottom: 20px;
+      }
+
+      .removeAllButton{
+          margin-bottom: 15px!important;
+      }
+
+    .addProductButton{
+        background-color: rgb(232, 235, 84);
         color: black;
-    } */
+        height: 40px;
+    }
 
     .cancelButton{
         background-color: black;
@@ -77,12 +119,17 @@
     }
 
     .cancelButton:hover{
-        background-color: rgb(186, 189, 8);
+        background-color: rgb(232, 235, 84);
         color: black;
     }
 
-    /* .spinner {
-        display: flex;
-        justify-content: center;
-        margin: 10%;
-      } */
+      .hidden-file {
+        visibility: hidden; 
+        position: absolute;
+        overflow: hidden; 
+        width: 0px; 
+        height:0px;
+        border:none;
+        margin:0; 
+        padding:0
+      }

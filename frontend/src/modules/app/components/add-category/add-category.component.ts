@@ -37,7 +37,7 @@ export class AddCategoryComponent implements OnInit {
 
 
 
-  addCategory(category) {
+  addCategory(category: CategoryModel) {
     console.log('Buton is clicked one'+ category.category);
     this.categoryModel = category;
     console.log('Buton is clicked '+ this.categoryModel.description);

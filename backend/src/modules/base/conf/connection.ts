@@ -8,8 +8,16 @@ import { CONNECTION_STRING } from './local-settings';
  * 
  */
 import {
-  User, NotifyUser
+  User, NotifyUser, Category, Product
 } from '../../profile/index'
+
+/**
+ * Import from product Module
+ * 
+ */
+// import {
+//   Category
+// } from '../../product/index'
 
 export class Connection {
   sequelize: Sequelize;
@@ -30,7 +38,9 @@ export class Connection {
       });
     this.sequelize.addModels([
       User,
-      NotifyUser
+      NotifyUser,
+      Category,
+      Product
     ]);
     return this.sequelize;
   }

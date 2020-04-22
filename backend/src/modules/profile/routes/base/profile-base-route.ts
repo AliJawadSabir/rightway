@@ -2,6 +2,8 @@ import { NextFunction, Request, Response, Router } from 'express';
 
 import { UserRoute } from '../../index';
 import { NotifyUserRoute } from '../../index';
+import { CategoryRoute } from '../../index';
+import { ProductRoute } from '../../index';
 
 /**
  * / route
@@ -28,5 +30,7 @@ export class ProfileBaseRoute {
   public initAll() {
     new UserRoute(this.router);
     new NotifyUserRoute(this.router);
+    new CategoryRoute(this.router);
+    new ProductRoute(this.router);
   }
 }

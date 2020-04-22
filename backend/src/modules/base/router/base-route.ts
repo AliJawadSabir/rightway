@@ -3,6 +3,7 @@ import { Router } from 'express';
 // import * as express from 'express';
 
 import { ProfileBaseRoute } from '../../profile/index';
+// import { ProductBaseRoute } from '../../product/index';
 
 /**
  * / route
@@ -29,5 +30,6 @@ export class BaseRoute {
    */
   public initAll() {
     new ProfileBaseRoute(this.router);
+    // new ProductBaseRoute(this.router);
   }
 }

@@ -68,8 +68,9 @@ export class BaseModel {
    */
   findByCondition(attributes, conditions, include?) {
     
-    return this.sequelizeModel.findOne(
-      this.sequelizeQueryBuilder(attributes, conditions, include)
+    return this.sequelizeModel.findOne(attributes,
+      // this.sequelizeQueryBuilder(attributes, conditions, include)
+      {where:{conditions}}
     );
   }
 

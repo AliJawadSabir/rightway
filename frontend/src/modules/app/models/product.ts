@@ -35,7 +35,7 @@ export class ProductModel {
   */
   public validationRules() {
     return {
-      name: new FormControl('', [<any>Validators.required, Validators.maxLength(30)]),
+      // name: new FormControl('', [<any>Validators.required, Validators.maxLength(30)]),
       price: new FormControl('', [<any>Validators.required, Validators.maxLength(30)]),
       available: new FormControl('', [<any>Validators.required, Validators.maxLength(30)]),
       sold: new FormControl('', [<any>Validators.required, Validators.maxLength(30)]),

@@ -60,54 +60,109 @@
     <div class="productPage">
         <div fxLayout="row">
             <a id="right">Right Way</a>
-            <label class="prodLabel">{{obj.description}}</label>
+            <label class="prodLabel">{{im.description}}</label>
         </div>
-        <mat-card fxLayout="row">
-            <div fxFlex="50">
+        <mat-card fxLayout="column" class="matClass">
+            <!-- <div fxFlex="50">
                 <img class="img" src="{{imageLink}}">
-            </div>
+            </div> -->
 
-            <div fxFlex="50" class="formClass">
+            <div class="formClass">
                 <form novalidate [formGroup]="fg" (ngSubmit)="addProduct(fg.value)" fxLayout="column" fxLayoutGap="0px">
                     <h4>Add Product</h4>
-                        <mat-form-field appearance="outline">
-                            <mat-label>{{componentLabels.name}}</mat-label>
-                            <input matInput [placeholder]="componentLabels.name" formControlName="name" required>
-                            <mat-error *ngIf="fg.get('name').hasError('required')">Enter Name</mat-error>
-                        </mat-form-field>
-                        <mat-form-field appearance="outline">
-                            <mat-label>{{componentLabels.description}}</mat-label>
-                            <input matInput [placeholder]="componentLabels.description" formControlName="description" required>
-                            <mat-error *ngIf="fg.get('description').hasError('required')">Enter Description</mat-error>
-                            <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
-                        </mat-form-field>
-                        <mat-form-field appearance="outline">
-                            <mat-label>{{componentLabels.price}}</mat-label>
-                            <input matInput [placeholder]="componentLabels.price" formControlName="description" required>
-                            <mat-error *ngIf="fg.get('price').hasError('required')">Enter Description</mat-error>
-                            <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
-                        </mat-form-field>
-                        <mat-form-field appearance="outline">
-                            <mat-label>{{componentLabels.available}}</mat-label>
-                            <input matInput [placeholder]="componentLabels.available" formControlName="description" required>
-                            <mat-error *ngIf="fg.get('available').hasError('required')">Enter Description</mat-error>
-                            <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
-                        </mat-form-field>
-                        <mat-form-field appearance="outline">
-                            <mat-label>{{componentLabels.sold}}</mat-label>
-                            <input matInput [placeholder]="componentLabels.sold" formControlName="description" required>
-                            <mat-error *ngIf="fg.get('sold').hasError('required')">Enter Description</mat-error>
-                            <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
-                        </mat-form-field>
-                        <mat-form-field appearance="outline">
-                            <mat-label>{{componentLabels.description}}</mat-label>
-                            <input matInput [placeholder]="componentLabels.description" formControlName="description" required>
-                            <mat-error *ngIf="fg.get('description').hasError('required')">Enter Description</mat-error>
-                            <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
-                        </mat-form-field>
+                    <!-- <button mat-raised-button >Check</button> -->
+                        <div fxLayout="row" fxLayoutGap="20px">
+                            <!-- <mat-form-field appearance="outline" fxFlex="48"> -->
+                                <!-- <h4 fxFlex="40">Add Image</h4> -->
+                                <!-- <mat-label>{{componentLabels.name}}</mat-label> -->
+                                <span class="hidden-file">
+                                    <!-- <input type="file" name="file" ng2FileSelect [uploader]="uploader" multiple [accept]="fileFilter"> -->
+                                    <input type="file" #fileInput ng2FileSelect [uploader]="uploader" (click)="uploadImage($event)" multiple>
+                                </span>
+                                <!-- <input matInput [placeholder]="componentLabels.name" formControlName="name" required> -->
+                                <!-- <mat-error *ngIf="fg.get('name').hasError('required')">Enter Name</mat-error> -->
+                            <!-- </mat-form-field> -->
+                            <button type="button" class="imageButton" mat-raised-button (click)="fileInput.click()">Add Image</button>
+                        </div>
+                        <div fxLayout="row" *ngIf="uploader.queue.length > 0">
+                            <strong fxFlex="35">Name</strong>
+                            <strong fxFlex="15">Size</strong>
+                            <strong fxFlex="15">Status</strong>
+                            <strong fxFlex="25">Action</strong>
+                        </div>
+                        
+                        <div fxLayout="column" *ngFor="let item of uploader.queue">
+                            <div fxLayout="row">
+                                <h6 fxFlex="35">{{item.file.name}}</h6>
+                                <h6 fxFlex="15">{{ item.file.size/1024/1024 | number:'.2' }} MB</h6>
+                                <span fxFlex="15">
+                                    <mat-icon class="done-status" *ngIf="item.isReady || itemisSuccess">file_upload</mat-icon>
+                                    <mat-icon class="done-status" *ngIf="!item.isReady">thumb_down</mat-icon>
+                                </span>
+                                <button type="button" class="removeButton" mat-raised-button color="warn" (click)="item.remove()">Remove</button>
+                                <!-- <button class="uploadButton" mat-raised-button [disabled]="item.isReady || item.isSuccess"
+                                (click)="checkItem(item)">Upload</button> -->
+                            </div>
+                            <!-- <mat-divider class="divider-margins"></mat-divider> -->
+                        </div>
+                        <div *ngIf="uploader.queue.length > 0" fxLayout="row">
+                            <strong fxFlex="15">Progress:</strong>
+                            <mat-progress-bar class="progress-bar" mode="determinate" 
+                            [value]="uploader.progress"></mat-progress-bar>
+                        </div>
+                        <div fxLayout="row" *ngIf="uploader.queue.length > 0" class="removeAllButton">
+                            <button class="removeButton" mat-raised-button [disabled]="!uploader.queue.length"
+                            color="warn" type="button" (click)="uploader.clearQueue()">Remove All</button>
+                            <button class="uploadButton" mat-raised-button  [disabled]="!uploader.getNotUploadedItems().length"
+                            (click)="uploader.uploadAll()" type="button">Upload All</button>
+                        </div>
+                        <!-- <button class="uploadImageButton" mat-raised-button (click)="uploader.uploadAll()"
+                        fxFlex="15" [disabled]="!uploader.getNotUploadedItems().length">Upload Image</button> -->
+                        <div fxLayout="row" fxLayoutGap="20px">
+                            <mat-form-field appearance="outline" fxFlex="48">
+                                <mat-label>{{componentLabels.price}}</mat-label>
+                                <input matInput [placeholder]="componentLabels.price" formControlName="price" required>
+                                <mat-error *ngIf="fg.get('price').hasError('required')">Enter Description</mat-error>
+                                <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" fxFlex="48">
+                                <mat-label>{{componentLabels.category}}</mat-label>
+                                <mat-select [placeholder]="componentLabels.category" formControlName="category" required>
+                                    <mat-option *ngFor="let category of categoryList" [value]="category.id">
+                                        <!-- {{ educationLevel.instituteType.name }} -  -->
+                                        {{ category.category }}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="fg.get('category').hasError('required')">Select Category</mat-error>
+                                <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="20px">
+                            <mat-form-field appearance="outline" fxFlex="48">
+                                <mat-label>{{componentLabels.available}}</mat-label>
+                                <input matInput [placeholder]="componentLabels.available" formControlName="available" required>
+                                <mat-error *ngIf="fg.get('available').hasError('required')">Enter Available Itema</mat-error>
+                                <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" fxFlex="48">
+                                <mat-label>{{componentLabels.sold}}</mat-label>
+                                <input matInput [placeholder]="componentLabels.sold" formControlName="sold" required>
+                                <mat-error *ngIf="fg.get('sold').hasError('required')">Enter Sold Items</mat-error>
+                                <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="20px">
+                            <mat-form-field appearance="outline" fxFlex="96">
+                                <mat-label>{{componentLabels.description}}</mat-label>
+                                <input matInput [placeholder]="componentLabels.description" formControlName="description" required>
+                                <mat-error *ngIf="fg.get('description').hasError('required')">Enter Description</mat-error>
+                                <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                            </mat-form-field>
+                        </div>
                         <div fxLayout="row">
-                            <button mat-raised-button class="addProductButton" type="submit" [disabled]="fg.invalid">ADD Product</button>
-                            <button class="cancelButton" mat-raised-button [routerLink]="['/home']">Cancel</button>
+                            <button mat-raised-button class="addProductButton" type="submit" [disabled]="fg.invalid">Add Product</button>
+                            <button class="cancelButton" mat-raised-button (click)="cancelClick()">Cancel</button>
+                            <!-- <button class="cancelButton" mat-raised-button [routerLink]="['/home']">Cancel</button> -->
                         </div>
                     </form>
             </div>

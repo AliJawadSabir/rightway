@@ -50,7 +50,7 @@ export class RegisterComponent implements OnInit {
     // console.log('Button is clicked '+ this.registerUser);
     this.registerService.register(this.registerUser).subscribe(response => {
       console.log('Response for Register user '+ response);
-      this.router.navigate([`/home`]);
+      // this.router.navigate([`/home`]);
     },
     error =>{
       console.log('error in Register user '+ error)

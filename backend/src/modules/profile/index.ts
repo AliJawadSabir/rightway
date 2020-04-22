@@ -12,3 +12,15 @@ export * from './controllers/motify-user.controller';
 export * from './models/notify-user.model';
 export * from './routes/notify-user.route';
 export * from './models/schema/notify-user';
+
+// Category
+export * from './controllers/category.controller';
+export * from './models/category.model';
+export * from './routes/category.route';
+export * from './models/schema/category';
+
+// Product
+export * from './controllers/product.controller';
+export * from './models/product.model';
+export * from './routes/product.route';
+export * from './models/schema/product';

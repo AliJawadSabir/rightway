@@ -8,6 +8,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TextMaskModule } from 'angular2-text-mask';
+import { FileUploadModule } from 'ng2-file-upload';
+// import {MatProgressBarModule} from '@angular/material/progress-bar'; 
 
 import { 
   MatToolbarModule,
@@ -17,7 +19,10 @@ import {
   MatProgressSpinnerModule,
   MatFormFieldModule,
   MatInputModule,
-  MatMenuModule
+  MatMenuModule,
+  MatSelectModule,
+  MatProgressBarModule,
+  MatDividerModule
   
 } from '@angular/material';
 
@@ -37,7 +42,6 @@ import {
   LoginService,
   RegisterService,
   ProductService,
-  AddProductService,
   AddCategoryService
 } from './services';
 
@@ -65,10 +69,14 @@ import {
     FlexLayoutModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
+    MatProgressBarModule,
+    MatDividerModule,
     FormsModule,
     ReactiveFormsModule,
     MatMenuModule,
-    TextMaskModule
+    TextMaskModule,
+    FileUploadModule
   ],
 
   providers: [
@@ -77,7 +85,6 @@ import {
     LoginService,
     RegisterService,
     ProductService,
-    AddProductService,
     AddCategoryService
   ],
 
