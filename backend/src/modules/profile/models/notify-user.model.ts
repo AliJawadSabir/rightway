@@ -1,6 +1,7 @@
 // import * as nodemailer from 'nodemailer';
 // import { Promise } from 'bluebird';
 import { BaseModel } from '../../base/models/base.model';
+import { NotifyUser } from "./schema/notify-user";
 // import { BaseModel, CONFIGURATIONS } from '../../base';
 // import { User } from '../../security';
 // import { ErrorHandler } from '../../base/conf/error-handler';
@@ -10,7 +11,7 @@ import { BaseModel } from '../../base/models/base.model';
 export class NotifyUserModel extends BaseModel {
   constructor() {
     // super(User);
-    super(1);
+    super(NotifyUser);
   }
 
   
@@ -24,7 +25,8 @@ export class NotifyUserModel extends BaseModel {
       console.log('----------------------------------------');
       console.log('result skowing '+result);
       console.log('-------------------------------------------');
-    })
+      return result
+    });
     // let mcModel = new ConfigurationModel();
 
     // var conatacts = [];
