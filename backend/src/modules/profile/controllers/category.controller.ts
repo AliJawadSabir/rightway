@@ -50,6 +50,30 @@ export class CategoryController {
 
 
 
+  /**
+   * find One
+   *
+   * @param req express.Request
+   * @param res express.Response
+   * @param next express.NextFunction
+   */
+  find(req: express.Request, res: express.Response, next: express.NextFunction) {
+    let id = req.params.id;
+
+    new CategoryModel()
+      .find(id)
+      .then(result => {
+        if (result) {
+          res.json(result);
+        } else {
+          res.status(ErrorHandler.recordNotFound.status).send(ErrorHandler.recordNotFound);
+        }
+      })
+      .catch(err => {
+        ErrorHandler.sendServerError(err, res, next);
+      });
+  }
+
 
   // /**
   //  * find One

@@ -1,0 +1,245 @@
+/**  
+    These are the design implementation for Top bar.
+**/
+.matCard {
+    background-color: black;
+  }
+  
+  .matCardButtons button:hover{
+    color: rgb(232, 235, 84);
+  }
+  
+  .matHeading {
+    color: rgb(232, 235, 84);
+    margin-right: 20px;
+  }    
+      
+      
+      
+    .right-way {
+          color: rgb(226, 202, 62);
+          font-size: 25px;
+          font-family: 'Playfair Display', serif;
+          text-align: center;
+    }
+
+    /**
+    These are the other designs for the page
+    **/
+
+    .productPage{
+        margin: 30px;
+    }
+    /* .pagePath{
+        margin: 15px;
+        font-size: 12px;
+        font-family: "Montserrat";
+        background-color: whitesmoke;
+    }
+    .sign{
+        font-size: 10px;
+        margin-left: 3px;
+        margin-right: 6px;
+    } */
+    .text-style{
+        color: #696666;
+        font-family: "Montserrat";
+        font-size: 16px;
+    }
+
+    .cartLabel{
+        font-family: "Montserrat";
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+
+    .margin-top {
+        margin-top: 20px;
+        font-family: "Montserrat";
+        color: #494848;
+    }
+
+    .img{
+        width: 80%;
+        height: 100px;
+    }
+
+    .margin-left {
+        margin-left: 20px;
+    }
+    .removeButton{
+        height: 40px;
+        /* margin-top: 10px; */
+    }
+
+    .button-style{
+        margin-top: 25px;
+    }
+
+    .continueShopping{
+        background-color: black;
+        color: white;
+        height: 40px;
+        margin-right: 20px;
+    }
+
+    .continueShopping:hover{
+        background-color: rgb(186, 189, 8);
+        color: black;
+    }
+
+    .removeItems{
+        background-color: black;
+        color: white;
+        height: 40px;
+        margin-right: 20px;
+    }
+
+    .removeItems:hover{
+        background-color: rgb(186, 189, 8);
+        color: black;
+    }
+
+    /*
+    * Order Portion CSS
+    */
+
+    .orderLabel{
+        font-family: "Montserrat";
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+
+    .totalLabel{
+        margin-top: 35px;
+        font-family: "Montserrat";
+        color: #696666;
+    }
+
+    .itemLabel{
+        margin-top: 35px;
+        font-family: "Montserrat";
+        color: #494848;
+    }
+
+    .proceed{
+        background-color: black;
+        margin-top: 30px;
+        font-size: 18px;
+        color: white;
+        font-family: "Montserrat";
+        height: 40px;
+        margin-right: 20px;
+    }
+
+    .proceed:hover{
+        background-color: rgb(186, 189, 8);
+        color: black;
+    }
+
+    @media(max-width:680px){
+        .totalLabel{
+            margin-top: 30px;
+            font-family: "Montserrat";
+            color: #696666;
+            font-size: 14px;
+        }
+    
+        .itemLabel{
+            margin-top: 30px;
+            font-family: "Montserrat";
+            color: #494848;
+            font-size: 14px;
+        }
+        .orderLabel{
+            font-family: "Montserrat";
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+        .cartLabel{
+            font-family: "Montserrat";
+            font-size: 22px;
+            margin-bottom: 15px;
+            margin-top: 20px;
+        }
+        .img{
+            height: 150px;
+            width: 75px;
+            margin-top: 15px;
+            /* margin-left: 50%;
+            margin-right: 50%; */
+        }
+        .productPage{
+            margin: 15px;
+        }
+        .removeButton{
+            height: 40px;
+            width: 120px;
+            margin-top: 10px;
+        }
+        .continueShopping{
+            margin-bottom: 10px;
+        }
+        .nameLabel{
+            font-weight: bold;
+            font-size: 18px;
+            text-align: center;
+        }
+        .marginColor{
+            margin-bottom: 6px;
+            margin-right: 30px;
+            color: #494848;
+            font-size: 14px;
+
+        }
+        .marginColor1{
+            margin-bottom: 6px;
+            color: #696666;
+            font-size: 14px;
+        }
+        .margin-left{
+            margin-left: 20px;
+            margin-top: 20px;
+        }
+    }
+
+
+
+
+
+
+     
+
+    /*#right{
+        font-size: 12px;
+    }
+
+    .prodLabel{
+        padding-bottom: 10px;
+        margin-left: 20px;
+        font-size: 12px;
+    }
+
+
+    .formClass{
+        margin-left: 25px;
+        font-family: 'Playfair Display', serif;
+    }
+
+    .addCategoryButton{
+        background-color: rgb(186, 189, 8);
+        color: black;
+        height: 40px;
+    }
+
+    .cancelButton{
+        margin-left: 20px;
+        background-color: black;
+        color: white;
+        height: 40px;
+    }
+
+    .cancelButton:hover{
+        background-color: rgb(186, 189, 8);
+        color: black;
+    } */

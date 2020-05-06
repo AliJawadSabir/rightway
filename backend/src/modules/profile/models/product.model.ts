@@ -3,6 +3,11 @@
 import { BaseModel } from '../../base/models/base.model';
 import { Product } from '../index';
 import { ErrorHandler } from '../../base/conf';
+import { Promise } from 'bluebird';
+import { CategoryModel } from './category.model';
+import { response } from 'express';
+import { ColorModel } from './color.model';
+import { SizeModel } from './size.model';
 const multer = require('multer');
 // import { BaseModel, CONFIGURATIONS } from '../../base';
 // import { User } from '../../security';
@@ -26,7 +31,8 @@ export class ProductModel extends BaseModel {
    */
   public create(item) {
 
-    return this.model.findOne({where:{category: item.category}}).then(res=>{
+    return this.model.findOne({where:{name: item.name, sizeId:item.sizeId, 
+      colorId:item.colorId, categoryId: item.categoryId}}).then(res=>{
       console.log('-------createeeeeeeeeeeeeee workedddddddddddddddd', res);
       if (res){
         console.log('----------------------------------------');
@@ -34,7 +40,11 @@ export class ProductModel extends BaseModel {
           console.log('-------------------------------------------');
         return ErrorHandler.duplicateEntry;
       }else {
-
+        console.log('-------in createeeeeeeee portionnnnnn', item);
+        // let item1 = {name: item.name, sizeId:item.size, price:item.price, sold:item.sold, 
+        //   colorId:item.color, categoryId: item.category, description:item.description,
+        // url:item.url, code:item.code, type:item.tupe, available:item.available,
+        // discount:item.discount}
         return super.create(item).then(result => {
           console.log('----------------------------------------');
           console.log('result showing '+res);
@@ -54,6 +64,160 @@ export class ProductModel extends BaseModel {
       return result;
     })
 
+  }
+
+  public findWithCode(id)
+  {
+    console.log('-------id workedddddddddddddddd', id);
+    return this.model.findAll({where:{id:+id}}).then(res=>{
+      console.log('-------find with code workedddddddddddddddd', res);
+      if (res){
+        let code = res.code;
+        console.log('----------------------------------------');
+          console.log('item code', code);
+          console.log('-------------------------------------------');
+        return this.findCodeItems(code);
+        
+        // return ErrorHandler.duplicateEntry;
+      }
+    })
+
+  }
+  public findByDiscount(discount)
+  {
+    console.log('-------discount workedddddddddddddddd', discount);
+    let attributes = ['id','name','url','price','code','description',
+    'discount','sold','available','colorId','categoryId','sizeId','type'];
+    let conditions = {discount:+discount}
+    return this.model.findAll(attributes,conditions).then(res=>{
+      // console.log('-------find with discount workedddddddddddddddd', res);
+      if (res){
+        let response = [];
+        return Promise.each(res, resp => {
+          if(resp['dataValues']['discount'] >= discount){
+            console.log('-----------------category id', resp['dataValues']['categoryId'])
+            return new CategoryModel().find(resp['dataValues']['categoryId']).then(categoryResponse=>{
+              resp['dataValues']['category'] = categoryResponse;
+              return new ColorModel().find(resp['dataValues']['colorId']).then(colorResponse=>{
+                resp['dataValues']['color'] = colorResponse;
+                return new SizeModel().find(resp['dataValues']['sizeId']).then(sizeResponse=>{
+                  resp['dataValues']['size'] = sizeResponse;
+                  response.push(resp);
+                })
+              })
+            })
+          }
+        }).then(() => {
+          return response;
+        });
+        // let i=0; 
+        // let response = [];
+        // while(i<res.length){
+        //   if(res[i]['dataValues']['discount'] == discount){    
+        //     response.push(res[i]['dataValues']);
+        //   }
+        //   i++;
+        // }
+        // return response;
+      }else{
+        return ErrorHandler.recordNotFound;
+      }
+      // if (res){
+      //   let i=0; 
+      //   let response = [];
+      //   while(i<res.length){
+      //     if(res[i]['dataValues']['discount'] == discount){
+      //       return new CategoryModel().find(res[i]['dataValues']['id']).then(resp=>{
+      //         res[i]['dataValues']['category'] = resp['dataValues']['category'];
+      //         console.log('-------find with discount workedddddddddddddddd', res);
+      //         response.push(res[i]['dataValues']);
+      //       })   
+            
+      //     }
+      //     i++;
+      //   }
+      //   return response;
+      // }else{
+      //   return ErrorHandler.recordNotFound;
+      // }
+    })
+
+  }
+  public findByType(type)
+  {
+    console.log('-------type workedddddddddddddddd', type);
+    let attributes = ['id','name','url','price','code','description',
+    'discount','sold','available','colorId','categoryId','sizeId','type'];
+    let conditions = {discount:type}
+    return this.model.findAll(attributes,conditions).then(res=>{
+      console.log('-------find with type workedddddddddddddddd', res);
+      if (res){
+        let i=0; 
+        let response = [];
+        while(i<res.length){
+          if(res[i]['dataValues']['type'] == type){
+            response.push(res[i]['dataValues']);
+          }
+          i++;
+        }
+        return response;
+      }
+    })
+
+  }
+
+  public find(id)
+  {
+    return this.model.findOne({where:{id:id}}).then(res=>{
+      console.log('-------createeeeeeeeeeeeeee workedddddddddddddddd', res);
+      if (res){
+        return new CategoryModel().find(res['dataValues']['categoryId']).then(categoryResponse=>{
+          res['dataValues']['category'] = categoryResponse;
+          return new ColorModel().find(res['dataValues']['colorId']).then(colorResponse=>{
+            res['dataValues']['color'] = colorResponse;
+            return new SizeModel().find(res['dataValues']['sizeId']).then(sizeResponse=>{
+              res['dataValues']['size'] = sizeResponse;
+              return res;
+            })
+          })
+        })
+        // return ErrorHandler.duplicateEntry;
+      }
+    })
+  }
+
+  // public find(id)
+  // {
+  //   return this.model.findOne({where:{id:id}}).then(res=>{
+  //     console.log('-------createeeeeeeeeeeeeee workedddddddddddddddd', res);
+  //     if (res){
+  //       return res;
+  //       // return ErrorHandler.duplicateEntry;
+  //     }
+  //   })
+  // }
+
+  public findCodeItems(code){
+    console.log('----------------------------------------');
+          console.log('item code', code);
+          console.log('-------------------------------------------');
+    return this.model.findAll(['id','name','url','price','code','description',
+  'discount','sold','available','colorId','categoryId','sizeId','type'],
+  {where:{code:code}}).then(res=>{
+      console.log('-------find with codeeee workedddddddddddddddd', res[1]['dataValues']['code']);
+      if (res){
+        let i=0; 
+        let response = [];
+        while(i<res.length){
+          if(res[i]['dataValues']['code'] == code){
+            response.push(res[i]['dataValues']);
+          }
+          i++;
+        }
+        
+        return res;
+      }
+    })
   }
 
 

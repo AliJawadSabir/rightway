@@ -1,0 +1,512 @@
+
+/* .slider{
+    height: 30vh;
+    width: 80%;
+    margin-left: 10%;
+    position: absolute;
+}
+img{
+    width:100%; 
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+.text-area{
+    width:600px; 
+    position: absolute;
+    left: 100px;
+    top: 200px;
+    color: #fff;
+}
+.text-area h1{
+    margin-bottom: 55px;
+}
+.text-area p{
+    font-size: 16px;
+    line-height: 18px;
+} */
+
+/* .homeMatCard1, .homeMatCard2, .homeMatCard3{
+    padding:0px !important;
+    overflow: hidden;
+    height: 300px;
+    width: 100%;
+}
+.homeMatCard1{
+    position: fixed;
+    animation: image1 9s linear infinite;
+}
+.homeMatCard2{
+    position: fixed;
+    animation: image2 9s linear infinite;
+}
+.homeMatCard3{
+    position: fixed;
+    animation: image3 9s linear infinite;
+}
+@keyframes image1{
+    0%{
+        visibility: visible;
+    }
+    33%{
+        visibility: hidden;
+    }
+    66%{
+        visibility: hidden;
+    }
+    100%{
+        visibility: visible;
+    }
+}
+@keyframes image2{
+    0%{
+        visibility: hidden;
+    }
+    33%{
+        visibility: hidden;
+    }
+    66%{
+        visibility: visible;
+    }
+    100%{
+        visibility: hidden;
+    }
+}
+@keyframes image3{
+    0%{
+        visibility: hidden;
+    }
+    33%{
+        visibility: hidden;
+    }
+    66%{
+        visibility: hidden;
+    }
+    100%{
+        visibility: visible;
+    }
+} */
+/* img{
+    overflow: hidden;
+} */
+/* .img:hover{
+    opacity: 0.8;
+    cursor: pointer;
+  } */
+
+
+
+  .payment{
+    overflow-x: hidden;
+}
+.slider{
+    height: 80vh;
+    width: 100vh;
+    /* margin-left: 10%; */
+    position: relative;
+    overflow: hidden;
+}
+.homeMatCard{
+    padding:0px !important;
+    margin: 20px;
+    overflow: hidden;
+    height: 100vh;
+    width: 100%;
+}
+
+  .text {
+	position: absolute;
+	bottom: -40px;
+    display: block;
+    text-align: center;
+    background-color: rgb(48, 49, 47);
+    color: white;
+    height: 125px;
+    margin-left: 10px ;
+    width: 150px !important;
+    font-family: "Montserrat";
+	font-size: 12px;
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+	opacity: 0;
+	
+}
+.img {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+}
+.img{
+    animation: zoominoutsinglefeatured 3s linear infinite;
+}
+@keyframes zoominoutsinglefeatured {
+    0% {
+        transform: scale(1,1);
+    }
+    50% {
+        transform: scale(1.2,1.2);
+    }
+    100% {
+        transform: scale(1,1);
+    }
+}
+.img:hover {
+	-webkit-transform: scale(1.3);
+    transform: scale(1.3);
+    opacity: 1;
+}
+.img:hover+div {
+	bottom: 50px;
+	opacity: 0.8;
+}
+.text:hover ~ .img {
+	-webkit-transform: scale(1.3);
+    transform: scale(1.3);
+    opacity: 0.7;
+}
+  /* .text {
+	position: absolute;
+	bottom: -40px;
+	left: 0;
+	display: block;
+	width: 300px;
+	margin: 0;
+    padding: 0;
+    background-color: greenyellow;
+    color: white;
+    height: 40px;
+    margin-left: 40%;
+    width: 100px !important;
+	font-size: 18px;
+	text-decoration: none;
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+	opacity: 0;
+	
+}
+.img {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+}
+.img:hover {
+	-webkit-transform: scale(1.3);
+    transform: scale(1.3);
+    opacity: 0.7;
+}
+.img:hover+button {
+	bottom: 96px;
+	opacity: 10;
+} */
+
+/**  
+    These are the design implementation for Top bar.
+**/
+.matCard {
+    background-color: black;
+  }
+  
+  .matCardButtons button:hover{
+    color: rgb(232, 235, 84);
+  }
+  
+  .matHeading {
+    color: rgb(232, 235, 84);
+    margin-right: 20px;
+  }    
+      
+      
+      
+    .right-way {
+          color: rgb(226, 202, 62);
+          font-size: 25px;
+          font-family: 'Playfair Display', serif;
+          text-align: center;
+          /* background-image: url(../../../../assets/logo);  */
+          /* height: 64px;
+          padding-left: 0px;
+          margin-left: 0px;
+          overflow: hidden;
+          background-position: center;
+          background-size: cover; */
+    }
+
+    /**
+    These are the other designs for the page
+    **/
+
+    .shippingPage{
+        margin: 30px;
+    }
+
+    .amountCard{
+        /* background-color: #c1c1c1;
+        margin-left: 10%;
+        margin-right: 10%; */
+        margin-bottom: 10px;
+    }
+
+    .orderLabel{
+        font-family: "Montserrat";
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+
+    .totalLabel{
+        margin-top: 35px;
+        font-family: "Montserrat";
+        color: #696666;
+    }
+
+    .itemLabel{
+        margin-top: 35px;
+        font-family: "Montserrat";
+        color: #494848;
+    }
+
+    .margin-radio-group{
+        margin-bottom: 25px;
+        font-family: "Montserrat";
+    }
+
+    .formClass{
+        margin-top: 10px;
+        font-family: "Montserrat";
+        color: #696666;
+    }
+
+    .shippingLabel{
+        margin-bottom: 20px;
+        font-size: 18px;
+        color: #494848;
+    }
+
+    .fname-margin{
+        margin-top: 30px;
+    }
+
+    .paymentButton{
+        background-color: rgb(186, 189, 8);
+        color: black;
+        height: 40px;
+        margin-right: 15px;
+    }
+
+
+    .cancelButton{
+        background-color: black;
+        color: white;
+        height: 40px;
+    }
+    .cancelButton:hover{
+        background-color: rgb(186, 189, 8);
+        color: black;
+        height: 40px;
+    }
+
+    .continueShoppingButton{
+        margin-top: 20px;
+        background-color: black;
+        color: white;
+        height: 40px;
+    }
+    .continueShoppingButton:hover{
+        background-color: rgb(186, 189, 8);
+        color: black;
+        height: 40px;
+    }
+
+    /* #right{
+        font-size: 12px;
+    }
+
+    .prodLabel{
+        padding-bottom: 10px;
+        margin-left: 20px;
+        font-size: 12px;
+    }
+
+    .img{
+        width: 100%;
+        height: 500px;
+    }
+
+    .descriptionClass{
+        margin-left: 25px;
+        font-family: 'Playfair Display', serif;
+    } */
+
+    /* .pkr{
+        margin-top: 20px;
+    } */
+
+    /* .PKRHeading{
+        margin-left: 20px;
+        color: #e95144;
+        font-weight: bold;
+    }
+
+    .addCartButton{
+        background-color: black;
+        color: white;
+        height: 40px;
+    }
+
+    .addCartButton:hover{
+        background-color: rgb(186, 189, 8);
+        color: black;
+    }
+
+    .quantityHeading{
+        margin-top: 20px;
+        font-size: 12px;
+    }
+
+    .btn-qty {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        display: block;
+        border: 1px solid  #ddd;
+        text-align: center;
+        color: #999;
+        font-size: 12px;
+        transition: all .5s ease;
+        backface-visibility: hidden;
+        border-radius: 0;
+        margin-top: 12px;
+    }
+
+    .btn-qty:hover{
+        cursor: pointer;
+        background-color: black;
+        color: rgb(226, 202, 62);
+    }
+
+    .matField{
+        width: 150px;
+        text-align: center;
+    }
+
+    .spinner {
+        display: flex;
+        justify-content: center;
+        margin: 10%;
+      } */
+
+  /* .text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+  }
+  
+  .dot {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
+  
+  .active {
+    background-color: #717171;
+  }
+   */
+  /* Fading animation */
+  /* .fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+    height: 100px;
+  }
+  
+  @-webkit-keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+  }
+  
+  @keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+  }
+  
+  @media only screen and (max-width: 300px) {
+    .text {font-size: 11px}
+  } */
+
+  @media (min-width:900px){
+    .homeMatCard{
+        padding:0px !important;
+        overflow: hidden;
+        margin: 30px;
+        height: 120vh;
+        width: 100%;
+    }
+    .img:hover+div {
+        bottom: 230px;
+        opacity: 0.8;
+    }
+  }
+
+
+  @media (max-width:500px){
+    .shippingLabel{
+        font-family: "Montserrat";
+        margin-bottom: 20px;
+        font-size: 16px;
+        color: #494848;
+    }
+    .homeMatCard{
+        padding:0px !important;
+        overflow: hidden;
+        margin: 20px;
+        height: 450px;
+        width: 100%;
+    }
+    .margin-radio-group{
+        font-family: "Montserrat";
+        font-size: 12px;
+    }
+    .orderLabel{
+        font-family: "Montserrat";
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+    .itemLabel{
+        margin-top: 25px;
+        font-family: "Montserrat";
+        color: #494848;
+        font-size: 12px;
+    }
+    .totalLabel{
+        margin-top: 25px;
+        font-family: "Montserrat";
+        color: #696666;
+        font-size: 12px;
+    }
+    .shippingPage{
+        margin: 20px;
+    }
+    .img:hover+div {
+        bottom: 20px;
+        opacity: 0.8;
+    }
+}

@@ -3,7 +3,8 @@ import { NextFunction, Request, Response, Router } from 'express';
 import { UserRoute } from '../../index';
 import { NotifyUserRoute } from '../../index';
 import { CategoryRoute } from '../../index';
-import { ProductRoute } from '../../index';
+import { ProductRoute, SizeRoute, ColorRoute, CustomerRoute, OrderRoute
+ } from '../../index';
 
 /**
  * / route
@@ -32,5 +33,9 @@ export class ProfileBaseRoute {
     new NotifyUserRoute(this.router);
     new CategoryRoute(this.router);
     new ProductRoute(this.router);
+    new SizeRoute(this.router);
+    new ColorRoute(this.router);
+    new CustomerRoute(this.router);
+    new OrderRoute(this.router);
   }
 }

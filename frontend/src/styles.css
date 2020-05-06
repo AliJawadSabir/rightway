@@ -2,3 +2,14 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.pagePath{
+    margin: 15px;
+    font-size: 12px;
+    font-family: "Montserrat";
+    background-color: whitesmoke;
+}
+.sign{
+    font-size: 10px;
+    margin-left: 3px;
+    margin-right: 6px;
+}

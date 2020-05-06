@@ -1,4 +1,4 @@
-    <mat-toolbar color="primary" class="matCard">
+    <!-- <mat-toolbar color="primary" class="matCard">
         <span fxLayout="row" fxFlex="90" class="matCardButtons">
         <h1 class="matHeading">  Right Way  </h1>  
         <button mat-button routerLink="/">Sales</button>  
@@ -8,36 +8,32 @@
         <button mat-button routerLink="/about">Stitched</button>
         </span>
         <span fxFlex="15" fxLayout="row" fxLayoutGap="10px">
-            <!-- /<mat-icon  fxLayoutAlign="end" aria-hidden="false" aria-label="Example home icon">account_circle</mat-icon> -->
             <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
                 <mat-icon>account_circle</mat-icon>
               </button>
               <mat-menu #menu="matMenu">
                 <button mat-menu-item routerLink="/login">
-                  <!-- <mat-icon>dialpad</mat-icon> -->
                   <span>Login</span>
                 </button>
                 <button mat-menu-item routerLink="/register">
-                  <!-- <mat-icon>voicemail</mat-icon> -->
                   <span>Sign Up</span>
                 </button>
-                <!-- <button mat-menu-item>
-                  <mat-icon>shopping_cart</mat-icon>
-                  <span>Disable alerts</span>
-                </button> -->
               </mat-menu>
               <button mat-icon-button aria-label="Example icon-button with a menu">
                 <mat-icon>shopping_cart</mat-icon>
               </button>
               
         </span>
-    </mat-toolbar>
+    </mat-toolbar> -->
     
     
     
     <div class="image">
+      <div class="pagePath">
+        RightWay<span class="sign">></span>Registration
+    </div>
     <div fxLayout="row" fxLayoutAlign="center center">
-            <div fxFlex="50" class="login-form">
+            <div fxFlex="{{flexSize}}" class="login-form">
             <mat-card class="example-card" >
                 <mat-card-header>
                   <mat-card-title>Registration Form</mat-card-title>
@@ -74,12 +70,15 @@
                             <mat-error *ngIf="fg.get('confirmPassword').hasError('required')">Confirm Password is required</mat-error>
                             <mat-error *ngIf="fg.get('confirmPassword').hasError('equalTo') && !fg.get('confirmPassword').hasError('required') ">Password did not match</mat-error>
                         </mat-form-field>
-                        <div fxLayout="row">
-                            <button class="saveButton" mat-raised-button type="submit" [disabled]="fg.invalid">Register</button>
-                            <button class="cancelButton" mat-raised-button [routerLink]="['/login']">Already have Account</button>
-                
-                          </div>
-                          <label class="label" [routerLink]="['/home']">Return to Store</label>
+                        <div fxLayout="row" *ngIf="innerWidth>450">
+                          <button class="saveButton" mat-raised-button type="submit" [disabled]="fg.invalid">Register</button>
+                          <button class="cancelButton" mat-raised-button [routerLink]="['/login']">Already have Account</button>
+                        </div>
+                        <div fxLayout="column" *ngIf="innerWidth<=450">
+                          <button class="saveButton" mat-raised-button type="submit" [disabled]="fg.invalid">Register</button>
+                          <button class="cancelButton" mat-raised-button [routerLink]="['/login']">Already have Account</button>
+                        </div>
+                        <label class="label" [routerLink]="['/home']">Return to Store</label>
                     </form>
                 </mat-card-content>
               </mat-card>

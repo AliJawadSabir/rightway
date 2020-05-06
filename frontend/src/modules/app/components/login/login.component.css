@@ -13,12 +13,10 @@
 }
 
 .image {
-    background-image: url(../../../../assets/im8.jpeg); 
-    /* position: absolute; */
-    height: 100%;
-    /* width: 100%; */
-    /* opacity: .8; */
+    /* background-image: url(../../../../assets/im8.jpeg);  */
+    /* height: 100%; */
     overflow:hidden;
+    background-color: whitesmoke;
     background-position: center;
     background-size: cover;
   }
@@ -33,17 +31,20 @@
 
   .cancelButton{
       margin-left: 10px;
-      background-color: rgb(54, 44, 44);
+      /* background-color: rgb(54, 44, 44); */
+      background-color: black;
       color: rgb(232, 235, 84);
   }
 
   .cancelButton:hover{
-    background-color: rgb(54, 44, 44);
+    /* background-color: rgb(54, 44, 44); */
+    background-color: black;
     color: rgb(232, 235, 84);
   }
 
   .saveButton{
-      background-color: rgb(54, 44, 44);
+      /* background-color: rgb(54, 44, 44); */
+      background-color: black;
       color: rgb(232, 235, 84);
   }
 

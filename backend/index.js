@@ -51,18 +51,43 @@
 var cors = require('cors');
 var bodyparser = require('body-parser');
 var path = require('path');
-// var server = require('./src/server.ts').Server;
+var jwt = require('jsonwebtoken');
+// var CONFIGURATIONS = require('./src/modules/base/conf/configurations.ts');
 var route = require('./dist/modules/base/router/base-route.js');
-// import {BaseRoute} from './src/modules/base/router/base-route.ts';
-//var bodyparser = require('bodyparser');
 
 var app = express();
 // port number
 const port = 3000;
 
-
+const PUBLIC_URLS = [
+  // '/security/users/getPortal',
+  // '/security/users/login',
+  // '/security/users/forgotPassword',
+  '/order/findWithProducts',
+  '/settings/configurations/index/city',
+  '/settings/configurations/city',
+  '/settings/configurations/index/country',
+  '/settings/configurations/index/tehsil',
+  '/settings/configurations/index/province',
+  '/settings/configurations/index/natureOfWork',
+  '/campus/preRegistrations/create',
+  '/shared/eligibility-criteria/download',
+  '/campus/preRegistrations/validateUniqueEmail',
+  '/settings/banks/findAttributesList',
+  '/settings/docStateManagers/getStateId',
+  '/institute/instituteTypes/findAttributesList',
+  '/settings/attachments/fileUpload',
+  '/profile/profile/forgotPassword',
+  '/profile/profile/resetPassword',
+  '/profile/profile/validateVerificationCode',
+  '/settings/configurations/findAttributesList/country',
+  '/settings/configurations/findAttributesList/city',
+  '/settings/configurations/findAllCities',
+  '/settings/configurations/findConfiguration'
+];
 //cors
 app.use(cors());
+var invalidLogin = { error: true, status: 404, message: 'Invalid username or password.', code: 101 };
 
 //
 // app.use(function(req, res, next) {
@@ -87,10 +112,77 @@ app.use(express.static(path.join(__dirname, 'public')));
 // });
 
 
+  // /**
+  //  * authorize jsonwebtoken
+  //  * @param req
+  //  * @param res
+  //  * @param next
+  //  */
+   function authorize(req, res, next) {
+    // TODO:low: Following is not proper way to skip auth on public URLs. There should be some configuration in jwt to skip some public urls
+    var foundPublicUrl = PUBLIC_URLS.find(element => {
+      
+      if (element == req.originalUrl) {
+        return true;
+      } else {
+        // check if url exists in public urls without last parameter i.e id 
+        let lastIndex = req.originalUrl.lastIndexOf('/');
+        let originalUrl = req.originalUrl.substr(0, lastIndex);
+        if (element == originalUrl) {
+          console.log('MATCHED', req.originalUrl)
+          return true;
+        }
+      }
+
+    });
+
+    if (foundPublicUrl) {
+      //TODO:high: For now Mohsin has added delay on each request to test the loading issues for user interactivity
+      // Remove it before pusing to server.
+      // return new Promise((resolve, reject) => {
+      //   setTimeout(() => {
+      //     resolve(true);
+      //   }, 1500);
+      // }).then(() => {
+      //   next();
+      // })
+      next();
+    } else {
+      // check header or url parameters or post parameters for token
+      let token = req.headers['token'];
+      console.log('IN AUTHORIZE Token', req.headers)
+      // decode token
+      if (token) {
+        // verifies secret and checks exp
+        jwt.verify(token, CONFIGURATIONS.SECRET, function (err, decoded) {
+          if (err) {
+            return res.json({
+              error: true,
+              message: 'Failed to authenticate token.'
+            });
+          } else {
+
+            let userId = decoded.id;
+
+            // Set identity here to be used in base model for created/updated by and for some other cases.
+            CONFIGURATIONS.identity = { userId: userId }
+
+          }
+        });
+      } else {
+        // if there is no token
+        console.log('IN AUTHORIZE Token false')
+        return invalidLogin;
+        // return ErrorHandler.sendAuthorizationError(ErrorHandler.invalidToken, res, next);
+      }
+    }
+  };
+
+
 
 // let router: express.Router;
 router = express.Router();
-// router.use(this.authorize);
+// router.use(authorize);
 // new BaseRoute(router);
 // below line is bcz we need to import base route
 new route.BaseRoute(router);

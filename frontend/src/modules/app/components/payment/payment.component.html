@@ -1,0 +1,208 @@
+<!-- <div > -->
+    <!-- <mat-spinner class="spinner" *ngIf="!loaded"></mat-spinner> -->
+    
+<div class="pagePath">
+    RightWay<span class="sign">></span>Home<span class="sign">></span>Add To Cart
+    <span class="sign">></span>Payment
+</div>
+<div fxLayout="column" class="payment" *ngIf="isMobileScreen">
+    <span fxLayout="row">
+        <mat-card class="homeMatCard">
+            <img class="img" fxFlex="100" src="{{image}}">
+                <div class="text">
+                    <h2>LAWN KURTA</h2>
+                    <p>
+                        This kurta is designed by right way.
+                    </p>
+                </div>
+        </mat-card>
+    </span>
+    <div class="shippingPage" >
+        <mat-card class="formClass" fxLayout="column">
+            <span class="shippingLabel">
+                <label>Payment Method</label>
+            </span>
+            <mat-radio-group aria-labelledby="example-radio-group-label"
+                 fxLayout="column"
+                [(ngModel)]="methodChoosen">
+                <mat-radio-button class="margin-radio-group" *ngFor="let payMethod of paymentMethods" [value]="payMethod.id">
+                    {{payMethod.method}}
+                </mat-radio-button>
+            </mat-radio-group>
+            <span class="margin-radio-group">
+                <label *ngIf="methodChoosen == '1'">
+                    You will Pay at the time of delivery.
+                </label>
+                <label *ngIf="methodChoosen == '2'">
+                    <span fxLayout="row">
+                        <label fxFlex="40">Account No.</label>
+                        <label fxFlex="40">03216808487</label>
+                    </span> 
+                    <span fxLayout="row" style="margin-top:5px">
+                        <label fxFlex="40">Email Id</label>
+                        <label fxFlex="40">rightWay@gmail.com</label>
+                    </span> 
+                    <p>Send us an email with
+                        Transaction Id or Screenshot of Transaction.</p>
+                </label>
+                <label *ngIf="methodChoosen == '3'">
+                    <span fxLayout="row">
+                        <label fxFlex="40">Account No.</label>
+                        <label fxFlex="40">03216808487</label>
+                    </span> 
+                    <span fxLayout="row" style="margin-top:5px">
+                        <label fxFlex="40">Email Id</label>
+                        <label fxFlex="40">rightWay@gmail.com</label>
+                    </span> 
+                    <p>Send us an email with
+                        Transaction Id or Screenshot of Transaction.</p>
+                </label>
+            </span>
+            <div fxLayout="row">
+                <button mat-raised-button class="paymentButton" type="submit" (click)="confirmOrder()" [disabled]="methodChoosen == '0'">Confirm Order</button>
+                <button class="cancelButton" mat-raised-button (click)="cancelClick()">Cancel</button>
+            </div>
+        </mat-card>
+        <mat-card fxLayout="column" style="margin-top:20px" class="amountCard">
+            <label class="orderLabel">Order Summary</label>
+            <span fxLayout="row">
+                <label class="itemLabel" fxFlex="40">Total Amount</label>
+                <label class="totalLabel" fxFlex="40">PKR {{amount}}</label>
+            </span>
+            <span fxLayout="row">
+                <label class="itemLabel" fxFlex="40">Name</label>
+                <label class="totalLabel" fxFlex="40">{{customer.fname + ' ' + customer.lname}}</label>
+            </span>
+            <span fxLayout="row">
+                <label class="itemLabel" fxFlex="40">Email</label>
+                <label class="totalLabel" fxFlex="40">{{customer.email}}</label>
+            </span>
+            <span fxLayout="row">
+                <label class="itemLabel" fxFlex="40">Mobile Number</label>
+                <label class="totalLabel" fxFlex="40">{{customer.mobileNumber}}</label>
+            </span>
+            <span fxLayout="row">
+                <label class="itemLabel" fxFlex="40">Address</label>
+                <label class="totalLabel" fxFlex="40">{{customer.address}}</label>
+            </span>
+            <div fxLayout="row">
+                <button class="continueShoppingButton" mat-raised-button (click)="cancelClick()" 
+                [routerLink]="['/home']">Continue Shopping</button>
+            </div>
+        </mat-card>
+        <!-- <mat-card fxLayout="column" style="margin-top:20px" class="amountCard">
+            <label class="orderLabel">Your Information</label>
+        </mat-card> -->
+        
+    </div>
+</div>
+
+
+
+<div fxLayout="column" class="payment" *ngIf="!isMobileScreen">
+    <span fxLayout="row">
+        <mat-card class="homeMatCard">
+            <img class="img" fxFlex="100" src="{{image}}">
+                <div class="text">
+                    <h2>LAWN KURTA</h2>
+                    <p>
+                        This kurta is designed by right way.
+                    </p>
+                </div>
+        </mat-card>
+    </span>
+    <div class="shippingPage" >
+        <mat-card class="formClass" fxLayout="column">
+            <span class="shippingLabel">
+                <label>Payment Method</label>
+            </span>
+            <mat-radio-group aria-labelledby="example-radio-group-label"
+                 fxLayout="column"
+                [(ngModel)]="methodChoosen">
+                <mat-radio-button class="margin-radio-group" *ngFor="let payMethod of paymentMethods" [value]="payMethod.id">
+                    {{payMethod.method}}
+                </mat-radio-button>
+            </mat-radio-group>
+            <span class="margin-radio-group">
+                <label *ngIf="methodChoosen == '1'">
+                    You will Pay at the time of delivery.
+                </label>
+                <label *ngIf="methodChoosen == '2'">
+                    <span fxLayout="row">
+                        <label fxFlex="40">Account Number.</label>
+                        <label fxFlex="40">03216808487</label>
+                    </span> 
+                    <span fxLayout="row" style="margin-top:5px">
+                        <label fxFlex="40">Email Id.</label>
+                        <label fxFlex="40">rightWay@gmail.com</label>
+                    </span> 
+                    <p>Send us an email with
+                        Transaction Id or Screenshot of Transaction.</p>
+                </label>
+                <label *ngIf="methodChoosen == '3'">
+                    <span fxLayout="row">
+                        <label fxFlex="30">Account Number.</label>
+                        <label fxFlex="40">03216808487</label>
+                    </span> 
+                    <span fxLayout="row" style="margin-top:5px">
+                        <label fxFlex="30">Email Id.</label>
+                        <label fxFlex="40">rightWay@gmail.com</label>
+                    </span> 
+                    <p>Send us an email with
+                        Transaction Id or Screenshot of Transaction.</p>
+                </label>
+            </span>
+            <div fxLayout="row">
+                <button mat-raised-button class="paymentButton" type="submit" (click)="confirmOrder()" [disabled]="methodChoosen == '0'">Confirm Order</button>
+                <button class="cancelButton" mat-raised-button (click)="cancelClick()">Cancel</button>
+            </div>
+        </mat-card>
+        <mat-card fxLayout="column" style="margin-top:20px" class="amountCard">
+            <label class="orderLabel">Order Summary</label>
+            <span fxLayout="row">
+                <label class="itemLabel" fxFlex="40">Total Amount</label>
+                <label class="totalLabel" fxFlex="40">PKR {{amount}}</label>
+            </span>
+            <span fxLayout="row">
+                <label class="itemLabel" fxFlex="40">Name</label>
+                <label class="totalLabel" fxFlex="40">{{customer.fname + ' ' + customer.lname}}</label>
+            </span>
+            <span fxLayout="row">
+                <label class="itemLabel" fxFlex="40">Email</label>
+                <label class="totalLabel" fxFlex="40">{{customer.email}}</label>
+            </span>
+            <span fxLayout="row">
+                <label class="itemLabel" fxFlex="40">Mobile Number</label>
+                <label class="totalLabel" fxFlex="40">{{customer.mobileNumber}}</label>
+            </span>
+            <span fxLayout="row">
+                <label class="itemLabel" fxFlex="40">Address</label>
+                <label class="totalLabel" fxFlex="40">{{customer.address}}</label>
+            </span>
+            <div fxLayout="row">
+                <button class="continueShoppingButton" mat-raised-button (click)="cancelClick()" 
+                [routerLink]="['/home']">Continue Shopping</button>
+            </div>
+        </mat-card>
+        <!-- <mat-card fxLayout="column" style="margin-top:20px" class="amountCard">
+            <label class="orderLabel">Your Information</label>
+        </mat-card> -->
+        
+    </div>
+</div>
+<app-footer></app-footer>
+
+
+
+
+<!-- <span fxLayout="row">
+        <mat-card class="homeMatCard" *ngFor="let prod of imageObject; let j = index">
+            <img class="img" fxFlex="100" src="{{prod.image}}" [routerLink]="['/home/product', prod.id]">
+                <div class="text">
+                    <h2>LAWN KURTA</h2>
+                    <p>
+                        This kurta is designed by right way.
+                    </p>
+                </div>
+        </mat-card>
+    </span> -->

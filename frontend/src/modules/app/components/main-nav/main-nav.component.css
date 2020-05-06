@@ -1,0 +1,104 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+
+.sidenav .mat-toolbar {
+  background: inherit;
+  background-color: black;
+  color: rgb(232, 235, 84);
+}
+
+.nav-list{
+  padding-top: 0px !important;
+}
+
+.nav-list a:hover{
+  background-color: black;
+  color: rgb(232, 235, 84);
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.left-icons {
+  /* text-align: end; */
+  /* position: relative; */
+  margin-bottom: 8px;
+  /* float: right; */
+}
+
+.toolbar {
+  background-color: rgb(54, 44, 44);;
+  padding-right: 0px;
+}
+.topToolbar {
+  background-color: whitesmoke;
+  opacity: 0.7;
+  height: 50px;
+}
+.topToolbarHeading{
+  font-size: 12px;
+  /* line-height: 16px; */
+  color: black;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+}
+
+.toolbarButtons{
+  margin-top: 5px;
+}
+
+.toolbarButtons button:hover{
+  /* color: black;
+  background-color: rgb(232, 235, 84); */
+  color: rgb(232, 235, 84); 
+}
+/* .toolbarButtons span:hover{
+  color: black;
+  background-color: rgb(232, 235, 84);
+  padding-top: 25px;
+} */
+.toolbarButtons h1:hover{
+  cursor: pointer;
+}
+
+.toolbarHeading {
+  color: rgb(232, 235, 84);
+  margin-right: 20px;
+  margin-left: 20px;
+}  
+
+.menu-icon{
+  margin: 0;
+}
+
+@media(max-width:850px){
+  .toolbar{
+    padding-right: 25px;
+  }
+}
+
+@media(max-width: 500px){
+  .left-icons {
+    /* text-align: end; */
+    /* position: relative; */
+    margin-bottom: 8px;
+  }
+  .toolbarHeading{
+    text-align: center;
+  }
+  .topToolbarHeading{
+    font-size: 10px;
+    color: black;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+  }
+}

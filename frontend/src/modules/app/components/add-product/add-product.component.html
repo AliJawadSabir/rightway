@@ -1,6 +1,6 @@
 <!-- <div > -->
     <!-- <mat-spinner class="spinner" *ngIf="!loaded"></mat-spinner> -->
-    <mat-toolbar color="primary" class="matCard">
+    <!-- <mat-toolbar color="primary" class="matCard">
         <span fxLayout="row" fxFlex="82" class="matCardButtons">
         <h1 class="matHeading">  Right Way  </h1>  
         <button mat-button routerLink="/">Sales</button>  
@@ -10,23 +10,16 @@
         <button mat-button routerLink="/about">Stitched</button>
         </span>
         <span fxFlex="18" fxLayout="row" fxLayoutGap="10px">
-            <!-- /<mat-icon  fxLayoutAlign="end" aria-hidden="false" aria-label="Example home icon">account_circle</mat-icon> -->
             <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
                 <mat-icon>account_circle</mat-icon>
             </button>
               <mat-menu #menu="matMenu">
                 <button mat-menu-item routerLink="/login">
-                  <!-- <mat-icon>dialpad</mat-icon> -->
                   <span>Login</span>
                 </button>
                 <button mat-menu-item routerLink="/register">
-                  <!-- <mat-icon>voicemail</mat-icon> -->
                   <span>Sign Up</span>
                 </button>
-                <!-- <button mat-menu-item>
-                  <mat-icon>shopping_cart</mat-icon>
-                  <span>Disable alerts</span>
-                </button> -->
               </mat-menu>
             <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
                 <mat-icon>account_box</mat-icon>
@@ -38,13 +31,16 @@
                 <button mat-menu-item routerLink="/addProduct">
                   <span>Add Product</span>
                 </button>
+                <button mat-menu-item routerLink="/addColor">
+                  <span>Add Color</span>
+                </button>
               </mat-menu>
               <button mat-icon-button aria-label="Example icon-button with a menu">
                 <mat-icon>shopping_cart</mat-icon>
               </button>
               
         </span>
-    </mat-toolbar>
+    </mat-toolbar> -->
     
     <!-- <div class="productPage" fxLayout="row">
         <div fxFlex="50">
@@ -57,11 +53,10 @@
         </div>
     </div> -->
 
+    <div class="pagePath">
+        RightWay<span class="sign">></span>Add Product
+    </div>
     <div class="productPage">
-        <div fxLayout="row">
-            <a id="right">Right Way</a>
-            <label class="prodLabel">{{im.description}}</label>
-        </div>
         <mat-card fxLayout="column" class="matClass">
             <!-- <div fxFlex="50">
                 <img class="img" src="{{imageLink}}">
@@ -77,7 +72,7 @@
                                 <!-- <mat-label>{{componentLabels.name}}</mat-label> -->
                                 <span class="hidden-file">
                                     <!-- <input type="file" name="file" ng2FileSelect [uploader]="uploader" multiple [accept]="fileFilter"> -->
-                                    <input type="file" #fileInput ng2FileSelect [uploader]="uploader" (click)="uploadImage($event)" multiple>
+                                    <input type="file" accept='image/*' #fileInput ng2FileSelect [uploader]="uploader">
                                 </span>
                                 <!-- <input matInput [placeholder]="componentLabels.name" formControlName="name" required> -->
                                 <!-- <mat-error *ngIf="fg.get('name').hasError('required')">Enter Name</mat-error> -->
@@ -114,45 +109,86 @@
                             <button class="removeButton" mat-raised-button [disabled]="!uploader.queue.length"
                             color="warn" type="button" (click)="uploader.clearQueue()">Remove All</button>
                             <button class="uploadButton" mat-raised-button  [disabled]="!uploader.getNotUploadedItems().length"
-                            (click)="uploader.uploadAll()" type="button">Upload All</button>
+                            (click)="uploadImage()" type="button">Upload All</button>
                         </div>
                         <!-- <button class="uploadImageButton" mat-raised-button (click)="uploader.uploadAll()"
                         fxFlex="15" [disabled]="!uploader.getNotUploadedItems().length">Upload Image</button> -->
                         <div fxLayout="row" fxLayoutGap="20px">
                             <mat-form-field appearance="outline" fxFlex="48">
-                                <mat-label>{{componentLabels.price}}</mat-label>
-                                <input matInput [placeholder]="componentLabels.price" formControlName="price" required>
-                                <mat-error *ngIf="fg.get('price').hasError('required')">Enter Description</mat-error>
+                                <mat-label>{{componentLabels.name}}</mat-label>
+                                <input matInput [placeholder]="componentLabels.name" formControlName="name" required>
+                                <mat-error *ngIf="fg.get('name').hasError('required')">Enter Product Name.</mat-error>
                                 <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
                             </mat-form-field>
                             <mat-form-field appearance="outline" fxFlex="48">
-                                <mat-label>{{componentLabels.category}}</mat-label>
-                                <mat-select [placeholder]="componentLabels.category" formControlName="category" required>
+                                <mat-label>{{componentLabels.categoryId}}</mat-label>
+                                <mat-select [placeholder]="componentLabels.categoryId" formControlName="categoryId" required>
                                     <mat-option *ngFor="let category of categoryList" [value]="category.id">
                                         <!-- {{ educationLevel.instituteType.name }} -  -->
                                         {{ category.category }}
                                     </mat-option>
                                 </mat-select>
-                                <mat-error *ngIf="fg.get('category').hasError('required')">Select Category</mat-error>
+                                <mat-error *ngIf="fg.get('categoryId').hasError('required')">Select Category</mat-error>
                                 <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
                             </mat-form-field>
                         </div>
                         <div fxLayout="row" fxLayoutGap="20px">
                             <mat-form-field appearance="outline" fxFlex="48">
                                 <mat-label>{{componentLabels.available}}</mat-label>
-                                <input matInput [placeholder]="componentLabels.available" formControlName="available" required>
+                                <input matInput [placeholder]="componentLabels.available" formControlName="available" type="number" required>
                                 <mat-error *ngIf="fg.get('available').hasError('required')">Enter Available Itema</mat-error>
                                 <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
                             </mat-form-field>
                             <mat-form-field appearance="outline" fxFlex="48">
-                                <mat-label>{{componentLabels.sold}}</mat-label>
-                                <input matInput [placeholder]="componentLabels.sold" formControlName="sold" required>
-                                <mat-error *ngIf="fg.get('sold').hasError('required')">Enter Sold Items</mat-error>
+                                <mat-label>{{componentLabels.price}}</mat-label>
+                                <input matInput [placeholder]="componentLabels.price" formControlName="price" type="number" required>
+                                <mat-error *ngIf="fg.get('price').hasError('required')">Enter Product Price.</mat-error>
                                 <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
                             </mat-form-field>
                         </div>
                         <div fxLayout="row" fxLayoutGap="20px">
-                            <mat-form-field appearance="outline" fxFlex="96">
+                            <mat-form-field appearance="outline" fxFlex="48">
+                                <mat-label>{{componentLabels.colorId}}</mat-label>
+                                <mat-select [placeholder]="componentLabels.colorId" formControlName="colorId" required>
+                                    <mat-option *ngFor="let color of colorList" [value]="color.id">
+                                        {{ color.color }}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="fg.get('colorId').hasError('required')">Select Color</mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" fxFlex="48">
+                                <mat-label>{{componentLabels.code}}</mat-label>
+                                <input matInput [placeholder]="componentLabels.code" formControlName="code" required>
+                                <mat-error *ngIf="fg.get('code').hasError('required')">Enter Product Code</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="20px">
+                            <mat-form-field appearance="outline" fxFlex="48">
+                                <mat-label>{{componentLabels.sizeId}}</mat-label>
+                                <mat-select [placeholder]="componentLabels.size" formControlName="sizeId" required>
+                                    <mat-option *ngFor="let size of sizeList" [value]="size.id">
+                                        <!-- {{ educationLevel.instituteType.name }} -  -->
+                                        {{ size.size }}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="fg.get('sizeId').hasError('required')">Select Size</mat-error>
+                                <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" fxFlex="48">
+                                <mat-label>{{componentLabels.discount}}</mat-label>
+                                <input matInput [placeholder]="componentLabels.discount" formControlName="discount" type="number" required>
+                                <mat-error *ngIf="fg.get('discount').hasError('required')">Enter Discount Percentage.</mat-error>
+                                <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="20px">
+                            <mat-form-field appearance="outline" fxFlex="48">
+                                <mat-label>{{componentLabels.type}}</mat-label>
+                                <input matInput [placeholder]="componentLabels.type" formControlName="type">
+                                <!-- <mat-error *ngIf="fg.get('discount').hasError('required')">Enter Discount Percentage.</mat-error> -->
+                                <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" fxFlex="48">
                                 <mat-label>{{componentLabels.description}}</mat-label>
                                 <input matInput [placeholder]="componentLabels.description" formControlName="description" required>
                                 <mat-error *ngIf="fg.get('description').hasError('required')">Enter Description</mat-error>
@@ -169,6 +205,7 @@
 
         </mat-card>
     </div>
+    <app-footer></app-footer>
 <!-- <div class="homePage" fxLayout="column">
     <span *ngFor="let product of products; let i = index">
     <div class="imageRow" fxLayout="row" fxLayoutGap="10px">

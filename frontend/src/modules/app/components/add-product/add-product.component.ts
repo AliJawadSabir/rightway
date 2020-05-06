@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ProductModel, CategoryModel } from '../../models';
-import { ProductService, AddCategoryService } from '../../services';
+// import {MatDialog} from '@angular/material';
+import { ProductModel, CategoryModel, SizeModel, ColorModel } from '../../models';
+import { ProductService, AddCategoryService, SizeService, ColorService, SharedDataService } from '../../services';
 import {  FileUploader } from 'ng2-file-upload';
+import { MatSnackBar } from '@angular/material';
+import { SnackBarComponent } from '../snack-bar/snack-bar.component';
 
 const uploadAPI = 'http://localhost:3000/product/uploadImage';
 
@@ -18,38 +22,27 @@ export class AddProductComponent implements OnInit {
   public productModel: ProductModel;
   public componentLabels = ProductModel.attributesLabels;
   public categoryList: CategoryModel[];
+  public sizeList: SizeModel[];
+  public colorList: ColorModel[];
   response:string;
+  imageURL:string;
   uploader:FileUploader = new FileUploader({url:uploadAPI});
 
   constructor(
     // private route: ActivatedRoute,
+    private router: Router,
     private fb: FormBuilder,
     private productService: ProductService,
-    private categoryService: AddCategoryService
+    private categoryService: AddCategoryService,
+    private sizeService: SizeService,
+    private sharedDataService: SharedDataService,
+    private colorService: ColorService,
+    private snackBar: MatSnackBar
+    // public dialog: MatDialog,
+    // public matDialog: MatDialog,
     ) {
 
 
-      // this.uploader = new FileUploader({
-      //   url: uploadAPI,
-      //   itemAlias: 'file',
-      //   allowedFileType: ['image'],
-      //   disableMultipart: true, // 'DisableMultipart' must be 'true' for formatDataFunction to be called.
-      //   formatDataFunctionIsAsync: true,
-      //   formatDataFunction: async (item) => {
-      //     return new Promise( (resolve, reject) => {
-      //       resolve({
-      //         name: item._file.name,
-      //         length: item._file.size,
-      //         contentType: item._file.type,
-      //         date: new Date()
-      //       });
-      //     });
-      //   }
-      // });
-      // this.response = '';
-      // this.uploader.response.subscribe( res => this.response = res );
-
-      
      }
   
     im = {"id":1,"name":"../../assets/im8.jpeg",
@@ -60,6 +53,7 @@ export class AddProductComponent implements OnInit {
     stockAvailability = 'IN STOCK';
     obj={};
     loaded = false;
+    
 
 
     // File Uploader
@@ -81,8 +75,11 @@ export class AddProductComponent implements OnInit {
 
 
     this.getCategoryList();
+    this.getSizeList();
+    this.getColorList();
     this.productModel = new ProductModel();
     this.fg = this.fb.group(new ProductModel().validationRules());
+    
   }
 
 
@@ -98,23 +95,85 @@ export class AddProductComponent implements OnInit {
     );
   }
 
-
-  addProduct(product) {
-    
-    console.log('Buton is clicked one'+ product.category);
-    this.productModel = product;
-    this.productService.create(this.productModel).subscribe(response => {
-      console.log('Response for add product '+ response)
-    },
-    error =>{
-      console.log('error in add product '+ error)
-    },
-    ()=>{}
-    )
+  getSizeList() {
+    this.sizeService.findAll().subscribe(
+      response => {
+        this.sizeList = <any>response;
+        console.log('size List -->>'+ this.sizeList);
+      },
+      error => console.log(error),
+      () => { }
+    );
   }
 
-  uploadImage(image) {
-    console.log('image target=>>>', image.target.files)
+  getColorList() {
+    this.colorService.findAll().subscribe(
+      response => {
+        this.colorList = <any>response;
+        console.log('size List -->>'+ this.colorList);
+      },
+      error => console.log(error),
+      () => { }
+    );
+  }
+
+
+  addProduct(product: ProductModel) {
+    
+    this.productModel = product;
+    // No need of url now. we will work on it if needed.
+    if(this.uploader.queue.length == 0){
+      this.productModel.url = null;
+    }
+    // No need of type now. we will work on it if needed.
+    if(this.productModel.type == null){
+      this.productModel.type = this.productModel.name;
+    }
+    this.productModel.sold = 0;
+
+    if(this.productModel.url != null){
+      this.productService.create(this.productModel).subscribe(response => {
+        console.log('Response for add product '+ response)
+        if(response['error']){
+          this.snackBar.open('Product Already exist.','Dismiss' ,{
+            duration: 3000,
+          });
+        }else{
+          this.snackBar.open('Product Added Successfully.','Dismiss' ,{
+            duration: 3000,
+          });
+          this.router.navigate(['home']);
+        }
+      },
+      error =>{
+        this.snackBar.open('Error Occured.','Dismiss' ,{
+          duration: 3000,
+        });
+      },
+      ()=>{}
+      )
+    }else{
+      this.snackBar.open('Upload Image First.','Dismiss' ,{
+        duration: 3000,
+      });
+      // alert('Your have to upload image first.');
+    }
+  }
+
+  uploadImage() {
+    let res = this.uploader.uploadAll();
+    
+    this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+      let resp = JSON.parse(response);
+      console.log('upload reponse', resp);
+      if (resp['success'] == true){
+        this.snackBar.openFromComponent(SnackBarComponent, {
+          duration: 3 * 1000,
+        });
+        this.productModel.url = resp['file']['filename'];
+        console.log('upload reponse', this.productModel.url);
+      }
+ };
 
   }
 

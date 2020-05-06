@@ -39,15 +39,19 @@ export class ProductRoute {
 
     this.router.route('/product/create').post(controller.create);
 
-    this.router.route('/product/findAll').get(controller.findAll);
+    this.router.route('/product/findWithCode/:id').get(controller.findWithCode);
+    
+    this.router.route('/product/find/:id').get(controller.find);
 
-    console.log('=====================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
-    console.log('UPLOAD IMAGE CALLED IN ROUTER')
-    console.log('=====================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+    this.router.route('/product/findByDiscount/:discount').get(controller.findByDiscount);
+
+    this.router.route('/product/findByType/:type').get(controller.findByType);
+
+    this.router.route('/product/findAll').get(controller.findAll);
     
     var store = multer.diskStorage({
       destination: function (req, file, cb) {
-        cb(null, './uploads')
+        cb(null, 'uploads')
       },
       filename: function (req, file, cb) {
         cb(null, Date.now() + '.' + file.originalname)
@@ -56,13 +60,27 @@ export class ProductRoute {
      
     var upload = multer({ storage: store });
 
-    router.post('/product/uploadImage', function (req, res, next) {
-      upload(req,res,function(err){
-        if (err){
-          return ErrorHandler.sendFileTypeError(err, res, next);
-        }
-        return res.json({originalname:req.file.originalname, uploadname:req.file.filename});
-      })
+    this.router.post('/product/uploadImage',upload.single('file'), function (req, res, next) {
+
+    console.log('=====================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+    console.log('UPLOAD IMAGE CALLED IN ROUTER')
+    console.log('=====================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+      // upload(req,res,function(err){
+      //   if (err){
+      //     return ErrorHandler.sendFileTypeError(err, res, next);
+      //   }
+      //   return res.json({originalname:req.file.originalname, uploadname:req.file.filename});
+      // })
+      if (!req.file) {
+        console.log("Your request doesn’t have any file");
+        return res.send({
+          success: false
+        });
+      } else {
+        let status = {success:true, file:req.file};
+        console.log('Your file has been received successfully', req.file);
+        return res.send(status);
+      }
     })
     // this.router.route('/product/uploadImage', function(req,res,next){
       

@@ -1,0 +1,11 @@
+.example-pizza-party {
+    color: rgb(232, 235, 84);
+    font-size: 14px;
+  }
+  .dismiss{
+    float: right;
+    cursor: pointer;
+  }
+  .dismiss:hover{
+    counter-reset: rgb(240, 65, 94);
+  }

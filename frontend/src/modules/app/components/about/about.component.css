@@ -1,0 +1,89 @@
+
+.about{
+    font-family: "Montserrat";
+}
+.pagePath{
+    margin: 15px;
+    font-size: 12px;
+    font-family: "Montserrat";
+    background-color: whitesmoke;
+}
+.sign{
+    font-size: 10px;
+    margin-left: 3px;
+    margin-right: 6px;
+}
+.aboutHeading{
+    font-size: 24px;
+    font-family: "Montserrat";
+    padding-top: 25px !important;
+    margin-left: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+.aboutMatcard{
+    margin-top: 30px;
+    overflow: hidden;
+}
+.imageMatCard{
+    overflow: hidden;
+    /* padding: 0px !important; */
+}
+.aboutToolbar{
+    margin: 10px;
+    font-size: 12px;
+    font-family: "Montserrat";
+    background-color: whitesmoke;
+}
+.sign{
+    font-size: 10px;
+    margin-left: 5px;
+    margin-right: 10px;
+}
+p{
+    font-size: 16px;
+    font-family: "Montserrat";
+    line-height: 18px;
+    color: rgb(46, 45, 45);
+    margin-left: 10%;
+    margin-right: 10%;
+}
+label{
+    font-size: 20px;
+    font-family: "Montserrat";
+    font-weight: bold;
+}
+.sliderText{
+    position: absolute;
+	bottom: 0px;
+    display: block;
+    text-align: center;
+    background-color: rgb(48, 49, 47);
+    color: white;
+    height: 60px;
+    width: 100% !important;
+    font-family: "Montserrat";
+    font-size: 12px;
+	opacity: 0.7;
+  }
+  /**
+  CSS FOR IMAGE SLIDER ANIMATION
+  **/
+  .imgSlider{
+      height: 400px;
+      /* width: 100%; */
+      margin-left: 10%;
+      margin-right: 10%;
+    /* animation: myfirst 3s linear infinite; */
+  }
+  /* @keyframes myfirst {
+      0% {
+          transform: scale(1,1);
+      }
+      80% {
+          transform: scale(1.2,1.2);
+      }
+      100% {
+          transform: scale(1,1);
+      }
+  } */

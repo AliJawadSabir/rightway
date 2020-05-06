@@ -1,0 +1,100 @@
+<div class="pagePath">
+    RightWay<span class="sign">></span>Contact Us
+</div>
+<div class="contact" *ngIf="isMobileScreen">
+    
+    <div class="contactHeading">CONTACT RIGHTWAY</div>
+    <mat-card class="contactMatcard"> 
+        <div class="labelMargin marginBottom">
+            <label>EMAIL US</label>
+        </div>
+        <span fxLayout="row" class="setMargin">
+            <mat-icon>mail_outline</mat-icon>
+            <span>alijawad1119@gmail.com</span>
+        </span>
+        <span fxLayout="row" class="setMargin">
+            <mat-icon>mail_outline</mat-icon>
+            <span>alijawad1119@yahoo.com</span>
+        </span>
+                    
+        <div class="labelMargin marginBottom">
+            <label>OUR WHATSAPP</label>
+        </div>
+        <span fxLayout="row" class="setMargin">
+            <mat-icon>perm_phone_msg</mat-icon>
+            <span>03216808487</span>
+        </span>
+        <span fxLayout="row" class="setMargin">
+            <mat-icon>perm_phone_msg</mat-icon>
+            <span>03227540906</span>
+        </span>
+                    
+        <div class="labelMargin marginBottom">
+            <label>SOCIAL SITES</label>
+        </div>
+        <span fxLayout="row" class="setMargin">
+            <a href="https://www.twitter.com/">
+                <img matTooltip="Twitter" class="imgIcon" 
+                src="assets/twitter3.webp">
+            </a>
+            <a href="https://www.facebook.com/">
+                <img matTooltip="Facebook" class="imgIcon" 
+                src="assets/facebook4.webp">
+            </a>
+            <a href="https://www.instagram.com/">
+                <img matTooltip="Instagram" class="imgIcon" 
+                src="assets/insta1.png">
+            </a>
+        </span>
+    </mat-card>
+</div>
+
+<div class="contact" *ngIf="!isMobileScreen">
+    <div class="contactHeading">CONTACT US</div>
+        <mat-card class="contactMatcard" fxLayout="row"> 
+            <span fxFlex="50" class="imageMatCard">
+                <img class="imgSlider" src={{image}}>
+                <!-- <div class="sliderText">
+                    <h2>LAWN KURTA</h2>
+                </div> -->
+            </span>
+            <div fxLayout="column" fxFlex="50">
+                <label> EMAIL US</label>
+                <span fxLayout="row" class="setMargin">
+                    <mat-icon>mail_outline</mat-icon>
+                    <span>alijawad1119@gmail.com</span>
+                </span>
+                <span fxLayout="row" class="setMargin">
+                    <mat-icon>mail_outline</mat-icon>
+                    <span>alijawad1119@yahoo.com</span>
+                </span>
+                    
+                <label class="labelMargin">OUR WHATSAPP</label>
+                    <span fxLayout="row" class="setMargin">
+                        <mat-icon>perm_phone_msg</mat-icon>
+                        <span>03216808487</span>
+                    </span>
+                    <span fxLayout="row" class="setMargin">
+                        <mat-icon>perm_phone_msg</mat-icon>
+                        <span>03227540906</span>
+                    </span>
+                    
+                <label class="labelMargin">SOCIAL SITES</label>
+                    <span fxLayout="row" class="setMargin">
+                        <a href="https://www.twitter.com/">
+                            <img matTooltip="Twitter" class="imgIcon" 
+                            src="assets/twitter3.webp">
+                        </a>
+                        <a href="https://www.facebook.com/">
+                            <img matTooltip="Facebook" class="imgIcon" 
+                            src="assets/facebook4.webp">
+                        </a>
+                        <a href="https://www.instagram.com/">
+                            <img matTooltip="Instagram" class="imgIcon" 
+                            src="assets/insta1.png">
+                        </a>
+                    </span>
+            </div>
+        </mat-card>
+</div>
+<app-footer></app-footer>

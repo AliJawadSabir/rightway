@@ -1,9 +1,57 @@
+<div class="pagePath">
+    RightWay<span class="sign">></span>About Us
+</div>
+<div class="about" *ngIf="isMobileScreen">
+    <div class="aboutHeading">ABOUT RIGHTWAY</div>
+    <mat-card class="aboutMatcard"> 
+        <label> OUR FOCUS</label>
+        <p>
+            RightWay always focus the best quality that can be produced and a unique collection
+            of items. At Rightway, we work collectively to bring the best idea forward for you. Our 
+            goal is to prepare unique items with great fabric quality because people start
+            to judge by looking at you. The cloth used is not mere fabric for us, we treat 
+            it like an artist treats his canvas; with the love, respect and dedication that 
+            it deserves.
+        </p>
+        <label> OUR GOALS</label>
+        <p>
+            At Rightway, we work collectively to bring the best idea forward for you. Our 
+            goal is to prepare unique items with great fabric quality because people start
+            to judge by looking at you. The cloth used is not mere fabric for us, we treat 
+            it like an artist treats his canvas; with the love, respect and dedication that 
+            it deserves.
+        </p>
+    </mat-card>
+</div>
 
-
-<mat-toolbar color="primary">  
-    <h1>  
-   About Page 
-    </h1>  
-    <button mat-button routerLink="/">Home</button>  
-    <button mat-button routerLink="/about">About</button></mat-toolbar><router-outlet></router-outlet>
-    
+<div class="about" *ngIf="!isMobileScreen">
+    <div class="aboutHeading">ABOUT RIGHTWAY</div>
+        <mat-card class="aboutMatcard" fxLayout="row"> 
+            <span fxFlex="50" class="imageMatCard">
+                <img class="imgSlider" src={{image}}>
+                <!-- <div class="sliderText">
+                    <h2>LAWN KURTA</h2>
+                </div> -->
+            </span>
+            <div fxLayout="column" fxFlex="50">
+                <label> OUR FOCUS</label>
+                <p>
+                    RightWay always focus the best quality that can be produced and a unique collection
+                    of items. At Rightway, we work collectively to bring the best idea forward for you. Our 
+                    goal is to prepare unique items with great fabric quality because people start
+                    to judge by looking at you. The cloth used is not mere fabric for us, we treat 
+                    it like an artist treats his canvas; with the love, respect and dedication that 
+                    it deserves.
+                </p>
+                <label> OUR GOALS</label>
+                <p>
+                    At Rightway, we work collectively to bring the best idea forward for you. Our 
+                    goal is to prepare unique items with great fabric quality because people start
+                    to judge by looking at you. The cloth used is not mere fabric for us, we treat 
+                    it like an artist treats his canvas; with the love, respect and dedication that 
+                    it deserves.
+                </p>
+            </div>
+        </mat-card>
+</div>
+<app-footer></app-footer>

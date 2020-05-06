@@ -1,0 +1,232 @@
+.comingSoon{
+  font-size: 30px;
+  margin-top: 50px;
+  text-align: center;
+}
+
+/**
+  CSS FOR TOOLBAR
+  **/
+.matCard {
+  background-color: #e2e2e2;
+}
+
+.matCardButtons button:hover{
+  color: rgb(232, 235, 84);
+}
+
+.matHeading {
+  color: rgb(7, 7, 7);
+  margin-right: 20px;
+}    
+    
+    
+    
+  .right-way {
+        color: rgb(226, 202, 62);
+        font-size: 25px;
+        font-family: 'Playfair Display', serif;
+        text-align: center;
+  }
+
+
+  /**
+  CSS FOR BODY OF HOME COMPONENT
+  **/
+  .homePage{
+    /* background-color: black; */
+    padding-left: 50px;
+    padding-right: 50px;
+    font-family: "Montserrat", arial, tahoma;
+    /* margin-top: 50px; */
+  }
+  
+  .homeMatCard {
+    margin-top: 25px;
+    padding: 0px !important;
+  }
+
+  /**
+  CSS FOR IMAGE AND HOVER IMAGE EFFECT
+  **/
+  .img{
+    width: 100%;
+    height: 350px;
+    -webkit-transform: scale(1);
+	  transform: scale(1);
+	  -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+  }
+  .img:hover {
+    -webkit-transform: scale(1.3);
+      transform: scale(1.3);
+      opacity: 1;
+      cursor: pointer;
+  }
+  .imgOverflow{
+    overflow: hidden;
+  }
+
+
+  /**
+  CSS FOR TEXT BOX SHOW ON HOVER IMAGE
+  **/
+  .hoverTextbox {
+    position: absolute;
+    bottom: -40px;
+    display: block;
+    text-align: center;
+    background-color: rgb(48, 49, 47);
+    color: white;
+    height: 125px;
+    margin-left: 10px ;
+    width: 150px !important;
+    font-family: "Montserrat";
+    font-size: 12px;
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+    opacity: 0;
+  }
+  .img:hover+.hoverTextbox {
+    bottom: 200px;
+    opacity: 0.8;
+  }
+
+  /**
+  CSS FOR TEXT BELOW THE IMAGES
+  **/
+  .middle{
+    margin-right: 20%;
+    margin-left: 20%;
+    margin-bottom: 20px !important;
+    text-align: center;
+  }
+  .text{
+    margin-top: 20%;
+    cursor: pointer;
+    -webkit-transition: .3s ease-in-out;
+	  transition: .3s ease-in-out;
+  }
+  .text:hover{
+    margin-top: 20%;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  .paragraph{
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .label{
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: underline;
+    -webkit-transition: .3s ease-in-out;
+	  transition: .3s ease-in-out;
+  }
+  .label:hover{
+    font-weight: bold;
+    text-decoration: none;
+  }
+  /**
+  CSS FOR IMAGE SLIDER ANIMATION
+  **/
+  .imgSlider{
+    animation: myfirst 3s linear infinite;
+  }
+  @keyframes myfirst {
+      0% {
+          transform: scale(1,1);
+      }
+      80% {
+          transform: scale(1.2,1.2);
+      }
+      100% {
+          transform: scale(1,1);
+      }
+  }
+  .imgSlider:hover {
+      opacity: 1;
+  }
+  .sliderMatCard{
+    padding: 0px;
+    overflow: hidden;
+  }
+  .sliderText{
+    position: absolute;
+	  bottom: 0px;
+    display: block;
+    text-align: center;
+    background-color: rgb(48, 49, 47);
+    color: white;
+    height: 60px;
+    /* margin-left: 10px ; */
+    width: 100% !important;
+    font-family: "Montserrat";
+	  font-size: 12px;
+	  /* -webkit-transition: .3s ease-in-out;
+	  transition: .3s ease-in-out; */
+	  opacity: 0.7;
+  }
+
+@media(max-width:600px){
+
+  .homeMatCard{
+    /* margin-top: 25px; */
+    padding: 0px !important;
+    /* overflow: hidden; */
+  }
+  .imgOverflow{
+    overflow: hidden;
+  }
+  .homePage{
+    /* background-color: black; */
+    padding-left: 20px;
+    padding-right: 20px;
+    /* margin-top: 50px; */
+  }
+  .img{
+    width: 100%;
+    height: 550px;
+  }
+  .img:hover{
+    /* opacity: 0.8; */
+    cursor: pointer;
+  }
+}
+
+@media(max-width:450px){
+  .img{
+    width: 100%;
+    height: 420px;
+  }
+  .img:hover+.hoverTextbox {
+    bottom: 180px;
+    opacity: 0.8;
+  }
+}
+
+@media(min-width:992px){
+  .img{
+    width: 100%;
+    height: 400px;
+  }
+  .img:hover+.hoverTextbox {
+    bottom: 180px;
+    opacity: 0.8;
+  }
+}
+
+  /* input color class */
+/* ::ng-deep input.mat-input-element {
+    background-color: #fff !important;
+  } */
+  
+  /* Change label color on focused */
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+    color: #fff !important;
+  }
+
+/* underline border color on focused */
+::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple{
+    background-color: #fff !important;
+  }

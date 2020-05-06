@@ -1,0 +1,267 @@
+<!-- <div > -->
+    <!-- <mat-spinner class="spinner" *ngIf="!loaded"></mat-spinner> -->
+    <!-- <mat-toolbar color="primary" class="matCard">
+        <span fxLayout="row" fxFlex="90" class="matCardButtons">
+        <h1 class="matHeading">  Right Way  </h1>  
+        <button mat-button routerLink="/">Sales</button>  
+        <button mat-button routerLink="/about">Winter Collection</button>
+        <button mat-button routerLink="/about">New Designs</button>
+        <button mat-button routerLink="/about">UnStitched</button>
+        <button mat-button routerLink="/about">Stitched</button>
+        </span>
+        <span fxFlex="15" fxLayout="row" fxLayoutGap="10px">
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <mat-icon>account_circle</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item routerLink="/login">
+                  <span>Login</span>
+                </button>
+                <button mat-menu-item routerLink="/register">
+                  <span>Sign Up</span>
+                </button>
+              </mat-menu>
+              <button mat-icon-button aria-label="Example icon-button with a menu">
+                <mat-icon>shopping_cart</mat-icon>
+              </button>
+              
+        </span>
+    </mat-toolbar> -->
+    
+    <!-- <div class="productPage" fxLayout="row">
+        <div fxFlex="50">
+            <img class="img" src="{{imageLink}}">
+        </div>
+        <div fxFlex="50">
+            <div fxLayout="column">
+
+            </div>
+        </div>
+    </div> -->
+    <div class="pagePath">
+        RightWay<span class="sign">></span>Home<span class="sign">></span>Add To Cart
+    </div>
+    <div class="productPage" *ngIf="!isMobileScreen">
+        <!-- <div fxLayout="row">
+            <label class="cartLabel">Shopping Cart Items</label>
+        </div> -->
+        <mat-card fxLayout="column">
+            <div fxLayout="row">
+                <label class="cartLabel">Shopping Cart Items</label>
+            </div>
+            <div class="text-style" fxLayout="row" *ngIf="items.length > 0">
+                <label  fxFlex="30">Product</label>
+                <label fxFlex="15">Price</label>
+                <label fxFlex="15">Quantity</label>
+                <label fxFlex="15">SubTotal</label>
+                <label fxFlex="15">Action</label>
+            </div>
+            <div class="cartLabel" *ngIf="items.length == 0">
+                No Item Selected</div>
+            <div fxLayout="row" class="margin-top" *ngFor="let item of items; let i = index">
+                <span fxFlex="30" fxLayout="row">
+                    <img fxFlex="30" fxLayoutGap="20px" class="img" src="{{imageLink}}">
+                    <span class="margin-left" fxFlex="50" fxLayout="column">
+                        <label>{{item.name}}</label>
+                        <label style="margin-top:10px">Size: {{item.size}}</label>
+                        <label>Category: {{item.category}}</label>
+                    </span>
+                </span>
+                
+                <label fxFlex="15">{{item.price}}</label>
+                <label fxFlex="15">{{item.quantity}}</label>
+                <label fxFlex="15">{{item.price * item.quantity}}</label>
+                <button type="button" class="removeButton" mat-raised-button color="warn" (click)="removeItem(item.id)">Remove</button>            
+            </div>
+            <div fxLayout="row" class="button-style">
+                <button mat-raised-button fxFlex="25" class="continueShopping"  [routerLink]="['/home']">Continue Shopping</button>
+                <button mat-raised-button fxFlex="25" class="removeItems" *ngIf="items.length > 0" (click)="removeItems()">Remove Items</button>
+            </div>
+            <div fxFlex="50" class="formClass">
+                </div>
+        </mat-card>
+        <mat-card fxLayout="column" style="margin-top:20px">
+            <label class="orderLabel">Order Summary</label>
+            <!-- <mat-list>
+                <mat-list-item>
+                    <label class="totalLabel">Total</label>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>
+                    <span fxLayout="row">
+                        <label class="itemLabel" fxFlex="40">SubTotal</label>
+                        <label class="totalLabel" fxFlex="40">PKR {{totalAmount}}</label>
+                    </span>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>
+                    <span fxLayout="row">
+                        <label class="itemLabel" fxFlex="40">Tax Amount(14%)</label>
+                        <label class="totalLabel" fxFlex="40">PKR {{taxAmount}}</label>
+                    </span>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>
+                    <span fxLayout="row">
+                        <label class="itemLabel" fxFlex="40">Delivery Charges</label>
+                        <label class="totalLabel" fxFlex="40">PKR {{deliveryCharges}}</label>
+                    </span>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>
+                    <span fxLayout="row">
+                        <label class="itemLabel" fxFlex="40">Order Total</label>
+                        <label class="totalLabel" fxFlex="40">PKR {{total}}</label>
+                    </span>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+            </mat-list> -->
+            <label class="totalLabel">Total</label>
+            <span fxLayout="row">
+                <label class="itemLabel" fxFlex="40">SubTotal</label>
+                <label class="totalLabel" fxFlex="40">PKR {{totalAmount}}</label>
+            </span>
+            <span fxLayout="row">
+                <label class="itemLabel" fxFlex="40">Tax Amount(14%)</label>
+                <label class="totalLabel" fxFlex="40">PKR {{taxAmount}}</label>
+            </span>
+            <span fxLayout="row">
+                <label class="itemLabel" fxFlex="40">Delivery Charges</label>
+                <label class="totalLabel" fxFlex="40">PKR {{deliveryCharges}}</label>
+            </span>
+            <span fxLayout="row">
+                <label class="itemLabel" fxFlex="40">Order Total</label>
+                <label class="totalLabel" fxFlex="40">PKR {{total}}</label>
+            </span>
+            <button mat-raised-button class="proceed" *ngIf="total > 0" 
+            [routerLink]="['/home/addToCart/shipping']">Proceed To Checkout</button>
+        </mat-card>
+    </div>
+
+    <div class="productPage" *ngIf="isMobileScreen">
+        <mat-card fxLayout="column" style="margin-top:20px">
+            <label class="orderLabel">Order Summary</label>
+            <!-- <mat-list>
+                <mat-list-item>
+                    <label class="totalLabel">Total</label>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>
+                    <span fxLayout="row">
+                        <label class="itemLabel" fxFlex="40">SubTotal</label>
+                        <label class="totalLabel" fxFlex="40">PKR {{totalAmount}}</label>
+                    </span>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>
+                    <span fxLayout="row">
+                        <label class="itemLabel" fxFlex="40">Tax Amount(14%)</label>
+                        <label class="totalLabel" fxFlex="40">PKR {{taxAmount}}</label>
+                    </span>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>
+                    <span fxLayout="row">
+                        <label class="itemLabel" fxFlex="40">Delivery Charges</label>
+                        <label class="totalLabel" fxFlex="40">PKR {{deliveryCharges}}</label>
+                    </span>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>
+                    <span fxLayout="row">
+                        <label class="itemLabel" fxFlex="40">Order Total</label>
+                        <label class="totalLabel" fxFlex="40">PKR {{total}}</label>
+                    </span>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+            </mat-list> -->
+            <label class="totalLabel">Total</label>
+            <span fxLayout="row">
+                <label class="itemLabel" fxFlex="50">SubTotal</label>
+                <label class="totalLabel" fxFlex="40">PKR {{totalAmount}}</label>
+            </span>
+            <span fxLayout="row">
+                <label class="itemLabel" fxFlex="50">Tax Amount(14%)</label>
+                <label class="totalLabel" fxFlex="40">PKR {{taxAmount}}</label>
+            </span>
+            <span fxLayout="row">
+                <label class="itemLabel" fxFlex="50">Delivery Charges</label>
+                <label class="totalLabel" fxFlex="40">PKR {{deliveryCharges}}</label>
+            </span>
+            <span fxLayout="row">
+                <label class="itemLabel" fxFlex="50">Order Total</label>
+                <label class="totalLabel" fxFlex="40">PKR {{total}}</label>
+            </span>
+            <button mat-raised-button class="proceed" *ngIf="total > 0" 
+            [routerLink]="['/home/addToCart/shipping']">Proceed To Checkout</button>
+        </mat-card>
+        <div fxLayout="row">
+            <label class="cartLabel">Shopping Cart Items</label>
+        </div>
+        <mat-card fxLayout="column">
+            <!-- <div class="text-style" fxLayout="row" *ngIf="items.length > 0">
+                <label  fxFlex="30">Product</label>
+                <label fxFlex="15">Price</label>
+                <label fxFlex="15">Quantity</label>
+                <label fxFlex="15">SubTotal</label>
+                <label fxFlex="15">Action</label>
+            </div> -->
+            <div class="cartLabel" *ngIf="items.length == 0">
+                No Item Selected</div>
+            <div class="margin-top" *ngFor="let item of items; let i = index">
+                <label class="nameLabel">{{item.name}}</label>
+                <span fxLayout="row">
+                    <img fxFlex="25" class="img" src="{{imageLink}}">
+                    <span class="margin-left" fxFlex="40" fxLayout="column">
+                        
+                        <span class="marginColor">Size:</span>
+                        <!-- <span class="marginColor">Category:</span> -->
+                        <span class="marginColor">Price:</span>
+                        <span class="marginColor">Quantity:</span>
+                        <span class="marginColor">Sub Total:</span>
+                        <button type="button" class="removeButton" mat-raised-button 
+                        color="warn" (click)="removeItem(item.id)">Remove</button>
+                    </span>
+                    <!-- <span class="margin-left" fxFlex="30" fxLayout="column">
+                        <label>{{item.name}}</label>
+                        <label><span class="marginColor">Size:</span>{{item.size}}</label>
+                        <label><span class="marginColor">Category:</span> {{item.category}}</label>
+                        <label><span class="marginColor">Price:</span>{{item.price}}</label>
+                        <label><span class="marginColor">Quantity:</span>{{item.quantity}}</label>
+                        <label><span class="marginColor">Sub Total:</span>{{item.price * item.quantity}}</label>
+                        <button type="button" class="removeButton" mat-raised-button 
+                        color="warn" (click)="removeItem(item.id)">Remove</button>
+                    </span> -->
+                    <span class="margin-left" fxFlex="30" fxLayout="column">
+                        <!-- <label>{{item.name}}</label> -->
+                        <label class="marginTopAdjust">{{item.size}}</label>
+                        <!-- <label class="marginColor1"> {{item.category}}</label> -->
+                        <label class="marginColor1">{{item.price}}</label>
+                        <label class="marginColor1">{{item.quantity}}</label>
+                        <label class="marginColor1">{{item.price * item.quantity}}</label>
+                        <!-- <button type="button" class="removeButton" mat-raised-button 
+                        color="warn" (click)="removeItem(item.id)">Remove</button> -->
+                    </span>
+                </span>
+                
+                <!-- <label>{{item.price}}</label>
+                <label>{{item.quantity}}</label>
+                <label>{{item.price * item.quantity}}</label> -->
+                <!-- <label fxFlex="15">{{item.price}}</label>
+                <label fxFlex="15">{{item.quantity}}</label>
+                <label fxFlex="15">{{item.price * item.quantity}}</label> -->
+                            
+            </div>
+            <div fxLayout="column" class="button-style">
+                <button mat-raised-button fxFlex="25" class="continueShopping"  [routerLink]="['/home']">Continue Shopping</button>
+                <button mat-raised-button fxFlex="25" class="removeItems" *ngIf="items.length > 0" (click)="removeItems()">Remove Items</button>
+            </div>
+            <div fxFlex="50" class="formClass">
+                </div>
+        </mat-card>
+        
+
+    </div>
+    <app-footer></app-footer>
+
+  <!-- <router-outlet></router-outlet> -->

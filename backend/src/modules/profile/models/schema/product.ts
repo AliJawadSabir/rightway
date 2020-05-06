@@ -1,5 +1,7 @@
 import { Table, Column, Model, ForeignKey } from 'sequelize-typescript';
 import { Category } from './category';
+import { Size } from './size';
+import { Color } from './color';
 /**
  * Importing related Models
  */
@@ -15,6 +17,14 @@ export class Product extends Model<Product> {
   @Column
   categoryId: number;
 
+  @ForeignKey(() => Size)
+  @Column
+  sizeId: number;
+
+  @ForeignKey(() => Color)
+  @Column
+  colorId: number;
+
   @Column name: string;
 
   @Column available: number;
@@ -25,11 +35,13 @@ export class Product extends Model<Product> {
 
   @Column description: string;
 
-  // @Column verificationCode: string;
+  @Column type: string;
 
-  @Column path: string;
+  @Column url: string;
 
-  // @Column isSuperUser: boolean;
+  @Column code: string;
+
+  @Column discount: number;
 
   @Column createdBy: number;
 

@@ -13,11 +13,9 @@
 }
 
 .image {
-    background-image: url(../../../../assets/im8.jpeg); 
-    /* position: absolute; */
-    height: 100%;
-    /* width: 100%; */
-    /* opacity: .8; */
+    /* background-image: url(../../../../assets/im8.jpeg);  */
+    /* height: 100%; */
+    background-color: whitesmoke;
     overflow:hidden;
     background-position: center;
     background-size: cover;
@@ -49,10 +47,33 @@
 
   .label{
     width: -moz-fit-content;
+    margin-top: 10px;
   }
 
   .label:hover{
     cursor: pointer;
     text-decoration: underline;
     /* color: rgb(232, 235, 84); */
+  }
+
+  @media(max-width:450px){
+    .cancelButton{
+        margin-left: 10%;
+        margin-right: 10%;
+        margin-top: 20px;
+        background-color: rgb(54, 44, 44);
+        color: rgb(232, 235, 84);
+    }
+  
+    .cancelButton:hover{
+      color: rgb(54, 44, 44);
+      background-color: rgb(232, 235, 84);
+    }
+  
+    .saveButton{
+        margin-left: 10%;
+        margin-right: 10%;
+        background-color: rgb(54, 44, 44);
+        color: rgb(232, 235, 84);
+    }
   }

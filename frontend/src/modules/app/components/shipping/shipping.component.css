@@ -1,0 +1,211 @@
+/**  
+    These are the design implementation for Top bar.
+**/
+.matCard {
+    background-color: black;
+  }
+  
+  .matCardButtons button:hover{
+    color: rgb(232, 235, 84);
+  }
+  
+  .matHeading {
+    color: rgb(232, 235, 84);
+    margin-right: 20px;
+  }    
+      
+      
+      
+    .right-way {
+          color: rgb(226, 202, 62);
+          font-size: 25px;
+          font-family: 'Playfair Display', serif;
+          text-align: center;
+          /* background-image: url(../../../../assets/logo);  */
+          /* height: 64px;
+          padding-left: 0px;
+          margin-left: 0px;
+          overflow: hidden;
+          background-position: center;
+          background-size: cover; */
+    }
+
+    /**
+    These are the other designs for the page
+    **/
+
+    .shippingPage{
+        margin: 30px;
+    }
+
+    .amountCard{
+        /* background-color: #c1c1c1;
+        margin-left: 10%;
+        margin-right: 10%; */
+        margin-bottom: 30px;
+    }
+
+    .orderLabel{
+        font-family: "Montserrat";
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+
+    .totalLabel{
+        margin-top: 35px;
+        font-family: "Montserrat";
+        color: #696666;
+    }
+
+    .itemLabel{
+        margin-top: 35px;
+        font-family: "Montserrat";
+        color: #494848;
+    }
+
+    .formClass{
+        margin-top: 10px;
+        font-family: "Montserrat";
+        color: #696666;
+    }
+
+    .shippingLabel{
+        margin-bottom: 20px;
+        font-size: 18px;
+        color: #494848;
+    }
+
+    .fname-margin{
+        margin-top: 30px;
+    }
+
+    .paymentButton{
+        background-color: rgb(186, 189, 8);
+        color: black;
+        height: 40px;
+        margin-right: 15px;
+    }
+
+
+    .cancelButton{
+        background-color: black;
+        color: white;
+        height: 40px;
+    }
+    .cancelButton:hover{
+        background-color: rgb(186, 189, 8);
+        color: black;
+        height: 40px;
+    }
+
+    @media (max-width:500px){
+        .fname-margin{
+            margin-top: 5px;
+        }
+        .buttons{
+            font-size: 12px;
+        }
+        .shippingPage{
+            margin: 20px;
+        }
+        .orderLabel{
+            font-family: "Montserrat";
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        .totalLabel{
+            margin-top: 25px;
+            font-size: 14px;
+            font-family: "Montserrat";
+            color: #696666;
+        }
+        .itemLabel{
+            margin-top: 25px;
+            font-size: 14px;
+            font-family: "Montserrat";
+            color: #494848;
+        }
+        .shippingLabel{
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #494848;
+        }
+    }
+
+    /* #right{
+        font-size: 12px;
+    }
+
+    .prodLabel{
+        padding-bottom: 10px;
+        margin-left: 20px;
+        font-size: 12px;
+    }
+
+    .img{
+        width: 100%;
+        height: 500px;
+    }
+
+    .descriptionClass{
+        margin-left: 25px;
+        font-family: 'Playfair Display', serif;
+    } */
+
+    /* .pkr{
+        margin-top: 20px;
+    } */
+
+    /* .PKRHeading{
+        margin-left: 20px;
+        color: #e95144;
+        font-weight: bold;
+    }
+
+    .addCartButton{
+        background-color: black;
+        color: white;
+        height: 40px;
+    }
+
+    .addCartButton:hover{
+        background-color: rgb(186, 189, 8);
+        color: black;
+    }
+
+    .quantityHeading{
+        margin-top: 20px;
+        font-size: 12px;
+    }
+
+    .btn-qty {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        display: block;
+        border: 1px solid  #ddd;
+        text-align: center;
+        color: #999;
+        font-size: 12px;
+        transition: all .5s ease;
+        backface-visibility: hidden;
+        border-radius: 0;
+        margin-top: 12px;
+    }
+
+    .btn-qty:hover{
+        cursor: pointer;
+        background-color: black;
+        color: rgb(226, 202, 62);
+    }
+
+    .matField{
+        width: 150px;
+        text-align: center;
+    }
+
+    .spinner {
+        display: flex;
+        justify-content: center;
+        margin: 10%;
+      } */

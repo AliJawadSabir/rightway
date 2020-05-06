@@ -39,6 +39,8 @@ export class CategoryRoute {
 
     this.router.route('/category/findAll').get(controller.findAll);
 
+    this.router.route('/category/find/:id').get(controller.find);
+
     // this.router.route('/profile/profile/update/:id').put(controller.update);
 
     // this.router.route('/profile/profile/forgotPassword').post(controller.forgotPassword);

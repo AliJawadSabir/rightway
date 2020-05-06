@@ -1,0 +1,89 @@
+
+
+<div fxLayout="row" class="footer" *ngIf="!isMobileScreen">
+    <span fxLayout="column" fxFlex="38">
+        <span class="labelHeading">Get in Touch</span>
+        <span fxLayout="row" class="setMargin">
+            <mat-icon style="margin-right: 10px;">mail_outline</mat-icon>
+            <span>alijawad1119@gmail.com</span>
+        </span>
+        <span fxLayout="row" class="setMargin">
+            <mat-icon style="margin-right: 10px;">perm_phone_msg</mat-icon>
+            <span>+923216808487</span>
+        </span>
+        <span fxLayout="row" class="setMargin">
+            <a href="https://www.twitter.com/">
+                <img matTooltip="Twitter" class="imgIcon" 
+                src="assets/twitter3.webp">
+            </a>
+            <a href="https://www.facebook.com/">
+                <img matTooltip="Facebook" class="imgIcon" 
+                src="assets/facebook4.webp">
+            </a>
+            <a href="https://www.instagram.com/">
+                <img matTooltip="Instagram" class="imgIcon" 
+                src="assets/insta1.png">
+            </a>
+        </span>
+    </span>  
+    <span fxLayout="column" fxFlex="31">
+        <span class="labelHeading">Right Way</span>
+        <label [routerLink]="['/about-us']">About Us</label>
+        <label [routerLink]="['/contact-us']">Contact Us</label>
+        <label >Careers at RightWay</label>
+    </span>  
+    <span fxLayout="column" fxFlex="31">
+        <span class="labelHeading">Customer Support</span>
+        <label >Return or Exchange</label>
+        <label >Track Order</label>
+        <label >Privacy Policy</label>
+        <label >Terms & Conditions</label>
+    </span>  
+</div>
+
+<div fxLayout="column" class="footer" *ngIf="isMobileScreen">
+    <!-- <span fxLayout="column" fxFlex="20"> -->
+        <span class="labelHeading">Get in Touch</span>
+        <span fxLayout="row" class="setMargin">
+            <mat-icon style="margin-right: 10px;">mail_outline</mat-icon>
+            <span>alijawad1119@gmail.com</span>
+        </span>
+        <span fxLayout="row" class="setMargin">
+            <mat-icon style="margin-right: 10px;">perm_phone_msg</mat-icon>
+            <span>+923216808487</span>
+        </span>
+        <span fxLayout="row" class="setMargin">
+            <a href="https://www.twitter.com/">
+                <img matTooltip="Twitter" class="imgIcon" 
+                src="assets/twitter3.webp">
+            </a>
+            <a href="https://www.facebook.com/">
+                <img matTooltip="Facebook" class="imgIcon" 
+                src="assets/facebook4.webp">
+            </a>
+            <a href="https://www.instagram.com/">
+                <img matTooltip="Instagram" class="imgIcon" 
+                src="assets/insta1.png">
+            </a>
+        </span>
+    <!-- </span>  
+    <span fxLayout="column" fxFlex="20"> -->
+        <span class="labelHeading">Right Way</span>
+        <label [routerLink]="['/about-us']">About Us</label>
+        <label [routerLink]="['/contact-us']">Contact Us</label>
+        <label >Careers at RightWay</label>
+    <!-- </span>  
+    <span fxLayout="column" fxFlex="20"> -->
+        <span class="labelHeading">Customer Support</span>
+        <label >Return or Exchange</label>
+        <label >Track Order</label>
+        <label >Privacy Policy</label>
+        <label >Terms & Conditions</label>
+        <span style="margin-bottom: 50px;"></span>
+    <!-- </span>   -->
+</div>
+      
+    <!-- <button mat-button routerLink="/">Home</button>  
+    <button mat-button routerLink="/about">About</button>
+    <router-outlet></router-outlet> -->
+    

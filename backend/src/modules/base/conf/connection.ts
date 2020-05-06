@@ -1,6 +1,6 @@
 import { Sequelize } from 'sequelize-typescript';
 
-import { CONNECTION_STRING } from './local-settings';
+import { CONNECTION_STRING } from './connection_string';
 
 
 /**
@@ -8,8 +8,8 @@ import { CONNECTION_STRING } from './local-settings';
  * 
  */
 import {
-  User, NotifyUser, Category, Product
-} from '../../profile/index'
+  User, NotifyUser, Category, Product, Size, Color, Customer, Order,
+  ProductOrder} from '../../profile/index'
 
 /**
  * Import from product Module
@@ -40,7 +40,12 @@ export class Connection {
       User,
       NotifyUser,
       Category,
-      Product
+      Product,
+      Size,
+      Color,
+      Customer,
+      Order,
+      ProductOrder
     ]);
     return this.sequelize;
   }

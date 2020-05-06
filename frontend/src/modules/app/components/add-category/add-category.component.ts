@@ -3,6 +3,7 @@ import {FormControl, Validators} from '@angular/forms';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import {AddCategoryService} from '../../services';
 import {CategoryModel} from '../../models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-category',
@@ -18,6 +19,7 @@ export class AddCategoryComponent implements OnInit {
 
   constructor(
     // private route: ActivatedRoute,
+    private router:Router,
     private fb: FormBuilder,
     private addCategoryService: AddCategoryService
     ) { }
@@ -42,7 +44,8 @@ export class AddCategoryComponent implements OnInit {
     this.categoryModel = category;
     console.log('Buton is clicked '+ this.categoryModel.description);
     this.addCategoryService.create(this.categoryModel).subscribe(response => {
-      console.log('Response for add category '+ response)
+      console.log('Response for add category '+ response);
+      this.router.navigate(['home']);
     },
     error =>{
       console.log('error in add category '+ error)

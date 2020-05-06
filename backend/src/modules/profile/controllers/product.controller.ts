@@ -29,6 +29,86 @@ export class ProductController {
       });
   }
 
+
+  /**
+   * Get Recrods Having Same Code
+   *
+   * @param req express.Request
+   * @param res express.Response
+   * @param next express.NextFunction
+   */
+  findWithCode(req: express.Request, res: express.Response, next: express.NextFunction) {
+    let id = req.params.id;
+    new ProductModel()
+      .findWithCode(id)
+      .then(result => {
+        res.send(result);
+      })
+      .catch(err => {
+        ErrorHandler.sendServerError(err, res, next);
+      });
+  }
+
+  /**
+   * Get Recrods Having Same Code
+   *
+   * @param req express.Request
+   * @param res express.Response
+   * @param next express.NextFunction
+   */
+  findByDiscount(req: express.Request, res: express.Response, next: express.NextFunction) {
+    let discount = req.params.discount;
+    console.log('==============>>>>>>>>>>>>>>>>>>>>>>>>>')
+    console.log('discount worked in controller',discount)
+    console.log('==============>>>>>>>>>>>>>>>>>>>>>>>>>')
+    new ProductModel()
+      .findByDiscount(discount)
+      .then(result => {
+        res.send(result);
+      })
+      .catch(err => {
+        ErrorHandler.sendServerError(err, res, next);
+      });
+  }
+
+  /**
+   * Get Recrods Having Same Code
+   *
+   * @param req express.Request
+   * @param res express.Response
+   * @param next express.NextFunction
+   */
+  findByType(req: express.Request, res: express.Response, next: express.NextFunction) {
+    let type = req.params.type;
+    new ProductModel()
+      .findByType(type)
+      .then(result => {
+        res.send(result);
+      })
+      .catch(err => {
+        ErrorHandler.sendServerError(err, res, next);
+      });
+  }
+
+  /**
+   * Get Recrods Having Same Id
+   *
+   * @param req express.Request
+   * @param res express.Response
+   * @param next express.NextFunction
+   */
+  find(req: express.Request, res: express.Response, next: express.NextFunction) {
+    let id = req.params.id;
+    new ProductModel()
+      .find(id)
+      .then(result => {
+        res.send(result);
+      })
+      .catch(err => {
+        ErrorHandler.sendServerError(err, res, next);
+      });
+  }
+
   /**
    * UPLOAD IMAGE
    *
@@ -57,9 +137,9 @@ export class ProductController {
    * @param next express.NextFunction
    */
   create(req: express.Request, res: express.Response, next: express.NextFunction) {
-    console.log('Notfiy user controller create called------------------')
+    console.log('Product controller create called------------------')
     new ProductModel().create(req.body).then(result => {
-    console.log('Category controller create called', result)
+    console.log('Product controller create called', result)
       res.json(result);
 
     }).catch(err => {

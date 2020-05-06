@@ -21,4 +21,25 @@ export class AddCategoryService {
     console.log('in category service find all ');
     return this.http.get(`${this.routeURL}/findAll`);
   }
+
+  /**
+   * Update record
+   */
+  update(id: Number, item) {
+    return this.http.put(`${this.routeURL}/update/${id}`, item);
+  }
+
+  /**
+   * Get single record
+   */
+  find(id: number) {
+    return this.http.get(`${this.routeURL}/find/${id}`);
+  }
+
+  /**
+   * Delete record
+   */
+  delete(id: number) {
+    return this.http.delete(`${this.routeURL}/delete/${id}`);
+  }
 }

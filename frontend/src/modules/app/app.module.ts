@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TextMaskModule } from 'angular2-text-mask';
 import { FileUploadModule } from 'ng2-file-upload';
+import { NgImageSliderModule } from 'ng-image-slider';
 // import {MatProgressBarModule} from '@angular/material/progress-bar'; 
 
 import { 
@@ -22,7 +23,15 @@ import {
   MatMenuModule,
   MatSelectModule,
   MatProgressBarModule,
-  MatDividerModule
+  MatDividerModule,
+  MatRadioModule,
+  MatSidenavModule,
+  MatSnackBarModule,
+  MatBadgeModule,
+  MatTooltipModule,
+  MatPaginatorModule,
+  MatSortModule,
+  MatTableModule
   
 } from '@angular/material';
 
@@ -33,7 +42,16 @@ import {
   RegisterComponent,
   ProductComponent,
   AddProductComponent,
-  AddCategoryComponent
+  AddCategoryComponent,
+  AddToCartComponent,
+  ShippingComponent,
+  PaymentComponent,
+  ColorComponent,
+  SnackBarComponent,
+  ContactUsComponent,
+  FooterComponent,
+  UnStitchComponent,
+  OrderListComponent
 } from './components';
 
 import {
@@ -42,8 +60,16 @@ import {
   LoginService,
   RegisterService,
   ProductService,
-  AddCategoryService
+  AddCategoryService,
+  SizeService,
+  SharedDataService,
+  CustomerService,
+  ColorService,
+  OrderService
 } from './services';
+import { MainNavComponent } from './components/main-nav/main-nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -54,7 +80,17 @@ import {
     RegisterComponent,
     ProductComponent,
     AddProductComponent,
-    AddCategoryComponent
+    AddCategoryComponent,
+    AddToCartComponent,
+    ShippingComponent,
+    PaymentComponent,
+    ColorComponent,
+    MainNavComponent,
+    SnackBarComponent,
+    ContactUsComponent, 
+    FooterComponent,
+    UnStitchComponent,
+    OrderListComponent
   ],
   imports: [
     BrowserModule,
@@ -62,9 +98,11 @@ import {
     HttpClientModule, 
     BrowserAnimationsModule,
     MatToolbarModule,
+    MatTooltipModule,
     MatIconModule,
     MatCardModule,
     MatButtonModule,
+    MatRadioModule,
     MatProgressSpinnerModule,
     FlexLayoutModule,
     MatFormFieldModule,
@@ -72,11 +110,20 @@ import {
     MatSelectModule,
     MatProgressBarModule,
     MatDividerModule,
+    MatSidenavModule,
     FormsModule,
     ReactiveFormsModule,
     MatMenuModule,
     TextMaskModule,
-    FileUploadModule
+    FileUploadModule,
+    NgImageSliderModule,
+    LayoutModule,
+    MatListModule,
+    MatSnackBarModule,
+    MatBadgeModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatTableModule,
   ],
 
   providers: [
@@ -85,9 +132,14 @@ import {
     LoginService,
     RegisterService,
     ProductService,
-    AddCategoryService
+    AddCategoryService,
+    SizeService,
+    SharedDataService,
+    CustomerService,
+    ColorService,
+    OrderService
   ],
-
+  entryComponents: [SnackBarComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -54,6 +54,18 @@ export class CategoryModel extends BaseModel {
 
   }
 
+  public find(id)
+  {
+    return this.model.findOne({where:{id:id}}).then(res=>{
+      // console.log('-------createeeeeeeeeeeeeee workedddddddddddddddd', res);
+      if (res){
+        return res;
+        // return ErrorHandler.duplicateEntry;
+      }
+    })
+
+  }
+
   // forgotPassword(item) {
   //   return super.findByCondition(['id', 'username'], { username: item.username }).then(user => {
   //     if (user) {

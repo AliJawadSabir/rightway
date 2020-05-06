@@ -65,7 +65,8 @@ export class UserModel extends BaseModel {
 
             console.log('------------------------------success');
             console.log(res);
-            let token = jwt.sign({ id: res['id'], email: res['email'], iat: Math.floor(Date.now() / 1000) - 30 }, CONFIGURATIONS.SECRET);
+            let token = jwt.sign({ id: res['id'], email: res['email'], 
+            iat: Math.floor(Date.now() / 1000) - 30 }, CONFIGURATIONS.SECRET);
 
             let result = {
               id: userRes.id, email: userRes.email, isSuperUser: userRes.isSuperUser,

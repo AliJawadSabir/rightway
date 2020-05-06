@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SharedDataService, ProductService } from '../../services';
+import { CartItemModel, ProductModel } from '../../models';
 
 @Component({
   selector: 'app-product',
@@ -10,40 +12,104 @@ export class ProductComponent implements OnInit {
 
   public products = [
     [
-    {"id":1,"name":"../../assets/im8.jpeg",
-    "description":"Incidunt et magni",
-    "price":"170.00","quantity":56840},
-    {"id":2,"name":"../../assets/im8.jpeg",
-    "description":"Incidunt et magni",
-    "price":"170.00","quantity":56840},
-    {"id":3,"name":"../../assets/im6.jpeg",
-    "description":"Sint libero mollitia",
-    "price":"302.00","quantity":9358}],[
-    {"id":4,"name":"../../assets/im8.jpeg",
-    "description":"In consequuntur cupiditat",
-    "price":"279.00","quantity":90316},
-    {"id":5,"name":"../../assets/im8.jpeg",
-    "description":"In consequuntur cupiditat",
-    "price":"279.00","quantity":90316},
-    {"id":6,"name":"../../assets/im8.jpeg",
-    "description":"Saepe nemo praesentium",
-    "price":"760.00","quantity":5899}]
+    {"id":1,"name":"../../assets/img1.jpg",
+    "description":"Incidunt et magni","Size":"Small",
+    "price":170.00,"quantity":56840, "category":"Frof"},
+    {"id":2,"name":"../../assets/img2.jpg",
+    "description":"Incidunt et magni","Size":"Medium",
+    "price":170.00,"quantity":56840, "category":"Shirt"},
+    {"id":3,"name":"../../assets/img3.jpg",
+    "description":"Sint libero mollitia","Size":"Large",
+    "price":302.00,"quantity":9358, "category":"Skirt"}],[
+    {"id":4,"name":"../../assets/img4.jpg",
+    "description":"In consequuntur cupiditat","Size":"XLarge",
+    "price":279.00,"quantity":90316, "category":"Top"},
+    {"id":5,"name":"../../assets/img5.jpg",
+    "description":"In consequuntur cupiditat","Size":"Small",
+    "price":279.00,"quantity":90316, "category":"Kurta"},
+    {"id":6,"name":"../../assets/img3.jpg",
+    "description":"Saepe nemo praesentium","Size":"Large",
+    "price":760.00,"quantity":5899, "category":"Western"}]
   ];
 
   constructor(
-    private route: ActivatedRoute
-    ) { }
+    private route: ActivatedRoute,
+    private router: Router,
+    private productService: ProductService
+    // private sharedDataService: SharedDataService
+    ) { 
+      setInterval(()=> { this.imageClick() }, 3000);
+    }
   
     imageLink;
     quantity=1;
     stockAvailability = 'IN STOCK';
+    selectedSize;
     obj={};
     loaded = false;
+    size = '';
+    sizeMsg = '';
+    colorMsg = '';
+    color = '';
+    colorArray = ['red', 'green', 'yellow'];
+    sizeArray = ['S', 'M', 'L'];
+    public innerWidth: any;
+    public isMobileScreen: boolean;
+    imageInterval=[
+      'assets/img1.jpg',
+      'assets/img2.jpg',
+      'assets/img3.jpg',
+      'assets/img4.jpg',
+    ];
+    image = 'assets/img1.jpg';
+    // message:string;
+    cartItem:CartItemModel;
+    productModel:ProductModel;
+
   ngOnInit() {
+
+    this.innerWidth = window.innerWidth;
+    if(this.innerWidth > 600){
+      this.isMobileScreen = false;
+    }else{
+      this.isMobileScreen = true;
+    }
+
+    this.getProduct();
     this.getId();
+    // let a = sessionStorage.getItem('product');
+    // console.log('local storage product', a);
+    // this.sharedDataService.currentMessage.subscribe(message => this.message = message);
+  }
+
+
+  // code for checking size of screen
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.innerWidth = window.innerWidth;
+    if(this.innerWidth > 600){
+      this.isMobileScreen = false;
+    }else{
+      this.isMobileScreen = true;
+    }
+    console.log('inner width--->>>', this.innerWidth, this.isMobileScreen);
+  }
+
+  imageClick(){
+    let length = this.imageInterval.length;
+    for(let i=0;i<length;i++){
+      if(this.imageInterval[i] == this.image && i<length-1){
+        this.image = this.imageInterval[i+1];
+        break;
+      }else if(this.imageInterval[i] == this.image && i==length-1){
+        this.image = this.imageInterval[0];
+        break;
+      }
+    }
   }
 
   getId() {
+    this.cartItem = new CartItemModel();
     for (let i = 0; i < this.products.length; i++) {
       let product = this.products[i];
       for (let j = 0; j < product.length; j++) {
@@ -52,11 +118,29 @@ export class ProductComponent implements OnInit {
           if (prod.id == +params['id']){
             this.imageLink = prod.name;
             this.obj = prod;
+            this.cartItem.id = prod.id;
+            this.cartItem.name = prod.name;
+            this.cartItem.quantity = this.quantity;
+            this.cartItem.description = prod.description;
+            this.cartItem.price = prod.price;
+            this.cartItem.category = prod.category;
+            this.cartItem.size = prod.Size;
           }
         });
       }
     }
     this.loaded = true;
+  }
+
+  getProduct(){
+    this.route.params.subscribe(params => {
+      // let id = +params['id'];
+      let id = 6;
+      this.productService.findWithCode(id).subscribe(response => {
+        // this.productModel = response;
+        console.log('response of code items', response);
+      })
+    });
   }
 
   addQuantity() {
@@ -69,7 +153,47 @@ export class ProductComponent implements OnInit {
     console.log('minus button clicked');
   }
 
+  changeSize(s){
+    if(s=='S'){
+      this.size = 'Small';
+      this.sizeMsg = '';
+    }else if(s=='M') {
+      this.size = 'Medium';
+      this.sizeMsg = '';
+    }else if(s=='L') {
+      this.size = 'Large';
+      this.sizeMsg = '';
+    }
+    // this.size = s;
+  }
+
+  changeColor(c){
+    this.color = c;
+    this.colorMsg = '';
+    // this.size = s;
+  }
+
+  // newMessage() {
+  //   this.sharedDataService.changeMessage("Hello from Product");
+  // }
+
   addToCart() {
+    if (this.size == '') {
+      this.sizeMsg = 'Select Size'
+    }
+    if(this.color == '') {
+      this.colorMsg = 'Select Color'
+    }
+    if(this.size != '' && this.color != ''){
+      this.sizeMsg = '';
+      this.colorMsg = '';
+      console.log('getId', this.cartItem);
+      this.cartItem.quantity = this.quantity;
+      this.cartItem.size = this.size;
+      this.cartItem.color = this.color;
+      sessionStorage.setItem('product', JSON.stringify(this.cartItem));
+      this.router.navigate(['home/addToCart']);
+    }
     
   }
 

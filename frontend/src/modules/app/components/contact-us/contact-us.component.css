@@ -1,0 +1,96 @@
+
+.contact{
+    font-family: "Montserrat";
+}
+.contactHeading{
+    font-size: 24px;
+    font-family: "Montserrat";
+    padding-top: 25px !important;
+    margin-left: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+.contactMatcard{
+    margin-top: 30px;
+    overflow: hidden;
+    /* text-align: center; */
+}
+.imageMatCard{
+    overflow: hidden;
+    /* padding: 0px !important; */
+}
+.contactToolbar{
+    margin: 10px;
+    font-size: 12px;
+    font-family: "Montserrat";
+    background-color: whitesmoke;
+}
+.sign{
+    font-size: 10px;
+    margin-left: 5px;
+    margin-right: 10px;
+}
+p{
+    font-size: 16px;
+    font-family: "Montserrat";
+    line-height: 18px;
+    color: rgb(46, 45, 45);
+    margin-left: 10%;
+    margin-right: 10%;
+}
+label{
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-family: "Montserrat";
+    font-weight: bold;
+}
+.setMargin{
+    margin-left: 20px;
+    margin-bottom: 5px;
+}
+.setMargin span{
+    margin-left: 20px;
+    /* margin-bottom: 5px; */
+}
+.labelMargin{
+    margin-top: 30px;
+}
+.marginBottom{
+    margin-bottom: 25px;
+}
+.imgIcon{
+    height: 30px;
+    margin-right: 25px;
+    -webkit-transform: scale(1);
+	  transform: scale(1);
+	  -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+}
+.imgIcon:hover{
+    -webkit-transform: scale(1.3);
+      transform: scale(1.3);
+      opacity: 1;
+      cursor: pointer;
+    color: blue;
+}
+  /**
+  CSS FOR IMAGE SLIDER ANIMATION
+  **/
+  .imgSlider{
+      height: 400px;
+      /* width: 100%; */
+      margin-left: 10%;
+      margin-right: 10%;
+    /* animation: myfirst 3s linear infinite; */
+  }
+  /* @keyframes myfirst {
+      0% {
+          transform: scale(1,1);
+      }
+      80% {
+          transform: scale(1.2,1.2);
+      }
+      100% {
+          transform: scale(1,1);
+      }
+  } */
