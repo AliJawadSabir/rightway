@@ -4,21 +4,19 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Size', [{
       size : 'Small',
+      text : 'S',
       createdAt : new Date(),
       updatedAt : new Date()
     },
     {
       size : 'Medium',
+      text : 'M',
       createdAt : new Date(),
       updatedAt : new Date()
     },
     {
       size : 'Large',
-      createdAt : new Date(),
-      updatedAt : new Date()
-    },
-    {
-      size : 'XLarge',
+      text : 'L',
       createdAt : new Date(),
       updatedAt : new Date()
     }

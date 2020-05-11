@@ -7,8 +7,12 @@ export class CartItemModel {
   description: string;
   category: string;
   size: string;
+  sizeId: number;
   color: string;
+  url: string;
+  colorId: number;
   price: number;
+  discount:number;
   quantity: number;
   // sold: number;
   // type: string;

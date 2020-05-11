@@ -43,7 +43,13 @@ export class ProductRoute {
     
     this.router.route('/product/find/:id').get(controller.find);
 
+    this.router.route('/product/updateQuantity/:id').put(controller.updateQuantity);
+
+    this.router.route('/product/update/:id').put(controller.update);
+
     this.router.route('/product/findByDiscount/:discount').get(controller.findByDiscount);
+
+    this.router.route('/product/findBySeason/:season').get(controller.findBySeason);
 
     this.router.route('/product/findByType/:type').get(controller.findByType);
 
@@ -72,13 +78,11 @@ export class ProductRoute {
       //   return res.json({originalname:req.file.originalname, uploadname:req.file.filename});
       // })
       if (!req.file) {
-        console.log("Your request doesn’t have any file");
         return res.send({
           success: false
         });
       } else {
         let status = {success:true, file:req.file};
-        console.log('Your file has been received successfully', req.file);
         return res.send(status);
       }
     })

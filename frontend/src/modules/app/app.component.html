@@ -9,5 +9,5 @@
 
 
 <app-main-nav>
-<router-outlet></router-outlet>
+<router-outlet (activate)="onActivate($event, outlet)" #outlet></router-outlet>
 </app-main-nav>

@@ -36,7 +36,8 @@
 }
 
 .toolbar {
-  background-color: rgb(54, 44, 44);;
+  /* background-color: rgb(54, 44, 44); */
+  background-color: black;
   padding-right: 0px;
 }
 .topToolbar {

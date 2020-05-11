@@ -39,6 +39,7 @@ export class ProductController {
    */
   findWithCode(req: express.Request, res: express.Response, next: express.NextFunction) {
     let id = req.params.id;
+    console.log('find wit code controller', id)
     new ProductModel()
       .findWithCode(id)
       .then(result => {
@@ -63,6 +64,28 @@ export class ProductController {
     console.log('==============>>>>>>>>>>>>>>>>>>>>>>>>>')
     new ProductModel()
       .findByDiscount(discount)
+      .then(result => {
+        res.send(result);
+      })
+      .catch(err => {
+        ErrorHandler.sendServerError(err, res, next);
+      });
+  }
+
+  /**
+   * Get Recrods Having Same Code
+   *
+   * @param req express.Request
+   * @param res express.Response
+   * @param next express.NextFunction
+   */
+  findBySeason(req: express.Request, res: express.Response, next: express.NextFunction) {
+    let season = req.params.season;
+    console.log('==============>>>>>>>>>>>>>>>>>>>>>>>>>')
+    console.log('discount worked in controller',season)
+    console.log('==============>>>>>>>>>>>>>>>>>>>>>>>>>')
+    new ProductModel()
+      .findBySeason(season)
       .then(result => {
         res.send(result);
       })
@@ -174,28 +197,55 @@ export class ProductController {
   //     });
   // }
 
-  // /**
-  //  * Update
-  //  *
-  //  * @param req express.Request
-  //  * @param res express.Response
-  //  * @param next express.NextFunction
-  //  */
-  // update(req: express.Request, res: express.Response, next: express.NextFunction) {
-  //   let id = req.params.id;
+  /**
+   * Update
+   *
+   * @param req express.Request
+   * @param res express.Response
+   * @param next express.NextFunction
+   */
+  updateQuantity(req: express.Request, res: express.Response, next: express.NextFunction) {
+    let id = req.params.id;
 
-  //   let reqBody = req.body;
-  //   // restrict user only update these fields from profile update
-  //   let item = { name: reqBody.name, phoneNumber: reqBody.phoneNumber, address: reqBody.address, gender: reqBody.gender }
-  //   new ProfileModel()
-  //     .update(id, item)
-  //     .then(result => {
-  //       res.json(result);
-  //     })
-  //     .catch(err => {
-  //       //ErrorHandler.sendServerError(err, res, next);
-  //     });
-  // }
+    let reqBody = req.body;
+    // restrict user only update these fields from profile update
+    let item =reqBody.quantity
+    console.log('UPDATE QUANTITY IN PRODUCT CONTROLLER', item, id);
+
+    new ProductModel()
+      .updateQuantity(id, item)
+      .then(result => {
+        res.json(result);
+      })
+      .catch(err => {
+        //ErrorHandler.sendServerError(err, res, next);
+      });
+  }
+
+  /**
+   * Update
+   *
+   * @param req express.Request
+   * @param res express.Response
+   * @param next express.NextFunction
+   */
+  update(req: express.Request, res: express.Response, next: express.NextFunction) {
+    let id = req.params.id;
+
+    let reqBody = req.body;
+    // restrict user only update these fields from profile update
+    // let item =reqBody.quantity
+    // console.log('UPDATE QUANTITY IN PRODUCT CONTROLLER', reqBody, id);
+
+    new ProductModel()
+      .update(id, reqBody)
+      .then(result => {
+        res.json(result);
+      })
+      .catch(err => {
+        //ErrorHandler.sendServerError(err, res, next);
+      });
+  }
 
   // /**
   //  * ForgotPassword

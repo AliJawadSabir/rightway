@@ -1,0 +1,38 @@
+.matCard{
+  margin: 20px;
+}
+.titleHeading{
+  font-family: "Montserrat";
+  margin-bottom: 20px;
+  margin-top: 8px;
+  font-weight: bold;
+}
+.optionButtons{
+  float: right;
+}
+a:hover{
+  color: red;
+}
+.saveButton{
+  background-color: rgb(186, 189, 8);
+  color: black;
+}
+.cancelButton:hover{
+  background-color: rgb(186, 189, 8);
+  color: black;
+}
+.cancelButton{
+  margin-left: 20px;
+  color: white;
+  background-color: black;
+}
+
+@media(max-width:600px){
+  .titleHeading{
+    font-family: "Montserrat";
+    margin-bottom: 20px;
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+}

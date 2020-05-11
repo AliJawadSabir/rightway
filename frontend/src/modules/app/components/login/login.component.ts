@@ -1,7 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import {LoginService} from '../../services';
+import {LoginService, SharedDataService} from '../../services';
 import {LoginModel} from '../../models';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   email:string;
   public innerWidth: number;
   public flexSize: number;
+  public isSuperUser: boolean;
   public componentLabels = LoginModel.attributesLabels;
   constructor(
     private router: Router,
@@ -25,6 +26,7 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private loginService: LoginService,
     private snackBar: MatSnackBar,
+    private sharedDataService: SharedDataService
     ) { 
     
   }
@@ -43,6 +45,8 @@ export class LoginComponent implements OnInit {
     }
 
     this.loginUser = new LoginModel();
+    this.sharedDataService.currentSuperUser.subscribe
+    (superUser => this.isSuperUser = superUser);
     // this.fg = this.fb.group({email: new FormControl('', [<any>Validators.required, Validators.email])});
     this.fg = this.fb.group(new LoginModel().validationRules());
     // this.showTimer();
@@ -60,6 +64,12 @@ export class LoginComponent implements OnInit {
     }
   }
 
+
+  // change number of items added in Shopping Cart
+  changeSuperUser() {
+    this.sharedDataService.changeSuperUser(this.isSuperUser);
+  }
+
   // getErrorMessage() {
   //   return this.email.hasError('required') ? 'You must enter email id' :
   //       this.email.hasError('email') ? 'Not a valid email' :
@@ -67,13 +77,13 @@ export class LoginComponent implements OnInit {
   // }
 
   onSave(user) {
-    console.log('Buton is clicked one'+ user.email);
     this.loginUser = user;
-    console.log('Buton is clicked '+ this.loginUser.password);
     this.loginService.login(this.loginUser).subscribe(response => {
+      this.isSuperUser = response;
       this.snackBar.open('User Log in Successfully','Dismiss' ,{
         duration: 3000,
       });
+      this.changeSuperUser();
       this.router.navigate([`/home`]);
     },
     error =>{

@@ -3,6 +3,7 @@ import { FormControl, Validators, ValidatorFn } from '@angular/forms';
 export class ColorModel {
 
   color: string;
+  text: string;
   description: string;
 
   /**

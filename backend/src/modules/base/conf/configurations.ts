@@ -20,7 +20,7 @@ export const CONFIGURATIONS = {
   GDataObject: {},
 
 
-  SECRET: 'rightway_secret',
+  SECRET: 'rightway_secret_value',
 
   // TODO:high: following is not a proper way for public urls.
   PUBLIC_URLS: [

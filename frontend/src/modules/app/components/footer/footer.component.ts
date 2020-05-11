@@ -31,7 +31,6 @@ export class FooterComponent implements OnInit {
     }else{
       this.isMobileScreen = true;
     }
-    console.log('inner width--->>>', this.innerWidth, this.isMobileScreen);
   }
 
 }

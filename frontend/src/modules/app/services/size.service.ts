@@ -13,12 +13,10 @@ export class SizeService {
   constructor(protected http: HttpClient) {}
 
   create(item: SizeModel) {
-    console.log('in size service create '+item);
     return this.http.post(`${this.routeURL}/create`, item);
   }
 
   findAll() {
-    console.log('in size service find all ');
     return this.http.get(`${this.routeURL}/findAll`);
   }
 }

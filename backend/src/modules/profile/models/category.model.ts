@@ -47,7 +47,7 @@ export class CategoryModel extends BaseModel {
   {
     return this.model.findAll().then(result => {
       console.log('----------------------------------------');
-      console.log('result skowing '+result);
+      console.log('result skowing ');
       console.log('-------------------------------------------');
       return result;
     })

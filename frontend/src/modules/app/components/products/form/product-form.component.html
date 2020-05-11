@@ -1,0 +1,236 @@
+<div class="pagePath">
+    RightWay<span class="sign">></span>Products<span class="sign">></span>{{page}}
+</div>
+<div *ngIf="loaded">
+    <mat-card class="matCard">
+            <div fxLayout="row">
+                <mat-card-title fxFlex="80" class="titleHeading">{{page}} Product</mat-card-title>
+
+                <div class="optionButtons" fxLayoutAlign="end" *ngIf="pageAct == pageActions.view">
+                    <a [routerLink]="['/products']" mat-icon-button>
+                        <mat-icon matTooltip="List">list</mat-icon>
+                    </a>
+                    <a [routerLink]="['/products/update', productModel.id]" mat-icon-button >
+                        <mat-icon matTooltip="Edit">edit</mat-icon>
+                    </a>
+                    <a mat-icon-button (click)="delete(productModel.id)" matTooltip="delete">
+                        <mat-icon>delete</mat-icon>
+                    </a>
+                </div>
+            </div>
+            <mat-card-content *ngIf="!isMobileScreen">
+                <form novalidate [formGroup]="fg" fxLayout="column" fxLayoutGap="10px" (ngSubmit)="saveData(fg.value)">
+
+                    <div fxLayout="row" fxLayoutGap="10px">
+                        <mat-form-field appearance="outline" fxFlex="50">
+                            <mat-label>{{componentLabels.name}}</mat-label>
+                            <input matInput [placeholder]="componentLabels.name" formControlName="name" required>
+                            <mat-error *ngIf="fg.get('name').hasError('required')">Product Name is required.</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" fxFlex="50">
+                            <mat-label>{{componentLabels.categoryId}}</mat-label>
+                            <mat-select [placeholder]="componentLabels.categoryId" formControlName="categoryId" required>
+                                <mat-option *ngFor="let category of categoryList" [value]="category.id">
+                                    <!-- {{ educationLevel.instituteType.name }} -  -->
+                                    {{ category.category }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="fg.get('categoryId').hasError('required')">Select Category</mat-error>
+                        </mat-form-field>
+
+                    </div>
+                    <div fxLayout="row" fxLayoutGap="20px">
+                        <mat-form-field appearance="outline" fxFlex="48">
+                            <mat-label>{{componentLabels.available}}</mat-label>
+                            <input matInput [placeholder]="componentLabels.available" formControlName="available" type="number" required>
+                            <mat-error *ngIf="fg.get('available').hasError('required')">Enter Available Itema</mat-error>
+                            <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" fxFlex="48">
+                            <mat-label>{{componentLabels.price}}</mat-label>
+                            <input matInput [placeholder]="componentLabels.price" formControlName="price" type="number" required>
+                            <mat-error *ngIf="fg.get('price').hasError('required')">Enter Product Price.</mat-error>
+                            <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout="row" fxLayoutGap="20px">
+                        <mat-form-field appearance="outline" fxFlex="48">
+                            <mat-label>{{componentLabels.colorId}}</mat-label>
+                            <mat-select [placeholder]="componentLabels.colorId" formControlName="colorId" required>
+                                <mat-option *ngFor="let color of colorList" [value]="color.id">
+                                    {{ color.color }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="fg.get('colorId').hasError('required')">Select Color</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" fxFlex="48">
+                            <mat-label>{{componentLabels.code}}</mat-label>
+                            <input matInput [placeholder]="componentLabels.code" formControlName="code" required>
+                            <mat-error *ngIf="fg.get('code').hasError('required')">Enter Product Code</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout="row" fxLayoutGap="20px">
+                        <mat-form-field appearance="outline" fxFlex="48">
+                            <mat-label>{{componentLabels.sizeId}}</mat-label>
+                            <mat-select [placeholder]="componentLabels.size" formControlName="sizeId" required>
+                                <mat-option *ngFor="let size of sizeList" [value]="size.id">
+                                    <!-- {{ educationLevel.instituteType.name }} -  -->
+                                    {{ size.size }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="fg.get('sizeId').hasError('required')">Select Size</mat-error>
+                            <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" fxFlex="48">
+                            <mat-label>{{componentLabels.discount}}</mat-label>
+                            <input matInput [placeholder]="componentLabels.discount" formControlName="discount" type="number" required>
+                            <mat-error *ngIf="fg.get('discount').hasError('required')">Enter Discount Percentage.</mat-error>
+                            <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout="row" fxLayoutGap="20px">
+                        <mat-form-field appearance="outline" fxFlex="48">
+                            <mat-label>{{componentLabels.type}}</mat-label>
+                            <input matInput [placeholder]="componentLabels.type" formControlName="type">
+                            <!-- <mat-error *ngIf="fg.get('discount').hasError('required')">Enter Discount Percentage.</mat-error> -->
+                            <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" fxFlex="48">
+                            <mat-label>{{componentLabels.season}}</mat-label>
+                            <mat-select [placeholder]="componentLabels.season" formControlName="season" required>
+                                <mat-option *ngFor="let season of seasonList" [value]="season">
+                                    <!-- {{ educationLevel.instituteType.name }} -  -->
+                                    {{ season }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="fg.get('season').hasError('required')">Select Season</mat-error>
+                            <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout="row" fxLayoutGap="20px">
+                        <mat-form-field appearance="outline" fxFlex="100">
+                            <mat-label>{{componentLabels.description}}</mat-label>
+                            <input matInput [placeholder]="componentLabels.description" formControlName="description" required>
+                            <mat-error *ngIf="fg.get('description').hasError('required')">Enter Description</mat-error>
+                            <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                        </mat-form-field>
+                    </div>
+                    <div *ngIf="pageAct != pageActions.view">
+                        <div>
+                            <button mat-raised-button class="saveButton" type="submit" [disabled]="fg.invalid" color="primary">Save</button>
+                            <a *ngIf="pageAct == 'create'" class="cancelButton" mat-raised-button [routerLink]="['/add-product']">Cancel</a>
+                            <a *ngIf="pageAct == 'update'" class="cancelButton" mat-raised-button [routerLink]="['/products/view', productModel.id]">Cancel</a>
+                        </div>
+                    </div>
+                </form>
+
+            </mat-card-content>
+            <mat-card-content *ngIf="isMobileScreen">
+                <form novalidate [formGroup]="fg" fxLayout="column" fxLayoutGap="10px" (ngSubmit)="saveData(fg.value)">
+
+                    <!-- <div fxLayout="row" fxLayoutGap="10px"> -->
+                        <mat-form-field appearance="outline">
+                            <mat-label>{{componentLabels.name}}</mat-label>
+                            <input matInput [placeholder]="componentLabels.name" formControlName="name" required>
+                            <mat-error *ngIf="fg.get('name').hasError('required')">Product Name is required.</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>{{componentLabels.categoryId}}</mat-label>
+                            <mat-select [placeholder]="componentLabels.categoryId" formControlName="categoryId" required>
+                                <mat-option *ngFor="let category of categoryList" [value]="category.id">
+                                    <!-- {{ educationLevel.instituteType.name }} -  -->
+                                    {{ category.category }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="fg.get('categoryId').hasError('required')">Select Category</mat-error>
+                        </mat-form-field>
+
+                    <!-- </div>
+                    <div fxLayout="row" fxLayoutGap="20px"> -->
+                        <mat-form-field appearance="outline">
+                            <mat-label>{{componentLabels.available}}</mat-label>
+                            <input matInput [placeholder]="componentLabels.available" formControlName="available" type="number" required>
+                            <mat-error *ngIf="fg.get('available').hasError('required')">Enter Available Itema</mat-error>
+                            <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>{{componentLabels.price}}</mat-label>
+                            <input matInput [placeholder]="componentLabels.price" formControlName="price" type="number" required>
+                            <mat-error *ngIf="fg.get('price').hasError('required')">Enter Product Price.</mat-error>
+                            <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                        </mat-form-field>
+                    <!-- </div>
+                    <div fxLayout="row" fxLayoutGap="20px"> -->
+                        <mat-form-field appearance="outline">
+                            <mat-label>{{componentLabels.colorId}}</mat-label>
+                            <mat-select [placeholder]="componentLabels.colorId" formControlName="colorId" required>
+                                <mat-option *ngFor="let color of colorList" [value]="color.id">
+                                    {{ color.color }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="fg.get('colorId').hasError('required')">Select Color</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>{{componentLabels.code}}</mat-label>
+                            <input matInput [placeholder]="componentLabels.code" formControlName="code" required>
+                            <mat-error *ngIf="fg.get('code').hasError('required')">Enter Product Code</mat-error>
+                        </mat-form-field>
+                    <!-- </div>
+                    <div fxLayout="row" fxLayoutGap="20px"> -->
+                        <mat-form-field appearance="outline">
+                            <mat-label>{{componentLabels.sizeId}}</mat-label>
+                            <mat-select [placeholder]="componentLabels.size" formControlName="sizeId" required>
+                                <mat-option *ngFor="let size of sizeList" [value]="size.id">
+                                    <!-- {{ educationLevel.instituteType.name }} -  -->
+                                    {{ size.size }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="fg.get('sizeId').hasError('required')">Select Size</mat-error>
+                            <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>{{componentLabels.discount}}</mat-label>
+                            <input matInput [placeholder]="componentLabels.discount" formControlName="discount" type="number" required>
+                            <mat-error *ngIf="fg.get('discount').hasError('required')">Enter Discount Percentage.</mat-error>
+                            <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                        </mat-form-field>
+                    <!-- </div>
+                    <div fxLayout="row" fxLayoutGap="20px"> -->
+                        <mat-form-field appearance="outline">
+                            <mat-label>{{componentLabels.type}}</mat-label>
+                            <input matInput [placeholder]="componentLabels.type" formControlName="type">
+                            <!-- <mat-error *ngIf="fg.get('discount').hasError('required')">Enter Discount Percentage.</mat-error> -->
+                            <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>{{componentLabels.season}}</mat-label>
+                            <mat-select [placeholder]="componentLabels.season" formControlName="season" required>
+                                <mat-option *ngFor="let season of seasonList" [value]="season">
+                                    <!-- {{ educationLevel.instituteType.name }} -  -->
+                                    {{ season }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="fg.get('season').hasError('required')">Select Season</mat-error>
+                            <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                        </mat-form-field>
+                    <!-- </div>
+                    <div fxLayout="row" fxLayoutGap="20px"> -->
+                        <mat-form-field appearance="outline" fxFlex="100">
+                            <mat-label>{{componentLabels.description}}</mat-label>
+                            <textarea matInput [placeholder]="componentLabels.description" formControlName="description" required></textarea>
+                            <mat-error *ngIf="fg.get('description').hasError('required')">Enter Description</mat-error>
+                            <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                        </mat-form-field>
+                    <!-- </div> -->
+                    <div *ngIf="pageAct != pageActions.view">
+                        <div>
+                            <button mat-raised-button class="saveButton" type="submit" [disabled]="fg.invalid" color="primary">Save</button>
+                            <a *ngIf="pageAct == 'create'" class="cancelButton" mat-raised-button [routerLink]="['/add-product']">Cancel</a>
+                            <a *ngIf="pageAct == 'update'" class="cancelButton" mat-raised-button [routerLink]="['/products/view', productModel.id]">Cancel</a>
+                        </div>
+                    </div>
+                </form>
+
+            </mat-card-content>
+    </mat-card>
+</div>

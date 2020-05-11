@@ -17,7 +17,6 @@ export class ColorService {
    * Create record
    */
   create(item: ColorModel) {
-    console.log('in color service create '+item);
     return this.http.post(`${this.routeURL}/create`, item);
   }
 
@@ -25,7 +24,6 @@ export class ColorService {
    * Get all records
    */
   findAll() {
-    console.log('in color service find all ');
     return this.http.get(`${this.routeURL}/findAll`);
   }
 

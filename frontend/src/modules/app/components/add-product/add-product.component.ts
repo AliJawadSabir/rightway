@@ -24,6 +24,7 @@ export class AddProductComponent implements OnInit {
   public categoryList: CategoryModel[];
   public sizeList: SizeModel[];
   public colorList: ColorModel[];
+  public seasonList = ['Summer', 'Winter', 'Autum', 'Spring'];
   response:string;
   imageURL:string;
   uploader:FileUploader = new FileUploader({url:uploadAPI});
@@ -99,7 +100,6 @@ export class AddProductComponent implements OnInit {
     this.sizeService.findAll().subscribe(
       response => {
         this.sizeList = <any>response;
-        console.log('size List -->>'+ this.sizeList);
       },
       error => console.log(error),
       () => { }
@@ -110,7 +110,6 @@ export class AddProductComponent implements OnInit {
     this.colorService.findAll().subscribe(
       response => {
         this.colorList = <any>response;
-        console.log('size List -->>'+ this.colorList);
       },
       error => console.log(error),
       () => { }
@@ -119,8 +118,8 @@ export class AddProductComponent implements OnInit {
 
 
   addProduct(product: ProductModel) {
-    
     this.productModel = product;
+    this.productModel.url = this.imageURL;
     // No need of url now. we will work on it if needed.
     if(this.uploader.queue.length == 0){
       this.productModel.url = null;
@@ -130,10 +129,8 @@ export class AddProductComponent implements OnInit {
       this.productModel.type = this.productModel.name;
     }
     this.productModel.sold = 0;
-
     if(this.productModel.url != null){
       this.productService.create(this.productModel).subscribe(response => {
-        console.log('Response for add product '+ response)
         if(response['error']){
           this.snackBar.open('Product Already exist.','Dismiss' ,{
             duration: 3000,
@@ -165,13 +162,11 @@ export class AddProductComponent implements OnInit {
     
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
       let resp = JSON.parse(response);
-      console.log('upload reponse', resp);
       if (resp['success'] == true){
         this.snackBar.openFromComponent(SnackBarComponent, {
           duration: 3 * 1000,
         });
-        this.productModel.url = resp['file']['filename'];
-        console.log('upload reponse', this.productModel.url);
+        this.imageURL = resp['file']['filename'];
       }
  };
 
@@ -181,11 +176,9 @@ export class AddProductComponent implements OnInit {
     item.upload();
     // this.isReady = true;
     // console.log('item  =>>>', item)
-    console.log('item  =>>>', this.uploader.queue)
   }
 
   cancelClick(){
-    console.log('cancel  =>>>', this.uploader.queue);
   }
 
 }

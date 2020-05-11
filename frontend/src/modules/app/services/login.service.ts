@@ -15,18 +15,17 @@ export class LoginService {
   constructor(protected http: HttpClient) {}
 
   login(item: LoginModel): Observable<boolean> {
-    console.log('login service', item);
     return this.http.post(`${this.routeURL}/login`, item)
       .map(response => {
         // let res = response.json();
         // my change
         let res = response;
 
-        localStorage.setItem('id', res['id']);
-        localStorage.setItem('name', res['name']);
-        localStorage.setItem('email', res['email']);
-        localStorage.setItem('isSuperUser', res['isSuperUser']);
-        localStorage.setItem('token', res['token']);
+        sessionStorage.setItem('id', res['id']);
+        sessionStorage.setItem('name', res['name']);
+        sessionStorage.setItem('email', res['email']);
+        sessionStorage.setItem('value', res['isSuperUser']);
+        sessionStorage.setItem('token', res['token']);
 
         return res['isSuperUser'];
         // return true;

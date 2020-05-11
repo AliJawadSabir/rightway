@@ -28,26 +28,13 @@ export class OrderModel extends BaseModel {
    */
   public create(item) {
 
-    // return this.model.findOne({where:{color: item.color}}).then(res=>{
-    //   console.log('-------createeeeeeeeeeeeeee workedddddddddddddddd', res);
-    //   if (res){
-    //     console.log('----------------------------------------');
-    //       console.log('result is duplicate');
-    //       console.log('-------------------------------------------');
-    //     return ErrorHandler.duplicateEntry;
-    //   }else {
-
-      
-      // let products = item.prod;
-      // let quantity = item['quantity'];
-      // let item1 = item['body'];
-      console.log('----------------------------------------');
-      console.log('result showing in order model '+ item.products.length);
-      console.log('-------------------------------------------');
         return super.create(item).then(result => {
           for(let i=0;i<item.products.length;i++) {
             let prodOrder = {orderId:result['dataValues']['id'], 
             productId:item.products[i]['id'], quantity: item.quantity[i]}
+            console.log('----------------------------------------');
+            console.log('result showing in order model '+ prodOrder);
+            console.log('-------------------------------------------');
             new ProductOrderModel().create(prodOrder).then(resp => {
               console.log('----------------------------------------');
               console.log('result showing of id '+ resp['dataValues']);
@@ -64,7 +51,7 @@ export class OrderModel extends BaseModel {
   {
     return this.model.findAll().then(result => {
       console.log('----------------------------------------');
-      console.log('result skowing '+result);
+      console.log('result skowing ');
       console.log('-------------------------------------------');
       return result;
     })
@@ -77,7 +64,7 @@ export class OrderModel extends BaseModel {
       if (result) {
         let orders = [];
         return Promise.each(result, order =>{
-          this.findWithProducts(order['dataValues']['id']).then(resp =>{
+          return this.findWithProducts(order['dataValues']['id']).then(resp =>{
             orders.push(resp);
           })
         }).then(() =>{
@@ -102,6 +89,7 @@ export class OrderModel extends BaseModel {
                 if (productOrder['dataValues']['orderId'] == orderId) {
                   let productId = productOrder['dataValues']['productId'];
                   return new ProductModel().find(productId).then(productResponse =>{
+                    productResponse['dataValues']['quantity'] = productOrder['dataValues']['quantity'];
                     products.push(productResponse);
                   })
                 }

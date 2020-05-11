@@ -13,7 +13,6 @@ export class ProductService {
   constructor(protected http: HttpClient) { }
 
   create(item: ProductModel) {
-    console.log('in product service create '+item);
     return this.http.post(`${this.routeURL}/create`, item);
   }
 
@@ -21,7 +20,6 @@ export class ProductService {
    * Get all records
    */
   findAll() {
-    console.log('in product service find all ');
     return this.http.get(`${this.routeURL}/findAll`);
   }
 
@@ -30,6 +28,14 @@ export class ProductService {
    */
   update(id: Number, item) {
     return this.http.put(`${this.routeURL}/update/${id}`, item);
+  }
+
+  /**
+   * Update record
+   */
+  updateQuantity(id: Number, quantity) {
+    let quan = {quantity:quantity}
+    return this.http.put(`${this.routeURL}/updateQuantity/${id}`, quan);
   }
 
   /**
@@ -44,6 +50,13 @@ export class ProductService {
    */
   findByDiscount(discount: number) {
     return this.http.get(`${this.routeURL}/findByDiscount/${discount}`);
+  }
+
+  /**
+   * Get single record
+   */
+  findBySeason(season: string) {
+    return this.http.get(`${this.routeURL}/findBySeason/${season}`);
   }
 
   /**

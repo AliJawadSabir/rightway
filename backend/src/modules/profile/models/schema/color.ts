@@ -14,6 +14,8 @@ export class Color extends Model<Color> {
 
   @Column description: string;
 
+  // @Column text: string;
+
   @Column createdBy: number;
 
   @Column updatedBy: number;

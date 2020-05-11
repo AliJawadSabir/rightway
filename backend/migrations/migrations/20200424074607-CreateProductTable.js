@@ -11,6 +11,7 @@ module.exports = {
         code: { type: Sequelize.STRING, allowNull: false },
         description: { type: Sequelize.STRING, allowNull: false },
         type: { type: Sequelize.STRING, allowNull: false },
+        season: { type: Sequelize.STRING, allowNull: false },
         price: { type: Sequelize.INTEGER, allowNull: false },
         available: { type: Sequelize.INTEGER, allowNull: false },
         sold: { type: Sequelize.INTEGER, allowNull: false },

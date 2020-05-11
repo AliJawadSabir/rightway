@@ -40,11 +40,8 @@ export class AddCategoryComponent implements OnInit {
 
 
   addCategory(category: CategoryModel) {
-    console.log('Buton is clicked one'+ category.category);
     this.categoryModel = category;
-    console.log('Buton is clicked '+ this.categoryModel.description);
     this.addCategoryService.create(this.categoryModel).subscribe(response => {
-      console.log('Response for add category '+ response);
       this.router.navigate(['home']);
     },
     error =>{

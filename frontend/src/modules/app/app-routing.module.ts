@@ -16,10 +16,13 @@ import {
   ContactUsComponent,
   UnStitchComponent,
   OrderListComponent,
+  OrderFormComponent,
+  ProductListComponent,
+  ProductFormComponent,
 } from './components';
 import { GLOBALS } from './config';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: '', redirectTo: 'home/product/1', pathMatch: 'full'},
   { 
     path: 'home',
@@ -65,20 +68,38 @@ const routes: Routes = [
     component: HomeComponent,
     data: { act: GLOBALS.pageActions.summerCollection }
   },
-  // {
-  //   path: 'orders',
-  //       // canActivate: [AuthGuardService],
-  //   // component: HomeComponent,
-  //   // data: { act: GLOBALS.pageActions.sale },
-  //   children:[
-  //     {
-  //       path: '',
-  //       // canActivate: [AuthGuardService],
-  //       component: OrderListComponent,
-  //       // data: { act: GLOBALS.pageActions.sale },
-  //     },
-  //   ]
-  // },
+  {
+    path: 'orders',
+    children:[
+      { path: '',component: OrderListComponent },
+      { 
+        path: 'view/:id',
+        component: OrderFormComponent,
+        data: { act: GLOBALS.pageActions.view }
+      },
+      { 
+        path: 'update/:id',
+        component: OrderFormComponent,
+        data: { act: GLOBALS.pageActions.update }
+      },
+    ]
+  },
+  {
+    path: 'products',
+    children:[
+      { path: '',component: ProductListComponent },
+      { 
+        path: 'view/:id',
+        component: ProductFormComponent,
+        data: { act: GLOBALS.pageActions.view }
+      },
+      { 
+        path: 'update/:id',
+        component: ProductFormComponent,
+        data: { act: GLOBALS.pageActions.update }
+      },
+    ]
+  },
   
   // {
   //   path: 'addCategory',
@@ -116,7 +137,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{scrollPositionRestoration: 'enabled'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

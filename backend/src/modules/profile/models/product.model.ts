@@ -59,7 +59,7 @@ export class ProductModel extends BaseModel {
   {
     return this.model.findAll().then(result => {
       console.log('----------------------------------------');
-      console.log('result skowing '+result);
+      console.log('result skowing in find all', result);
       console.log('-------------------------------------------');
       return result;
     })
@@ -68,13 +68,14 @@ export class ProductModel extends BaseModel {
 
   public findWithCode(id)
   {
-    console.log('-------id workedddddddddddddddd', id);
-    return this.model.findAll({where:{id:+id}}).then(res=>{
-      console.log('-------find with code workedddddddddddddddd', res);
+    console.log('-------id worked', id);
+    return this.find(id).then(res=>{
+      // console.log('-------id worked', res['dataValues']);
+      // console.log('-------id worked', id);
       if (res){
         let code = res.code;
         console.log('----------------------------------------');
-          console.log('item code', code);
+          console.log('item code in find code', code);
           console.log('-------------------------------------------');
         return this.findCodeItems(code);
         
@@ -83,13 +84,45 @@ export class ProductModel extends BaseModel {
     })
 
   }
+  public findBySeason(season)
+  {
+    console.log('-------season workedddddddddddddddd', season);
+    // let attributes = ['id','name','url','price','code','description',
+    // 'discount','sold','available','colorId','categoryId','sizeId','type','season'];
+    // let conditions = {discount:+season}
+    return this.model.findAll().then(res=>{
+      // console.log('-------find with discount workedddddddddddddddd', res);
+      if (res){
+        let response = [];
+        return Promise.each(res, resp => {
+          if(resp['dataValues']['season'] == season){
+            console.log('-----------------category id', resp['dataValues']['categoryId'])
+            return new CategoryModel().find(resp['dataValues']['categoryId']).then(categoryResponse=>{
+              resp['dataValues']['category'] = categoryResponse;
+              return new ColorModel().find(resp['dataValues']['colorId']).then(colorResponse=>{
+                resp['dataValues']['color'] = colorResponse;
+                return new SizeModel().find(resp['dataValues']['sizeId']).then(sizeResponse=>{
+                  resp['dataValues']['size'] = sizeResponse;
+                  response.push(resp);
+                })
+              })
+            })
+          }
+        }).then(() => {
+          return response;
+        });
+      }else{
+        return ErrorHandler.recordNotFound;
+      }
+    })
+  }
   public findByDiscount(discount)
   {
     console.log('-------discount workedddddddddddddddd', discount);
-    let attributes = ['id','name','url','price','code','description',
-    'discount','sold','available','colorId','categoryId','sizeId','type'];
-    let conditions = {discount:+discount}
-    return this.model.findAll(attributes,conditions).then(res=>{
+    // let attributes = ['id','name','url','price','code','description',
+    // 'discount','sold','available','colorId','categoryId','sizeId','type','season'];
+    // let conditions = {discount:+season}
+    return this.model.findAll().then(res=>{
       // console.log('-------find with discount workedddddddddddddddd', res);
       if (res){
         let response = [];
@@ -110,43 +143,15 @@ export class ProductModel extends BaseModel {
         }).then(() => {
           return response;
         });
-        // let i=0; 
-        // let response = [];
-        // while(i<res.length){
-        //   if(res[i]['dataValues']['discount'] == discount){    
-        //     response.push(res[i]['dataValues']);
-        //   }
-        //   i++;
-        // }
-        // return response;
       }else{
         return ErrorHandler.recordNotFound;
       }
-      // if (res){
-      //   let i=0; 
-      //   let response = [];
-      //   while(i<res.length){
-      //     if(res[i]['dataValues']['discount'] == discount){
-      //       return new CategoryModel().find(res[i]['dataValues']['id']).then(resp=>{
-      //         res[i]['dataValues']['category'] = resp['dataValues']['category'];
-      //         console.log('-------find with discount workedddddddddddddddd', res);
-      //         response.push(res[i]['dataValues']);
-      //       })   
-            
-      //     }
-      //     i++;
-      //   }
-      //   return response;
-      // }else{
-      //   return ErrorHandler.recordNotFound;
-      // }
     })
-
   }
   public findByType(type)
   {
     console.log('-------type workedddddddddddddddd', type);
-    let attributes = ['id','name','url','price','code','description',
+    let attributes = ['id','name','url','price','code','description','season',
     'discount','sold','available','colorId','categoryId','sizeId','type'];
     let conditions = {discount:type}
     return this.model.findAll(attributes,conditions).then(res=>{
@@ -169,7 +174,7 @@ export class ProductModel extends BaseModel {
   public find(id)
   {
     return this.model.findOne({where:{id:id}}).then(res=>{
-      console.log('-------createeeeeeeeeeeeeee workedddddddddddddddd', res);
+      console.log('-------find worked', res['dataValues']['id']);
       if (res){
         return new CategoryModel().find(res['dataValues']['categoryId']).then(categoryResponse=>{
           res['dataValues']['category'] = categoryResponse;
@@ -186,6 +191,31 @@ export class ProductModel extends BaseModel {
     })
   }
 
+  public updateQuantity(id, quantity) {
+    return this.model.findOne({where:{id:id}}).then(res=>{
+      if (res){
+        let item = res['dataValues'];
+        item['available'] = item['available'] - quantity;
+        item['sold'] = item['sold'] + quantity;
+        return this.update(id,item).then(response=>{
+          return response;
+        })
+      }
+    });
+  }
+
+
+  /**
+   * Update a record for given id
+   * @param item
+   * @param id
+   */
+  update(id, item) {
+    item = BaseModel.extendItem(item, false);
+    return this.sequelizeModel.update(item, { where: { id: id } });
+
+  }
+
   // public find(id)
   // {
   //   return this.model.findOne({where:{id:id}}).then(res=>{
@@ -199,23 +229,25 @@ export class ProductModel extends BaseModel {
 
   public findCodeItems(code){
     console.log('----------------------------------------');
-          console.log('item code', code);
-          console.log('-------------------------------------------');
-    return this.model.findAll(['id','name','url','price','code','description',
-  'discount','sold','available','colorId','categoryId','sizeId','type'],
-  {where:{code:code}}).then(res=>{
-      console.log('-------find with codeeee workedddddddddddddddd', res[1]['dataValues']['code']);
+    console.log('item code in find code items', code);
+    console.log('-------------------------------------------');
+    return this.findAll()
+    .then(res=>{
       if (res){
-        let i=0; 
         let response = [];
-        while(i<res.length){
-          if(res[i]['dataValues']['code'] == code){
-            response.push(res[i]['dataValues']);
+        return Promise.each(res, product=>{
+          if(product['dataValues']['code'] == code){
+            return this.find(product['dataValues']['id']).then(resp => {
+              response.push(resp);
+              console.log('=========================================')
+              console.log('response of find function', resp['dataValues']['id'])
+            })
           }
-          i++;
-        }
-        
-        return res;
+        }).then(() => {
+          console.log('=======================================');
+          console.log('retuning response', response)
+          return response;
+        })
       }
     })
   }

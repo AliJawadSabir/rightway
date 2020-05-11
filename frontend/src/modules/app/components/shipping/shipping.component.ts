@@ -57,6 +57,7 @@ export class ShippingComponent implements OnInit {
     // cartItem:CartItemModel;
     amount;
     user;
+    itemsInCart = 0;
     public innerWidth: any;
     public isMobileScreen: boolean;
 
@@ -74,7 +75,7 @@ export class ShippingComponent implements OnInit {
     this.fg = this.fb.group(new CustomerModel().validationRules());
     this.sharedDataService.currentMessage.subscribe(message => this.amount = message);
     this.sharedDataService.currentUser.subscribe(user => this.user = user);
-    console.log('amount shown', this.amount);
+    this.sharedDataService.currentItemsInCart.subscribe(itemCount => this.itemsInCart = itemCount);
     if (this.amount == 0){
       this.loadCart();
     }else{
@@ -91,7 +92,6 @@ export class ShippingComponent implements OnInit {
     }else{
       this.isMobileScreen = true;
     }
-    console.log('inner width--->>>', this.innerWidth, this.isMobileScreen);
   }
 
   // getId() {
@@ -125,7 +125,6 @@ export class ShippingComponent implements OnInit {
 
   //setting user data
   setUser(){
-    console.log('set user caled');
     this.sharedDataService.sendUserInfo(this.user);
   }
 
@@ -136,7 +135,6 @@ export class ShippingComponent implements OnInit {
   addCustomerDetails(customer: CustomerModel) {
     this.customerModel = customer;
     this.user = this.customerModel;
-      console.log('set user caled');
       this.setUser();
     // this.customerService.create(this.customerModel).subscribe(response => {
     //   console.log('Response for Customer create '+ response);
@@ -154,11 +152,17 @@ export class ShippingComponent implements OnInit {
     this.router.navigate(['home/addToCart/payment']);
   }
 
+  // change number of items added in Shopping Cart
+  changeItemsTotal() {
+    this.sharedDataService.changeItemsInCart(this.itemsInCart);
+  }
+
   loadCart() {
     
     let totalAmount = 0;
     let taxAmount = 0;
     let deliveryCharges = 0;
+    this.itemsInCart = 0;
     let items = [];
     let item;
     let cart = [];
@@ -168,12 +172,15 @@ export class ShippingComponent implements OnInit {
         item = JSON.parse(cart[i]);
         items.push(item);
         totalAmount += item.price * item.quantity;
-        console.log('items==>>', items);
+        this.itemsInCart += 1 * item.quantity;
       }
-      taxAmount = (totalAmount*14)/100;
+      if (totalAmount>0) {
+        deliveryCharges = 200;
+      }
+      taxAmount = (totalAmount*0)/100;
       this.amount = totalAmount + taxAmount + deliveryCharges;
       this.amount = Math.floor(this.amount);
-      // this.newMessage();
+      this.changeItemsTotal();
     }
 		
   }

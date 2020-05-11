@@ -56,7 +56,7 @@ export class ColorModel extends BaseModel {
 
   public find(id){
     return this.model.findOne({where:{id: id}}).then(res=>{
-      console.log('-------findddd workedddddddddddddddd', res);
+      // console.log('-------findddd workedddddddddddddddd', res);
       if (res){
         console.log('----------------------------------------');
           console.log('result found');
@@ -70,7 +70,7 @@ export class ColorModel extends BaseModel {
 
   public delete(id){
     return this.model.delete({where:{id: id}}).then(res=>{
-      console.log('-------delete workedddddddddddddddd', res);
+      // console.log('-------delete workedddddddddddddddd', res);
       // if (res){
       //   console.log('----------------------------------------');
       //     console.log('result found');

@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TextMaskModule } from 'angular2-text-mask';
 import { FileUploadModule } from 'ng2-file-upload';
 import { NgImageSliderModule } from 'ng-image-slider';
+import {routes} from './app-routing.module';
 // import {MatProgressBarModule} from '@angular/material/progress-bar'; 
 
 import { 
@@ -31,7 +32,8 @@ import {
   MatTooltipModule,
   MatPaginatorModule,
   MatSortModule,
-  MatTableModule
+  MatTableModule,
+  MatExpansionModule
   
 } from '@angular/material';
 
@@ -51,7 +53,10 @@ import {
   ContactUsComponent,
   FooterComponent,
   UnStitchComponent,
-  OrderListComponent
+  OrderListComponent,
+  OrderFormComponent,
+  ProductListComponent,
+  ProductFormComponent
 } from './components';
 
 import {
@@ -90,7 +95,10 @@ import { MatListModule } from '@angular/material/list';
     ContactUsComponent, 
     FooterComponent,
     UnStitchComponent,
-    OrderListComponent
+    OrderListComponent,
+    OrderFormComponent,
+    ProductListComponent,
+    ProductFormComponent
   ],
   imports: [
     BrowserModule,
@@ -124,6 +132,7 @@ import { MatListModule } from '@angular/material/list';
     MatPaginatorModule,
     MatSortModule,
     MatTableModule,
+    MatExpansionModule,
   ],
 
   providers: [

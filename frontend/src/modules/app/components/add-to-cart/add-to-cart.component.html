@@ -60,7 +60,7 @@
                 No Item Selected</div>
             <div fxLayout="row" class="margin-top" *ngFor="let item of items; let i = index">
                 <span fxFlex="30" fxLayout="row">
-                    <img fxFlex="30" fxLayoutGap="20px" class="img" src="{{imageLink}}">
+                    <img fxFlex="30" fxLayoutGap="20px" class="img" src="{{item.url}}">
                     <span class="margin-left" fxFlex="50" fxLayout="column">
                         <label>{{item.name}}</label>
                         <label style="margin-top:10px">Size: {{item.size}}</label>
@@ -122,7 +122,7 @@
                 <label class="totalLabel" fxFlex="40">PKR {{totalAmount}}</label>
             </span>
             <span fxLayout="row">
-                <label class="itemLabel" fxFlex="40">Tax Amount(14%)</label>
+                <label class="itemLabel" fxFlex="40">Tax Amount(0%)</label>
                 <label class="totalLabel" fxFlex="40">PKR {{taxAmount}}</label>
             </span>
             <span fxLayout="row">
@@ -133,7 +133,7 @@
                 <label class="itemLabel" fxFlex="40">Order Total</label>
                 <label class="totalLabel" fxFlex="40">PKR {{total}}</label>
             </span>
-            <button mat-raised-button class="proceed" *ngIf="total > 0" 
+            <button mat-raised-button class="proceed" *ngIf="totalAmount > 0" 
             [routerLink]="['/home/addToCart/shipping']">Proceed To Checkout</button>
         </mat-card>
     </div>
@@ -181,7 +181,7 @@
                 <label class="totalLabel" fxFlex="40">PKR {{totalAmount}}</label>
             </span>
             <span fxLayout="row">
-                <label class="itemLabel" fxFlex="50">Tax Amount(14%)</label>
+                <label class="itemLabel" fxFlex="50">Tax Amount(0%)</label>
                 <label class="totalLabel" fxFlex="40">PKR {{taxAmount}}</label>
             </span>
             <span fxLayout="row">
@@ -192,7 +192,7 @@
                 <label class="itemLabel" fxFlex="50">Order Total</label>
                 <label class="totalLabel" fxFlex="40">PKR {{total}}</label>
             </span>
-            <button mat-raised-button class="proceed" *ngIf="total > 0" 
+            <button mat-raised-button class="proceed" *ngIf="totalAmount > 0" 
             [routerLink]="['/home/addToCart/shipping']">Proceed To Checkout</button>
         </mat-card>
         <div fxLayout="row">
@@ -211,7 +211,7 @@
             <div class="margin-top" *ngFor="let item of items; let i = index">
                 <label class="nameLabel">{{item.name}}</label>
                 <span fxLayout="row">
-                    <img fxFlex="25" class="img" src="{{imageLink}}">
+                    <img fxFlex="25" class="img" src="{{item.url}}">
                     <span class="margin-left" fxFlex="40" fxLayout="column">
                         
                         <span class="marginColor">Size:</span>
@@ -234,7 +234,7 @@
                     </span> -->
                     <span class="margin-left" fxFlex="30" fxLayout="column">
                         <!-- <label>{{item.name}}</label> -->
-                        <label class="marginTopAdjust">{{item.size}}</label>
+                        <label class="marginColor1">{{item.size}}</label>
                         <!-- <label class="marginColor1"> {{item.category}}</label> -->
                         <label class="marginColor1">{{item.price}}</label>
                         <label class="marginColor1">{{item.quantity}}</label>

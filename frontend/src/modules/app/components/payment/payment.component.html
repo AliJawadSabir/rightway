@@ -9,11 +9,14 @@
     <span fxLayout="row">
         <mat-card class="homeMatCard">
             <img class="img" fxFlex="100" src="{{image}}">
-                <div class="text">
+                <!-- <div class="text">
                     <h2>LAWN KURTA</h2>
                     <p>
                         This kurta is designed by right way.
                     </p>
+                </div> -->
+                <div class="sliderText">
+                    <h1 class="offHeading">UPTO 20% OFF</h1>
                 </div>
         </mat-card>
     </span>
@@ -83,7 +86,7 @@
             </span>
             <span fxLayout="row">
                 <label class="itemLabel" fxFlex="40">Address</label>
-                <label class="totalLabel" fxFlex="40">{{customer.address}}</label>
+                <label class="totalLabel" fxFlex="60">{{customer.address}}</label>
             </span>
             <div fxLayout="row">
                 <button class="continueShoppingButton" mat-raised-button (click)="cancelClick()" 
@@ -99,19 +102,22 @@
 
 
 
-<div fxLayout="column" class="payment" *ngIf="!isMobileScreen">
-    <span fxLayout="row">
+<div fxLayout="row" class="payment" *ngIf="!isMobileScreen">
+    <span fxLayout="row" fxFlex="50">
         <mat-card class="homeMatCard">
             <img class="img" fxFlex="100" src="{{image}}">
-                <div class="text">
+                <!-- <div class="text">
                     <h2>LAWN KURTA</h2>
                     <p>
                         This kurta is designed by right way.
                     </p>
+                </div> -->
+                <div class="sliderText">
+                    <h1 class="offHeading">UPTO 20% OFF</h1>
                 </div>
         </mat-card>
     </span>
-    <div class="shippingPage" >
+    <div class="shippingPage" fxFlex="50">
         <mat-card class="formClass" fxLayout="column">
             <span class="shippingLabel">
                 <label>Payment Method</label>
@@ -177,7 +183,7 @@
             </span>
             <span fxLayout="row">
                 <label class="itemLabel" fxFlex="40">Address</label>
-                <label class="totalLabel" fxFlex="40">{{customer.address}}</label>
+                <label class="totalLabel" fxFlex="60">{{customer.address}}</label>
             </span>
             <div fxLayout="row">
                 <button class="continueShoppingButton" mat-raised-button (click)="cancelClick()" 

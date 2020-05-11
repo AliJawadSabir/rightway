@@ -12,6 +12,12 @@ export class SharedDataService {
 
   private messageSource = new BehaviorSubject(0);
   currentMessage = this.messageSource.asObservable();
+
+  private itemsInCart = new BehaviorSubject(0);
+  currentItemsInCart = this.itemsInCart.asObservable();
+
+  private superUser = new BehaviorSubject(false);
+  currentSuperUser = this.superUser.asObservable();
   
   private userSource = new BehaviorSubject({});
   currentUser = this.userSource.asObservable();
@@ -26,8 +32,19 @@ export class SharedDataService {
 
   constructor() { }
 
+  // change total amount of order
   changeAmount(amount: number) {
     this.messageSource.next(amount)
+  }
+
+  // Change superuser to true when superuser login
+  changeSuperUser(isSuperUser: boolean) {
+    this.superUser.next(isSuperUser)
+  }
+
+  // change number of items choosen in an order
+  changeItemsInCart(amount: number) {
+    this.itemsInCart.next(amount)
   }
 
   sendUserInfo(user:{}){

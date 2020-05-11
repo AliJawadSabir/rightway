@@ -2,6 +2,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SharedDataService, ProductService } from '../../services';
 import { CartItemModel, ProductModel } from '../../models';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-product',
@@ -35,7 +36,8 @@ export class ProductComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private productService: ProductService
+    private productService: ProductService,
+    private snackBar: MatSnackBar
     // private sharedDataService: SharedDataService
     ) { 
       setInterval(()=> { this.imageClick() }, 3000);
@@ -51,23 +53,27 @@ export class ProductComponent implements OnInit {
     sizeMsg = '';
     colorMsg = '';
     color = '';
-    colorArray = ['red', 'green', 'yellow'];
-    sizeArray = ['S', 'M', 'L'];
+    colorArray = [];
+    // colorArray = ['red', 'green', 'yellow'];
+    public imageAddress = 'http://localhost:3000/';
+    sizeArray = [];
+    // sizeArray = ['S', 'M', 'L'];
     public innerWidth: any;
     public isMobileScreen: boolean;
-    imageInterval=[
-      'assets/img1.jpg',
-      'assets/img2.jpg',
-      'assets/img3.jpg',
-      'assets/img4.jpg',
-    ];
+    imageInterval=[];
+    // imageInterval=[
+    //   'assets/img1.jpg',
+    //   'assets/img2.jpg',
+    //   'assets/img3.jpg',
+    //   'assets/img4.jpg',
+    // ];
     image = 'assets/img1.jpg';
-    // message:string;
     cartItem:CartItemModel;
     productModel:ProductModel;
 
   ngOnInit() {
 
+    this.cartItem = new CartItemModel();
     this.innerWidth = window.innerWidth;
     if(this.innerWidth > 600){
       this.isMobileScreen = false;
@@ -76,7 +82,9 @@ export class ProductComponent implements OnInit {
     }
 
     this.getProduct();
-    this.getId();
+
+    // this.getProduct();
+    // this.getId();
     // let a = sessionStorage.getItem('product');
     // console.log('local storage product', a);
     // this.sharedDataService.currentMessage.subscribe(message => this.message = message);
@@ -92,17 +100,62 @@ export class ProductComponent implements OnInit {
     }else{
       this.isMobileScreen = true;
     }
-    console.log('inner width--->>>', this.innerWidth, this.isMobileScreen);
+  }
+
+  setImageArrays(response){
+    for(let i=0;i<response['length'];i++){
+      let prod = {id:response[i].id, url:this.imageAddress+response[i].url,
+      quantity:response[i].quantity};
+      if(i==0){
+        this.image = prod.url;
+        this.obj['price'] = response[i].price;
+        this.cartItem.name = response[i].name;
+        this.cartItem.discount = response[i].discount;
+        // APPLY DISCOUNT ON THE REAL PRICE
+        let discount = (response[i].price * response[i].discount)/100;
+        this.obj['discountedPrice'] = response[i].price - discount;
+        this.cartItem.price = this.obj['discountedPrice'];
+        this.obj['name'] = response[i].name;
+        this.obj['discount'] = response[i].discount;
+        this.cartItem.id = prod.id;
+        this.cartItem.id = prod.id;
+        this.cartItem.url = this.imageAddress+response[i].url;
+      }
+      let size = response[i].size.size;
+      this.checkColorSizeExist(response[i]);
+      this.imageInterval.push(prod);
+    }
+  }
+
+  checkColorSizeExist(response){
+    let colorExist = false;
+    let sizeExist = false;
+    for(let j=0;j<this.colorArray.length;j++){
+      if(this.colorArray[j].color == response.color.color){
+        colorExist = true;
+      }
+    }
+    for(let j=0;j<this.sizeArray.length;j++){
+      if(this.sizeArray[j].size == response.size.size){
+        sizeExist = true;
+      }
+    }
+    if (!sizeExist){
+      this.sizeArray.push(response.size)
+    }
+    if (!colorExist){
+      this.colorArray.push(response.color)
+    }
   }
 
   imageClick(){
     let length = this.imageInterval.length;
     for(let i=0;i<length;i++){
-      if(this.imageInterval[i] == this.image && i<length-1){
-        this.image = this.imageInterval[i+1];
+      if(this.imageInterval[i].url == this.image && i<length-1){
+        this.image = this.imageInterval[i+1].url;
         break;
-      }else if(this.imageInterval[i] == this.image && i==length-1){
-        this.image = this.imageInterval[0];
+      }else if(this.imageInterval[i].url == this.image && i==length-1){
+        this.image = this.imageInterval[0].url;
         break;
       }
     }
@@ -134,42 +187,42 @@ export class ProductComponent implements OnInit {
 
   getProduct(){
     this.route.params.subscribe(params => {
-      // let id = +params['id'];
-      let id = 6;
-      this.productService.findWithCode(id).subscribe(response => {
-        // this.productModel = response;
-        console.log('response of code items', response);
+      let id = +params['id'];
+      this.productService.findWithCode(id).subscribe(response =>{
+        if (response){
+          this.setImageArrays(response);
+        }else{
+          this.snackBar.open('Product does not exist.','Dismiss' ,{
+            duration: 4000,
+          });
+        }
       })
     });
   }
 
   addQuantity() {
-    this.quantity++;
-    console.log('plus button clicked');
+    if (this.quantity < 10) {
+      this.quantity++;
+    }
   }
 
   minusQuantity() {
-    this.quantity--;
-    console.log('minus button clicked');
-  }
-
-  changeSize(s){
-    if(s=='S'){
-      this.size = 'Small';
-      this.sizeMsg = '';
-    }else if(s=='M') {
-      this.size = 'Medium';
-      this.sizeMsg = '';
-    }else if(s=='L') {
-      this.size = 'Large';
-      this.sizeMsg = '';
+    if (this.quantity > 1) {
+      this.quantity--;
     }
-    // this.size = s;
   }
 
-  changeColor(c){
-    this.color = c;
+  changeSize(size){
+    this.size = size.size;
+    this.sizeMsg = '';
+    this.cartItem.sizeId = size.id;
+  }
+
+  changeColor(color){
+
+    this.color = color.color;
     this.colorMsg = '';
+    this.cartItem.colorId = color.id;
     // this.size = s;
   }
 
@@ -187,7 +240,6 @@ export class ProductComponent implements OnInit {
     if(this.size != '' && this.color != ''){
       this.sizeMsg = '';
       this.colorMsg = '';
-      console.log('getId', this.cartItem);
       this.cartItem.quantity = this.quantity;
       this.cartItem.size = this.size;
       this.cartItem.color = this.color;

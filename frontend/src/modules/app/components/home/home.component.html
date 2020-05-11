@@ -27,37 +27,38 @@
         </span>
     </mat-toolbar> -->
     <div class="pagePath">
-      RightWay<span class="sign">></span>Home
+      RightWay<span class="sign">></span>{{page}}
   </div>
 <mat-card class="homePage" fxLayout="column" *ngIf="innerWidth<600">
   <span fxLayout="row">
     <mat-card class="sliderMatCard">
-        <img class="imgSlider" fxFlex="100" src={{url}}>
+        <img class="imgSlider" fxFlex="100" src={{image}}>
             <div class="sliderText">
-                <h2>LAWN KURTA</h2>
+                <h1 class="offHeading">UP TO 20% OFF</h1>
                 <p>
                     <!-- This kurta is designed by right way. -->
                 </p>
             </div>
     </mat-card>
   </span>
-    <div class="imageRow" fxLayout="row" fxLayoutGap="10px" *ngFor="let prod of products; let j = index">
+    <div class="imageRow" fxLayout="row" fxLayoutGap="10px" *ngFor="let prod of imageInterval; let j = index">
         <mat-card class="homeMatCard" fxFlex="100">
-          <div class="imgOverflow">
-            <img class="img" src="{{prod.name}}" [routerLink]="['/home/product', prod.id]">
-            <div class="hoverTextbox">
-              <h2>LAWN KURTA</h2>
+          <mat-card class="imgOverflow">
+            <img class="img" src="{{prod.url}}" [routerLink]="['/home/product', prod.id]">
+            <!-- <div class="hoverTextbox">
+              <h2>{{prod.name}}</h2>
               <p>
                   This kurta is designed by right way.
               </p>
+            </div> -->
+            <div class="sliderText">
+              <h1 class="offHeading">{{prod.discount}}% OFF</h1>
             </div>
-          </div>
+          </mat-card>
 
             <div class="middle">
-                <div class="text">EMBROIDED SHIRT</div>
-                <P class="paragraph">Revel in joy this season with our exquisitely pret collection, 
-                  featuring a rich
-                  color palette</P>
+                <div class="text">{{prod.name}}</div>
+                <P class="paragraph">{{prod.description}}</P>
                   <label class="label">SHOP NOW</label>
             </div>
         </mat-card>
@@ -67,20 +68,21 @@
   <span *ngFor="let product of imageInterval1; let i = index">
     <div class="imageRow" fxLayout="row" fxLayoutGap="10px">
         <mat-card class="homeMatCard" *ngFor="let prod of product; let j = index" fxFlex="50">
-          <div class="imgOverflow">
-            <img class="img" src="{{prod}}" [routerLink]="['/home/product', prod.id]">
-            <div class="hoverTextbox">
-              <h2>LAWN KURTA</h2>
+          <mat-card class="imgOverflow">
+            <img class="img" src="{{prod.url}}" [routerLink]="['/home/product', prod.id]">
+            <!-- <div class="hoverTextbox">
+              <h2>{{prod.name}}</h2>
               <p>
                   This kurta is designed by right way.
               </p>
+            </div> -->
+            <div class="sliderText">
+              <h1 class="offHeading">{{prod.discount}}% OFF</h1>
             </div>
-          </div>
+          </mat-card>
           <div class="middle">
-            <div class="text">EMBROIDED SHIRT</div>
-            <P class="paragraph">Revel in joy this season with our exquisitely pret collection, 
-              featuring a rich
-              color palette</P>
+            <div class="text">{{prod.name}}</div>
+            <P class="paragraph">{{prod.description}}</P>
             <label class="label">SHOP NOW</label>
           </div>
         </mat-card>
@@ -91,20 +93,21 @@
   <span *ngFor="let product of imageInterval2; let i = index">
     <div class="imageRow" fxLayout="row" fxLayoutGap="10px">
         <mat-card class="homeMatCard" *ngFor="let prod of product; let j = index" fxFlex="33">
-          <div class="imgOverflow">
-            <img class="img" src="{{prod}}" [routerLink]="['/home/product', prod.id]">
-            <div class="hoverTextbox">
-              <h2>LAWN KURTA</h2>
+          <mat-card class="imgOverflow">
+            <img class="img" src="{{prod.url}}" [routerLink]="['/home/product', prod.id]">
+            <!-- <div class="hoverTextbox">
+              <h2>{{prod.name}}</h2>
               <p>
                   This kurta is designed by right way.
               </p>
+            </div> -->
+            <div class="sliderText">
+              <h1 class="offHeading">{{prod.discount}}% OFF</h1>
             </div>
-          </div>
+          </mat-card>
           <div class="middle">
-            <div class="text">EMBROIDED SHIRT</div>
-            <P class="paragraph">Revel in joy this season with our exquisitely pret collection, 
-              featuring a rich
-              color palette</P>
+            <div class="text">{{prod.name}}</div>
+            <P class="paragraph">{{prod.description}}</P>
             <label class="label">SHOP NOW</label>
           </div>
         </mat-card>

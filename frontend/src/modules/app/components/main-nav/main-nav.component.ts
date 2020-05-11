@@ -2,6 +2,7 @@ import { Component, HostListener } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import { SharedDataService } from '../../services';
 
 @Component({
   selector: 'app-main-nav',
@@ -17,11 +18,17 @@ export class MainNavComponent {
   //   );
 
   public innerWidth: number;
+  public itemsInCart: number = 0;
   public isMobileScreen: boolean;
+  public isSuperUser;
   public flexForIcons;
   public products = 0;
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private sharedDataService: SharedDataService
+    ) {
+  }
 
   ngOnInit(){
 
@@ -32,12 +39,24 @@ export class MainNavComponent {
       this.isMobileScreen = true;
     }
     this.loadCart();
+    
+    // In login component
+    this.sharedDataService.currentSuperUser.subscribe
+    (superUser => this.isSuperUser = superUser);
+    // In Add To Cart Component
+    this.sharedDataService.currentItemsInCart.subscribe
+    (items => this.itemsInCart = items);
+    this.isSuperUser = sessionStorage.getItem('value');
     // if(this.innerWidth > 850){
     //   this.flexForIcons = 12;
     // }else{
     //   this.flexForIcons = 15;
     // }
   }
+
+  // newMessage() {
+  //   this.sharedDataService.changeAmount(this.total);
+  // }
 
   // code for checking size of screen
   @HostListener('window:resize', ['$event'])
@@ -48,7 +67,6 @@ export class MainNavComponent {
     }else{
       this.isMobileScreen = true;
     }
-    console.log('inner width in main nav--->>>', this.innerWidth, this.isMobileScreen);
   }
 
   loadCart() {
@@ -62,7 +80,6 @@ export class MainNavComponent {
         item = JSON.parse(cart[i]);
         // this.items.push(this.item);
         this.products += 1 * item.quantity;
-        console.log('items==>>', this.products);
       }
       // this.taxAmount = (this.totalAmount*14)/100;
       // this.total = this.totalAmount + this.taxAmount + this.deliveryCharges;
@@ -70,5 +87,10 @@ export class MainNavComponent {
       // this.newMessage();
     }
 
+  }
+
+  logOut(){
+    sessionStorage.setItem('value', 'false')
+    this.isSuperUser = false;
   }
 }

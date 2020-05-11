@@ -13,12 +13,10 @@ export class CustomerService {
   constructor(protected http: HttpClient) {}
 
   create(item: CustomerModel) {
-    console.log('in customer service create '+item);
     return this.http.post(`${this.routeURL}/create`, item);
   }
 
   findAll() {
-    console.log('in customer service find all ');
     return this.http.get(`${this.routeURL}/findAll`);
   }
 }

@@ -75,7 +75,6 @@ export class UnStitchComponent implements OnInit {
   ngOnInit() {
 
     this.productService.findByDiscount(15).subscribe(response => {
-      console.log('response in home', response['length']);
       // for(let i=0;i<response['length'];i++){
       //   this.imageInterval.push(response[i].url);
       // }
@@ -113,7 +112,6 @@ export class UnStitchComponent implements OnInit {
     }else{
       this.isMobileScreen = true;
     }
-    console.log('inner width--->>>', this.innerWidth, this.isMobileScreen);
   }
 
   imageClick(){

@@ -15,12 +15,10 @@ export class RegisterService {
   constructor(protected http: HttpClient) {}
 
   create(item: NotifyUserModel) {
-    console.log('in register service create '+item);
     return this.http.post(`${this.route}/create`, item);
   }
 
   register(item: RegisterModel) {
-    console.log('in register service register '+item.email);
     return this.http.post(`${this.routeURL}/register`, item);
   }
 

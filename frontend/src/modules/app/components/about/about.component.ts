@@ -1,4 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-about',
@@ -11,7 +12,7 @@ export class AboutComponent implements OnInit {
   public isMobileScreen: boolean;
   image = 'assets/img1.jpg';
 
-  constructor() { }
+  constructor(private router: Router,) { }
 
   ngOnInit() {
     this.innerWidth = window.innerWidth;
@@ -21,6 +22,7 @@ export class AboutComponent implements OnInit {
       this.isMobileScreen = true;
     }
   }
+  
 
   // code for checking size of screen
   @HostListener('window:resize', ['$event'])
@@ -31,7 +33,6 @@ export class AboutComponent implements OnInit {
     }else{
       this.isMobileScreen = true;
     }
-    console.log('inner width--->>>', this.innerWidth, this.isMobileScreen);
   }
 
 }

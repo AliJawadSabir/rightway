@@ -9,7 +9,11 @@ export const GLOBALS = {
       home: 'home', 
       sale: 'sale', 
       newArrival: 'newArrival', 
-      summerCollection: 'summerCollection' },
+      summerCollection: 'summerCollection',
+      view: 'view',
+      update: 'update',
+      create: 'create',
+      delete: 'delete' },
 
 
     deleteDialog: {

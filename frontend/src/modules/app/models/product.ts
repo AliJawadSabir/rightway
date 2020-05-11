@@ -20,6 +20,7 @@ export class ProductModel {
   available: number;
   sold: number;
   type: string;
+  season: string;
 
   /**
    * Attributes Labels
@@ -36,6 +37,7 @@ export class ProductModel {
   available: 'Available',
   sold: 'Sold',
   type: 'Type',
+  season: 'Season',
   };
 
   /** 
@@ -50,17 +52,18 @@ export class ProductModel {
   */
   public validationRules() {
     return {
-      name: new FormControl('', [<any>Validators.required, Validators.maxLength(30)]),
+      name: new FormControl('', [<any>Validators.required, Validators.maxLength(50)]),
       price: new FormControl('', [<any>Validators.required, Validators.maxLength(30)]),
       available: new FormControl('', [<any>Validators.required, Validators.maxLength(30)]),
       // sold: new FormControl('', [<any>Validators.required, Validators.maxLength(30)]),
       categoryId: new FormControl('', [<any>Validators.required, Validators.maxLength(30)]),
       sizeId: new FormControl('', [<any>Validators.required, Validators.maxLength(30)]),
       type: new FormControl('', []),
-      description: new FormControl('', [<any>Validators.required, Validators.minLength(6), Validators.maxLength(30)]),
+      description: new FormControl('', [<any>Validators.required, Validators.minLength(6), Validators.maxLength(400)]),
       code: new FormControl('', [<any>Validators.required, Validators.minLength(6), Validators.maxLength(8)]),
       colorId: new FormControl('', [<any>Validators.required, Validators.minLength(3), Validators.maxLength(30)]),
       discount: new FormControl('', [<any>Validators.required]),
+      season: new FormControl('', [<any>Validators.required]),
     };
   }
   /** 

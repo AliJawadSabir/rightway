@@ -58,32 +58,43 @@ var route = require('./dist/modules/base/router/base-route.js');
 var app = express();
 // port number
 const port = 3000;
+const SECRET = 'rightway_secret_value';
 
 const PUBLIC_URLS = [
-  // '/security/users/getPortal',
-  // '/security/users/login',
-  // '/security/users/forgotPassword',
-  '/order/findWithProducts',
-  '/settings/configurations/index/city',
-  '/settings/configurations/city',
-  '/settings/configurations/index/country',
-  '/settings/configurations/index/tehsil',
-  '/settings/configurations/index/province',
-  '/settings/configurations/index/natureOfWork',
-  '/campus/preRegistrations/create',
-  '/shared/eligibility-criteria/download',
-  '/campus/preRegistrations/validateUniqueEmail',
-  '/settings/banks/findAttributesList',
-  '/settings/docStateManagers/getStateId',
-  '/institute/instituteTypes/findAttributesList',
-  '/settings/attachments/fileUpload',
+  '/user/register',
+  '/user/login',
   '/profile/profile/forgotPassword',
-  '/profile/profile/resetPassword',
-  '/profile/profile/validateVerificationCode',
-  '/settings/configurations/findAttributesList/country',
-  '/settings/configurations/findAttributesList/city',
-  '/settings/configurations/findAllCities',
-  '/settings/configurations/findConfiguration'
+  '/size/findAll',
+  '/size/find',
+  '/product/findWithCode',
+  '/product/find',
+  '/product/updateQuantity',
+  '/product/findByDiscount',
+  '/product/findBySeason',
+  '/product/findByType',
+  '/product/findAll',
+  // '/order/findAll',
+  '/order/create',
+  '/customer/create',
+  '/color/findAll',
+  '/color/find',
+  '/category/findAll',
+  '/category/find'
+
+  // '/size/create',
+  // '/product/create',
+  // '/order/findAllWithProducts',
+  // '/order/delete',
+  // '/order/update/:id',
+  // '/order/findWithProducts',
+  // '/notifyuser/create',
+  // '/customer/update/:id',
+  // '/customer/delete/:id',
+  // '/customer/find/:id',
+  // '/color/create',
+  // '/color/update/:id',
+  // '/color/delete/:id',
+  // '/category/create',
 ];
 //cors
 app.use(cors());
@@ -104,7 +115,7 @@ var invalidLogin = { error: true, status: 404, message: 'Invalid username or pas
 app.use(bodyparser.json());
 
 // static files
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'uploads')));
 
 //Temporary route here
 // app.get('/',(req,res)=>{
@@ -129,7 +140,6 @@ app.use(express.static(path.join(__dirname, 'public')));
         let lastIndex = req.originalUrl.lastIndexOf('/');
         let originalUrl = req.originalUrl.substr(0, lastIndex);
         if (element == originalUrl) {
-          console.log('MATCHED', req.originalUrl)
           return true;
         }
       }
@@ -154,7 +164,7 @@ app.use(express.static(path.join(__dirname, 'public')));
       // decode token
       if (token) {
         // verifies secret and checks exp
-        jwt.verify(token, CONFIGURATIONS.SECRET, function (err, decoded) {
+        jwt.verify(token, SECRET, function (err, decoded) {
           if (err) {
             return res.json({
               error: true,
@@ -165,7 +175,7 @@ app.use(express.static(path.join(__dirname, 'public')));
             let userId = decoded.id;
 
             // Set identity here to be used in base model for created/updated by and for some other cases.
-            CONFIGURATIONS.identity = { userId: userId }
+            // CONFIGURATIONS.identity = { userId: userId }
 
           }
         });

@@ -40,11 +40,8 @@ export class ColorComponent implements OnInit {
 
 
   addColor(color: ColorModel) {
-    console.log('Buton is clicked one'+ color.color);
     this.colorModel = color;
-    console.log('Buton is clicked '+ this.colorModel.description);
     this.colorService.create(this.colorModel).subscribe(response => {
-      console.log('Response for add color '+ response);
       this.router.navigate(['home']);
     },
     error =>{

@@ -57,10 +57,37 @@
       opacity: 1;
       cursor: pointer;
   }
+  .img:hover+div {
+    bottom:20px;
+  }
   .imgOverflow{
     overflow: hidden;
+    padding: 0px !important;
   }
 
+
+/**  
+    FOR SHOWING UPTO 20% OFF ON IMAGE BUTTON
+**/
+.sliderText{
+  position: absolute;
+  bottom: 0px;
+  display: block;
+  text-align: center;
+  background-color: rgb(48, 49, 47);
+  color: white;
+  height: 60px;
+  /* margin-left: 10px ; */
+  width: 100% !important;
+  font-family: "Montserrat";
+  font-size: 12px;
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
+  opacity: 0.7;
+}
+.offHeading{
+  color: rgb(232, 235, 84);;
+}
 
   /**
   CSS FOR TEXT BOX SHOW ON HOVER IMAGE
@@ -171,6 +198,7 @@
   }
   .imgOverflow{
     overflow: hidden;
+    padding: 0px !important;
   }
   .homePage{
     /* background-color: black; */
@@ -185,6 +213,9 @@
   .img:hover{
     /* opacity: 0.8; */
     cursor: pointer;
+  }
+  .offHeading{
+    color: rgb(232, 235, 84);;
   }
 }
 

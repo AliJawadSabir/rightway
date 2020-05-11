@@ -12,7 +12,7 @@ export class Size extends Model<Size> {
    */
   @Column size: string;
 
-  // @Column description: string;
+  @Column text: string;
 
   @Column createdBy: number;
 

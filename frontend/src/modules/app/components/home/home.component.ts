@@ -19,32 +19,37 @@ export class HomeComponent implements OnInit {
   public innerWidth: any;
   public isMobileScreen: boolean;
   public url;
+  public imageAddress = 'http://localhost:3000/';
   public pageActions = GLOBALS.pageActions;
   public pageAct: string;
-  imageInterval=[
-    'assets/img1.jpg','assets/img2.jpg',
-    'assets/img3.jpg','assets/img4.jpg',
-    'assets/img5.jpg','assets/img2.jpg',
-    'assets/img3.jpg','assets/img4.jpg',
-    'assets/img1.jpg','assets/img5.jpg',
-    'assets/img3.jpg','assets/img4.jpg'
-  ];
-  imageInterval1=[[
-    'assets/img1.jpg','assets/img2.jpg'],[
-    'assets/img3.jpg','assets/img4.jpg'],[
-    'assets/img5.jpg','assets/img2.jpg'],[
-    'assets/img3.jpg','assets/img4.jpg'],[
-    'assets/img1.jpg','assets/img5.jpg'],[
-    'assets/img3.jpg','assets/img4.jpg']
-  ];
-  imageInterval2=[[
-    'assets/img1.jpg','assets/img2.jpg',
-    'assets/img3.jpg'],['assets/img4.jpg',
-    'assets/img5.jpg','assets/img2.jpg'],[
-    'assets/img3.jpg','assets/img4.jpg',
-    'assets/img1.jpg'],['assets/img5.jpg',
-    'assets/img3.jpg','assets/img4.jpg']
-  ];
+  public page: string;
+  public imageInterval: any[] = [];
+  public imageInterval1 : any[][] = [];
+  public imageInterval2 : any[][] = [];
+  // imageInterval=[
+  //   'assets/img1.jpg','assets/img2.jpg',
+  //   'assets/img3.jpg','assets/img4.jpg',
+  //   'assets/img5.jpg','assets/img2.jpg',
+  //   'assets/img3.jpg','assets/img4.jpg',
+  //   'assets/img1.jpg','assets/img5.jpg',
+  //   'assets/img3.jpg','assets/img4.jpg'
+  // ];
+  // imageInterval1=[[
+  //   'assets/img1.jpg','assets/img2.jpg'],[
+  //   'assets/img3.jpg','assets/img4.jpg'],[
+  //   'assets/img5.jpg','assets/img2.jpg'],[
+  //   'assets/img3.jpg','assets/img4.jpg'],[
+  //   'assets/img1.jpg','assets/img5.jpg'],[
+  //   'assets/img3.jpg','assets/img4.jpg']
+  // ];
+  // imageInterval2=[[
+  //   'assets/img1.jpg','assets/img2.jpg',
+  //   'assets/img3.jpg'],['assets/img4.jpg',
+  //   'assets/img5.jpg','assets/img2.jpg'],[
+  //   'assets/img3.jpg','assets/img4.jpg',
+  //   'assets/img1.jpg'],['assets/img5.jpg',
+  //   'assets/img3.jpg','assets/img4.jpg']
+  // ];
   image = 'assets/img1.jpg';
   public products = [
     {"id":1,"name":"../../assets/img1.jpg",
@@ -74,29 +79,35 @@ export class HomeComponent implements OnInit {
     private homeService: HomeService,
     private productService: ProductService
     ) { 
-      // setInterval(()=> { this.imageClick() }, 3000);
+      setInterval(()=> { this.imageClick() }, 3000);
       this.pageAct = route.snapshot.data['act'];
-      console.log('page act--->>>', this.pageAct)
   }
   // email = new FormControl('', [<any>Validators.required, Validators.email]);
   
   ngOnInit() {
 
     if (this.pageAct == GLOBALS.pageActions.home){
-      this.orderService.findWithProducts(28).subscribe(response => {
-        console.log('response in home', response);
-        // for(let i=0;i<response['length'];i++){
-        //   this.imageInterval.push(response[i].url);
-        // }
-        // for(let j=0;j<response['length']/2;j=j+1){
-        //   this.imageInterval1[j].push(response[j*2].url);
-        //   this.imageInterval1[j].push(response[(j*2)+1].url);
-        // }
-        // for(let j=0;j<response['length']/3;j=j+1){
-        //   this.imageInterval2[j].push(response[j*2].url);
-        //   this.imageInterval2[j].push(response[(j*2)+1].url);
-        //   this.imageInterval2[j].push(response[(j*2)+2].url);
-        // }
+      this.productService.findAll().subscribe(response => {
+        this.setImageArrays(response);
+        this.page = 'Home';
+      })
+    }
+    else if (this.pageAct == GLOBALS.pageActions.sale){
+      this.productService.findByDiscount(15).subscribe(response => {
+        this.setImageArrays(response);
+        this.page = 'Sale';
+      })
+    }
+    if (this.pageAct == GLOBALS.pageActions.newArrival){
+      this.productService.findAll().subscribe(response => {
+        this.setImageArrays(response);
+        this.page = 'New Arrival';
+      })
+    }
+    if (this.pageAct == GLOBALS.pageActions.summerCollection){
+      this.productService.findBySeason('Summer').subscribe(response => {
+        this.setImageArrays(response);
+        this.page = 'Summer Collection';
       })
     }
     this.innerWidth = window.innerWidth;
@@ -106,12 +117,51 @@ export class HomeComponent implements OnInit {
       this.isMobileScreen = true;
     }
 
-    var imageAddress = '../../assets/im1.jpg';
     this.url = 'http://localhost:3000/img1.jpg';
     this.notifyUser = new NotifyUserModel();
     // this.fg = this.fb.group({email: new FormControl('', [<any>Validators.required, Validators.email])});
     this.fg = this.fb.group(new NotifyUserModel().validationRules());
     // this.showTimer();
+  }
+
+  setImageArrays(response){
+    for(let i=0;i<response['length'];i++){
+      if(i==0){
+        this.image = this.imageAddress+response[i].url;
+      }
+      let obj = {id:response[i].id, url:this.imageAddress+response[i].url,
+      name:response[i].name, description:response[i].description,
+      discount: response[i].discount};
+      this.imageInterval.push(obj);
+    }
+    let k1 = Math.floor(response['length']/2);
+    for(let j=0;j<k1;j=j+1){
+      let obj1 = {id:response[j*2].id, url:this.imageAddress+response[j*2].url,
+        name:response[j*2].name, description:response[j*2].description,
+        discount: response[j*2].discount};
+      let obj2 = {id:response[(j*2)+1].id, url:this.imageAddress+response[(j*2)+1].url,
+        name:response[(j*2)+1].name, description:response[(j*2)+1].description,
+        discount: response[(j*2)+1].discount};
+      // this.imageInterval1[j] = new Array(2);
+      let arr = [obj1, obj2];
+      this.imageInterval1.push(arr);
+    }
+    let k2 = Math.floor(response['length']/3);
+    for(let j=0;j<k2;j=j+1){
+      let obj1 = {id:response[j*3].id, url:this.imageAddress+response[j*3].url,
+        name:response[j*3].name, description:response[j*3].description,
+        discount: response[j*3].discount};
+      let obj2 = {id:response[(j*3)+1].id, url:this.imageAddress+response[(j*3)+1].url,
+        name:response[(j*3)+1].name, description:response[(j*3)+1].description,
+        discount: response[(j*3)+1].discount};
+      let obj3 = {id:response[(j*3)+2].id, url:this.imageAddress+response[(j*3)+2].url,
+        name:response[(j*3)+2].name, description:response[(j*3)+2].description,
+        discount: response[(j*3)+2].discount};
+        let arr = [obj1, obj2, obj3];
+      this.imageInterval2.push(arr);
+      // this.imageInterval2[j].push(obj2);
+      // this.imageInterval2[j].push(obj3);
+    }
   }
 
   // code for checking size of screen
@@ -123,17 +173,16 @@ export class HomeComponent implements OnInit {
     }else{
       this.isMobileScreen = true;
     }
-    console.log('inner width--->>>', this.innerWidth, this.isMobileScreen);
   }
 
   imageClick(){
     let length = this.imageInterval.length;
     for(let i=0;i<length;i++){
-      if(this.imageInterval[i] == this.image && i<length-1){
-        this.image = this.imageInterval[i+1];
+      if(this.imageInterval[i].url == this.image && i<length-1){
+        this.image = this.imageInterval[i+1].url;
         break;
-      }else if(this.imageInterval[i] == this.image && i==length-1){
-        this.image = this.imageInterval[0];
+      }else if(this.imageInterval[i].url == this.image && i==length-1){
+        this.image = this.imageInterval[0].url;
         break;
       }
     }

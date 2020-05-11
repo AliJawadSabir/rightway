@@ -94,6 +94,7 @@ export class BaseModel {
    */
   update(id, item) {
     item = BaseModel.extendItem(item, false);
+    console.log('=================================base', item);
     return this.sequelizeModel.update(item, { where: { id: id } });
 
   }

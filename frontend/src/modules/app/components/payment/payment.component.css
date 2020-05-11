@@ -1,102 +1,4 @@
 
-/* .slider{
-    height: 30vh;
-    width: 80%;
-    margin-left: 10%;
-    position: absolute;
-}
-img{
-    width:100%; 
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
-}
-.text-area{
-    width:600px; 
-    position: absolute;
-    left: 100px;
-    top: 200px;
-    color: #fff;
-}
-.text-area h1{
-    margin-bottom: 55px;
-}
-.text-area p{
-    font-size: 16px;
-    line-height: 18px;
-} */
-
-/* .homeMatCard1, .homeMatCard2, .homeMatCard3{
-    padding:0px !important;
-    overflow: hidden;
-    height: 300px;
-    width: 100%;
-}
-.homeMatCard1{
-    position: fixed;
-    animation: image1 9s linear infinite;
-}
-.homeMatCard2{
-    position: fixed;
-    animation: image2 9s linear infinite;
-}
-.homeMatCard3{
-    position: fixed;
-    animation: image3 9s linear infinite;
-}
-@keyframes image1{
-    0%{
-        visibility: visible;
-    }
-    33%{
-        visibility: hidden;
-    }
-    66%{
-        visibility: hidden;
-    }
-    100%{
-        visibility: visible;
-    }
-}
-@keyframes image2{
-    0%{
-        visibility: hidden;
-    }
-    33%{
-        visibility: hidden;
-    }
-    66%{
-        visibility: visible;
-    }
-    100%{
-        visibility: hidden;
-    }
-}
-@keyframes image3{
-    0%{
-        visibility: hidden;
-    }
-    33%{
-        visibility: hidden;
-    }
-    66%{
-        visibility: hidden;
-    }
-    100%{
-        visibility: visible;
-    }
-} */
-/* img{
-    overflow: hidden;
-} */
-/* .img:hover{
-    opacity: 0.8;
-    cursor: pointer;
-  } */
-
-
-
   .payment{
     overflow-x: hidden;
 }
@@ -115,6 +17,29 @@ img{
     width: 100%;
 }
 
+/**  
+    FOR SHOWING UPTO 20% OFF ON IMAGE BUTTON
+**/
+.sliderText{
+    position: absolute;
+	bottom: 0px;
+    display: block;
+    text-align: center;
+    background-color: rgb(48, 49, 47);
+    color: white;
+    height: 60px;
+    /* margin-left: 10px ; */
+    width: 100% !important;
+    font-family: "Montserrat";
+	font-size: 12px;
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+	opacity: 0.7;
+  }
+  .offHeading{
+    color: rgb(232, 235, 84);;
+  }
+
   .text {
 	position: absolute;
 	bottom: -40px;
@@ -127,7 +52,6 @@ img{
     width: 150px !important;
     font-family: "Montserrat";
 	font-size: 12px;
-	-webkit-transition: .3s ease-in-out;
 	transition: .3s ease-in-out;
 	opacity: 0;
 	
@@ -135,7 +59,6 @@ img{
 .img {
 	-webkit-transform: scale(1);
 	transform: scale(1);
-	-webkit-transition: .3s ease-in-out;
     transition: .3s ease-in-out;
 }
 .img{
@@ -152,20 +75,15 @@ img{
         transform: scale(1,1);
     }
 }
-.img:hover {
+/* .img:hover {
 	-webkit-transform: scale(1.3);
     transform: scale(1.3);
     opacity: 1;
 }
 .img:hover+div {
-	bottom: 50px;
+    bottom: 50%;
 	opacity: 0.8;
-}
-.text:hover ~ .img {
-	-webkit-transform: scale(1.3);
-    transform: scale(1.3);
-    opacity: 0.7;
-}
+} */
   /* .text {
 	position: absolute;
 	bottom: -40px;

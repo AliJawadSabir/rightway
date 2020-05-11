@@ -37,6 +37,8 @@ export class Product extends Model<Product> {
 
   @Column type: string;
 
+  @Column season: string;
+
   @Column url: string;
 
   @Column code: string;

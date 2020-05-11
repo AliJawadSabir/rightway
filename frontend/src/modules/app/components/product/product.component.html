@@ -1,5 +1,5 @@
 <!-- <div > -->
-    <mat-spinner class="spinner" *ngIf="!loaded"></mat-spinner>
+    <!-- <mat-spinner class="spinner" *ngIf="!loaded"></mat-spinner> -->
     <!-- <mat-toolbar color="primary" class="matCard">
         <span fxLayout="row" fxFlex="90" class="matCardButtons">
         <h1 class="matHeading">  Right Way  </h1>  
@@ -42,25 +42,34 @@
         RightWay<span class="sign">></span>Home<span class="sign">></span>Product
     </div>
     <div class="productPage" *ngIf="isMobileScreen">
-        <div fxLayout="row">
+        <!-- <div fxLayout="row">
             <a id="right">Right Way</a>
             <label class="prodLabel">{{obj.description}}</label>
-        </div>
+        </div> -->
         <mat-card fxLayout="column" class="matcard">
-            <span fxFlex="100" class="imageMatCard">
+            <mat-card fxFlex="100" class="imageMatCard">
                 <img class="img" src="{{image}}">
-                <div class="text">
-                    <h2>LAWN KURTA</h2>
+                <!-- <div class="text">
+                    <h2>{{obj.name}}</h2>
                     <p>
                         This kurta is designed by right way.
                     </p>
+                </div> -->
+                <div class="sliderText">
+                    <h1 class="offHeading">{{obj.discount}}% OFF</h1>
                 </div>
-            </span>
+            </mat-card>
             <div fxFlex="100">
                 <div fxLayout="column" class="descriptionClass">
-                    <h4>{{obj.description}}</h4>
+                    <h3>{{obj.name}}</h3>
                     <h4 >{{stockAvailability}}</h4>
-                    <div fxLayout="row" class="pkr">
+                    <div fxLayout="row" class="pkr" *ngIf="obj.price != obj.discountedPrice">
+                        <label>PKR</label>
+                        <label class="PKRHeading">{{obj.discountedPrice}}</label>
+                        <label><span class="PKRHeadingLine">{{obj.price}}</span>({{obj.discount}}% Off)</label>
+                        
+                    </div>
+                    <div fxLayout="row" class="pkr" *ngIf="obj.price == obj.discountedPrice">
                         <label>PKR</label>
                         <label class="PKRHeading">{{obj.price}}</label>
                     </div>
@@ -71,7 +80,7 @@
                         <span fxLayout="row">
                             <span *ngFor="let color of colorArray; let i = index">
                                 <button mat-mini-fab class="colorButton" (click)="changeColor(color)"
-                                [style.background-color]="color"></button>
+                                [style.background-color]="color.color"></button>
                             </span>
                         </span>
                     </div>
@@ -90,7 +99,7 @@
                         <span fxLayout="row" class="sizeButtons">
                             <span *ngFor="let size of sizeArray; let i = index">
                                 <button mat-mini-fab class="sizeButton" (click)="changeSize(size)">
-                                    {{size}}</button>
+                                    {{size.text}}</button>
                             </span>
                         </span>
                     </div>
@@ -101,28 +110,34 @@
     </div>
 
     <div class="productPage" *ngIf="!isMobileScreen">
-        <div fxLayout="row">
+        <!-- <div fxLayout="row">
             <a id="right">Right Way</a>
             <label class="prodLabel">{{obj.description}}</label>
-        </div>
+        </div> -->
         <mat-card fxLayout="row">
-            <!-- <div fxFlex="50">
-                <img class="img" src="{{imageLink}}">
-            </div> -->
-            <span fxFlex="50" class="imageMatCard">
+            <mat-card fxFlex="50" class="imageMatCard">
                 <img class="img" src="{{image}}">
-                <div class="text">
-                    <h2>LAWN KURTA</h2>
+                <!-- <div class="text">
+                    <h2>{{obj.name}}</h2>
                     <p>
                         This kurta is designed by right way.
                     </p>
+                </div> -->
+                <div class="sliderText">
+                    <h1 class="offHeading">{{obj.discount}}% OFF</h1>
                 </div>
-            </span>
+            </mat-card>
             <div fxFlex="50">
                 <div fxLayout="column" class="descriptionClass">
-                    <h4>{{obj.description}}</h4>
+                    <h3>{{obj.name}}</h3>
                     <h4 >{{stockAvailability}}</h4>
-                    <div fxLayout="row" class="pkr">
+                    <div fxLayout="row" class="pkr" *ngIf="obj.price != obj.discountedPrice">
+                        <label>PKR</label>
+                        <label class="PKRHeading">{{obj.discountedPrice}}</label>
+                        <label><span class="PKRHeadingLine">{{obj.price}}</span>({{obj.discount}}% Off)</label>
+                        
+                    </div>
+                    <div fxLayout="row" class="pkr" *ngIf="obj.price == obj.discountedPrice">
                         <label>PKR</label>
                         <label class="PKRHeading">{{obj.price}}</label>
                     </div>
@@ -133,7 +148,7 @@
                         <span fxLayout="row">
                             <span *ngFor="let color of colorArray; let i = index">
                                 <button mat-mini-fab class="colorButton" (click)="changeColor(color)"
-                                [style.background-color]="color"></button>
+                                [style.background-color]="color.color"></button>
                             </span>
                         </span>
                     </div>
@@ -152,7 +167,7 @@
                         <span fxLayout="row" class="sizeButtons">
                             <span *ngFor="let size of sizeArray; let i = index">
                                 <button mat-mini-fab class="sizeButton" (click)="changeSize(size)">
-                                    {{size}}</button>
+                                    {{size.text}}</button>
                             </span>
                         </span>
                     </div>

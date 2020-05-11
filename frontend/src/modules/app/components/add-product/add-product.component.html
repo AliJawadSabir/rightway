@@ -129,7 +129,6 @@
                                     </mat-option>
                                 </mat-select>
                                 <mat-error *ngIf="fg.get('categoryId').hasError('required')">Select Category</mat-error>
-                                <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
                             </mat-form-field>
                         </div>
                         <div fxLayout="row" fxLayoutGap="20px">
@@ -189,6 +188,19 @@
                                 <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
                             </mat-form-field>
                             <mat-form-field appearance="outline" fxFlex="48">
+                                <mat-label>{{componentLabels.season}}</mat-label>
+                                <mat-select [placeholder]="componentLabels.season" formControlName="season" required>
+                                    <mat-option *ngFor="let season of seasonList" [value]="season">
+                                        <!-- {{ educationLevel.instituteType.name }} -  -->
+                                        {{ season }}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="fg.get('season').hasError('required')">Select Season</mat-error>
+                                <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="20px">
+                            <mat-form-field appearance="outline" fxFlex="96">
                                 <mat-label>{{componentLabels.description}}</mat-label>
                                 <input matInput [placeholder]="componentLabels.description" formControlName="description" required>
                                 <mat-error *ngIf="fg.get('description').hasError('required')">Enter Description</mat-error>

@@ -1,8 +1,9 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import {SharedDataService} from '../../services';
 import {CartItemModel} from '../../models';
+import { MainNavComponent } from '../main-nav/main-nav.component';
 
 @Component({
   selector: 'app-add-to-cart',
@@ -11,7 +12,7 @@ import {CartItemModel} from '../../models';
 })
 export class AddToCartComponent implements OnInit {
 
-
+  @ViewChild(MainNavComponent,{static:true}) mainNavComponent:MainNavComponent
   public fg: FormGroup;
   public cartItemModel: CartItemModel;
   public componentLabels = CartItemModel.attributesLabels;
@@ -32,17 +33,19 @@ export class AddToCartComponent implements OnInit {
     loaded = false;
     totalAmount;
     taxAmount = 0;
+    itemsInCart = 0;
     deliveryCharges = 0;
     total;
     cart:any[] = [];
     items:any[];
     item: CartItemModel;
     amount:number;
-    public innerWidth: any;
+    public innerWidth: number;
     public isMobileScreen: boolean;
 
   ngOnInit() {
 
+    this.innerWidth = window.innerWidth;
     if(this.innerWidth > 680){
       this.isMobileScreen = false;
     }else{
@@ -50,9 +53,10 @@ export class AddToCartComponent implements OnInit {
     }
 
 
-    console.log('ng on it called in add to cart');
     this.addInCart();
     this.sharedDataService.currentMessage.subscribe(amount => this.amount = amount);
+    this.sharedDataService.currentItemsInCart.subscribe
+    (items => this.itemsInCart = items);
     // console.log('add to cart message', this.message);
     // this.categoryModel = new CategoryModel();
     // this.fg = this.fb.group(new CategoryModel().validationRules());
@@ -68,21 +72,24 @@ export class AddToCartComponent implements OnInit {
     }else{
       this.isMobileScreen = true;
     }
-    console.log('inner width--->>>', this.innerWidth, this.isMobileScreen);
   }
 
+  // Change total amount of the order
   newMessage() {
     this.sharedDataService.changeAmount(this.total);
+  }
+
+  // change number of items added in Shopping Cart
+  changeItemsTotal() {
+    this.sharedDataService.changeItemsInCart(this.itemsInCart);
   }
 
   addInCart() {
     let item =  JSON.parse(sessionStorage.getItem('product'));
     if (item == undefined) {
-      console.log('item is undefined');
       this.loadCart();
     }else {
       if (sessionStorage.getItem('cart') == null) {
-        console.log('cart is null');
         this.cart.push(JSON.stringify(item));
         sessionStorage.setItem('cart', JSON.stringify(this.cart));
         this.loadCart();
@@ -100,6 +107,7 @@ export class AddToCartComponent implements OnInit {
     this.totalAmount = 0;
     this.taxAmount = 0;
     this.total = 0;
+    this.itemsInCart = 0;
     this.deliveryCharges = 0;
     this.items = [];
     if (sessionStorage.getItem('cart') != null) {
@@ -108,12 +116,16 @@ export class AddToCartComponent implements OnInit {
         this.item = JSON.parse(this.cart[i]);
         this.items.push(this.item);
         this.totalAmount += this.item.price * this.item.quantity;
-        console.log('items==>>', this.items);
+        this.itemsInCart += 1 * this.item.quantity;
       }
-      this.taxAmount = (this.totalAmount*14)/100;
+      this.taxAmount = (this.totalAmount*0)/100;
+      if (this.totalAmount>0) {
+        this.deliveryCharges = 200;
+      }
       this.total = this.totalAmount + this.taxAmount + this.deliveryCharges;
       this.total = Math.floor(this.total);
       this.newMessage();
+      this.changeItemsTotal();
     }
 		
   }
@@ -129,11 +141,12 @@ export class AddToCartComponent implements OnInit {
 			}
 		}
 		sessionStorage.setItem("cart", JSON.stringify(this.cart));
-		this.loadCart();
+    this.loadCart();
+    // this.mainNavComponent.ngOnInit();
   }
   
   removeItems(){
-    sessionStorage.clear();
+    sessionStorage.removeItem('cart');
     this.loadCart();
   }
 

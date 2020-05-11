@@ -15,3 +15,6 @@ export * from './footer/footer.component';
 export * from './contact-us/contact-us.component';
 export * from './unstitch/unstitch.component';
 export * from './order/list/order-list.component';
+export * from './order/form/order-form.component';
+export * from './products/list/product-list.component';
+export * from './products/form/product-form.component';

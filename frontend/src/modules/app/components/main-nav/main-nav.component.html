@@ -5,12 +5,17 @@
 
     <mat-toolbar class="sideNav-toolbar">Right Way</mat-toolbar>
     <mat-nav-list class="nav-list">
-      <a mat-list-item  routerLink="/newArrival">New Arrival</a>
-      <a mat-list-item  routerLink="/sale">Sale Items</a>
-      <a mat-list-item  routerLink="/unstitch">UnStitched</a>
-      <a mat-list-item  routerLink="/summerCollection">Summer Collection</a>
-      <a mat-list-item  routerLink="/contact-us">Contact Us</a>
-      <a mat-list-item  routerLink="/about-us">About</a>
+      <a mat-list-item (click)="drawer.toggle()" routerLink="/newArrival">New Arrival</a>
+      <a mat-list-item (click)="drawer.toggle()" routerLink="/sale">Sale Items</a>
+      <a mat-list-item (click)="drawer.toggle()" routerLink="/unstitch">UnStitched</a>
+      <a mat-list-item (click)="drawer.toggle()" routerLink="/summerCollection">Summer Collection</a>
+      <a mat-list-item (click)="drawer.toggle()" *ngIf="isSuperUser" routerLink="/addColor">Add Color</a>
+      <a mat-list-item (click)="drawer.toggle()" *ngIf="isSuperUser" routerLink="/addCategory">Add Category</a>
+      <a mat-list-item (click)="drawer.toggle()" *ngIf="isSuperUser" routerLink="/addProduct">Add Product</a>
+      <a mat-list-item (click)="drawer.toggle()" *ngIf="isSuperUser" routerLink="/orders">Orders</a>
+      <a mat-list-item (click)="drawer.toggle()" *ngIf="isSuperUser" routerLink="/products">Products</a>
+      <a mat-list-item (click)="drawer.toggle()" routerLink="/contact-us">Contact Us</a>
+      <a mat-list-item (click)="drawer.toggle()" routerLink="/about-us">About</a>
     </mat-nav-list>
   </mat-sidenav>
   <!-- <mat-sidenav #drawer class="sidenav" fixedInViewport
@@ -55,8 +60,8 @@
         </span>
         <span fxLayout="row" class="toolbarButtons" *ngIf="innerWidth < 851">
           <h1 class="toolbarHeading" routerLink="/home">  Right Way  </h1>  
-          <button mat-button routerLink="/sale">Sales</button>  
-          <button mat-button routerLink="/newArrival">New Arrival</button>
+          <button mat-button routerLink="/sale">Sale</button>  
+          <button mat-button routerLink="/summerCollection">Summer</button>
         </span>
       </span>
       <span fxFlex="15" fxLayout="row" fxFlexAlign="end" fxLayoutGap="5px" class="left-icons">
@@ -64,11 +69,15 @@
               <mat-icon>account_circle</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-              <button mat-menu-item routerLink="/login">
+              <button mat-menu-item *ngIf="!isSuperUser" routerLink="/login">
                 <mat-icon>account_box</mat-icon>
                 <span>Login</span>
               </button>
-              <button mat-menu-item routerLink="/register">
+              <button mat-menu-item *ngIf="isSuperUser" (click)="logOut()" routerLink="/home">
+                <mat-icon>account_box</mat-icon>
+                <span>Log Out</span>
+              </button>
+              <button mat-menu-item *ngIf="!isSuperUser" routerLink="/register">
                 <mat-icon>supervisor_account</mat-icon>
                 <span>Sign Up</span>
               </button>
@@ -77,7 +86,7 @@
               <mat-icon matBadge="" matBadgeColor="warn">shopping_cart</mat-icon>
             </button> -->
             <button mat-icon-button aria-label="Example icon-button with a menu">
-              <mat-icon matBadge="{{products}}" matBadgeColor="warn">shopping_cart</mat-icon>
+              <mat-icon matBadge="{{itemsInCart}}" matBadgeColor="warn">shopping_cart</mat-icon>
             </button>
       </span>
   </mat-toolbar>
@@ -98,11 +107,15 @@
               <mat-icon>account_circle</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-              <button mat-menu-item routerLink="/login">
+              <button mat-menu-item *ngIf="!isSuperUser" routerLink="/login">
                 <mat-icon>account_box</mat-icon>
                 <span>Login</span>
               </button>
-              <button mat-menu-item routerLink="/register">
+              <button mat-menu-item *ngIf="isSuperUser" (click)="logOut()" routerLink="/home">
+                <mat-icon>account_box</mat-icon>
+                <span>Log Out</span>
+              </button>
+              <button mat-menu-item *ngIf="!isSuperUser" routerLink="/register">
                 <mat-icon>supervisor_account</mat-icon>
                 <span>Sign Up</span>
               </button>
@@ -111,7 +124,7 @@
               <mat-icon matBadge="" matBadgeColor="warn">shopping_cart</mat-icon>
             </button> -->
             <button mat-icon-button aria-label="Example icon-button with a menu">
-              <mat-icon matBadge="{{products}}" matBadgeColor="warn">shopping_cart</mat-icon>
+              <mat-icon matBadge="{{itemsInCart}}" matBadgeColor="warn">shopping_cart</mat-icon>
             </button>
             
       </span>

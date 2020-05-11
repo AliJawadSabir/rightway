@@ -18,7 +18,6 @@ export class OrderService {
    */
   // create(item: OrderModel) {
   create(item) {
-    console.log('in order service create '+item);
     return this.http.post(`${this.routeURL}/create`, item);
   }
 
@@ -26,7 +25,6 @@ export class OrderService {
    * Get all records
    */
   findAll() {
-    console.log('in order service find all ');
     return this.http.get(`${this.routeURL}/findAll`);
   }
 
@@ -34,7 +32,6 @@ export class OrderService {
    * Get all records
    */
   findAllWithProducts() {
-    console.log('in order service find all ');
     return this.http.get(`${this.routeURL}/findAllWithProducts`);
   }
 

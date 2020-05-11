@@ -1,0 +1,212 @@
+<div class="pagePath">
+    RightWay<span class="sign">></span>Orders<span class="sign">></span>View
+</div>
+<mat-card class="viewMatcard" *ngIf="loaded">
+    <mat-card-title class="orderHeading">Order Detail</mat-card-title>
+    <mat-divider></mat-divider>
+    <mat-list>
+        <div fxLayout="row">
+            <mat-list-item fxFlex="25">
+                <label>Customer Name</label>
+            </mat-list-item>
+            <mat-list-item fxFlex="75">
+                <label>{{orderModel.customer.fname}} {{orderModel.customer.lname}}</label>
+            </mat-list-item>
+        </div>
+        <mat-divider></mat-divider>
+        <div fxLayout="row">
+            <mat-list-item fxFlex="25">
+                <label>Amount</label>
+            </mat-list-item>
+            <mat-list-item fxFlex="75">
+                <label>{{orderModel.amount}}</label>
+            </mat-list-item>
+        </div>
+        <mat-divider></mat-divider>
+        <div fxLayout="row">
+            <mat-list-item fxFlex="25">
+                <label>Order Status</label>
+            </mat-list-item>
+            <mat-list-item fxFlex="75">
+                <label>{{orderModel.status}}</label>
+            </mat-list-item>
+        </div>
+        <mat-divider></mat-divider>
+        <div fxLayout="row">
+            <mat-list-item fxFlex="25">
+                <label>Track Id</label>
+            </mat-list-item>
+            <mat-list-item fxFlex="75">
+                <label>{{orderModel.trackId}}</label>
+            </mat-list-item>
+        </div>
+        <mat-divider></mat-divider>
+        <div fxLayout="row">
+            <mat-list-item fxFlex="25">
+                <label>Address</label>
+            </mat-list-item>
+            <mat-list-item fxFlex="75">
+                <label>{{orderModel.customer.address}}</label>
+            </mat-list-item>
+        </div>
+        <mat-divider style="padding-top: 10px;"></mat-divider>
+    </mat-list>
+    <mat-card class="margin">
+        <mat-card-title class="fontFamily">Products Detail</mat-card-title>
+        <mat-accordion *ngFor="let product of orderModel.products">
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title class="fontFamily">
+                  {{product.name}}
+                </mat-panel-title>
+                <mat-panel-description *ngIf="!isMobileScreen" class="fontFamily">
+                  {{product.description}}
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <mat-list *ngIf="!isMobileScreen">
+                <div fxLayout="row">
+                    <mat-list-item fxFlex="30">
+                        <label>Price</label>
+                    </mat-list-item>
+                    <mat-list-item fxFlex="70">
+                        <label>{{product.price}}</label>
+                    </mat-list-item>
+                </div>
+                <mat-divider></mat-divider>
+                <div fxLayout="row">
+                    <mat-list-item fxFlex="30">
+                        <label>Product Code</label>
+                    </mat-list-item>
+                    <mat-list-item fxFlex="70">
+                        <label>{{product.code}}</label>
+                    </mat-list-item>
+                </div>
+                <mat-divider></mat-divider>
+                <div fxLayout="row">
+                    <mat-list-item fxFlex="30">
+                        <label>Color</label>
+                    </mat-list-item>
+                    <mat-list-item fxFlex="70">
+                        <label>{{product.color.color}}</label>
+                    </mat-list-item>
+                </div>
+                <mat-divider></mat-divider>
+                <div fxLayout="row">
+                    <mat-list-item fxFlex="30">
+                        <label>Size</label>
+                    </mat-list-item>
+                    <mat-list-item fxFlex="70">
+                        <label>{{product.size.size}}</label>
+                    </mat-list-item>
+                </div>
+                <mat-divider></mat-divider>
+                <div fxLayout="row">
+                    <mat-list-item fxFlex="30">
+                        <label>Category</label>
+                    </mat-list-item>
+                    <mat-list-item fxFlex="70">
+                        <label>{{product.category.category}}</label>
+                    </mat-list-item>
+                </div>
+                <mat-divider></mat-divider>
+                <div fxLayout="row">
+                    <mat-list-item fxFlex="30">
+                        <label>Discount</label>
+                    </mat-list-item>
+                    <mat-list-item fxFlex="70">
+                        <label>{{product.discount}}%</label>
+                    </mat-list-item>
+                </div>
+                <mat-divider></mat-divider>
+                <div fxLayout="row">
+                    <mat-list-item fxFlex="30">
+                        <label>Quantity</label>
+                    </mat-list-item>
+                    <mat-list-item fxFlex="70">
+                        <label>{{product.quantity}}</label>
+                    </mat-list-item>
+                </div>
+                <mat-divider></mat-divider>
+              </mat-list>
+              <mat-list *ngIf="isMobileScreen">
+                <div fxLayout="row">
+                    <mat-list-item fxFlex="50">
+                        <label>Price</label>
+                    </mat-list-item>
+                    <mat-list-item fxFlex="50">
+                        <label>{{product.price}}</label>
+                    </mat-list-item>
+                </div>
+                <mat-divider></mat-divider>
+                <div fxLayout="row">
+                    <mat-list-item fxFlex="50">
+                        <label>Product Code</label>
+                    </mat-list-item>
+                    <mat-list-item fxFlex="50">
+                        <label>{{product.code}}</label>
+                    </mat-list-item>
+                </div>
+                <mat-divider></mat-divider>
+                <div fxLayout="row">
+                    <mat-list-item fxFlex="50">
+                        <label>Color</label>
+                    </mat-list-item>
+                    <mat-list-item fxFlex="50">
+                        <label>{{product.color.color}}</label>
+                    </mat-list-item>
+                </div>
+                <mat-divider></mat-divider>
+                <div fxLayout="row">
+                    <mat-list-item fxFlex="50">
+                        <label>Size</label>
+                    </mat-list-item>
+                    <mat-list-item fxFlex="50">
+                        <label>{{product.size.size}}</label>
+                    </mat-list-item>
+                </div>
+                <mat-divider></mat-divider>
+                <div fxLayout="row">
+                    <mat-list-item fxFlex="50">
+                        <label>Category</label>
+                    </mat-list-item>
+                    <mat-list-item fxFlex="50">
+                        <label>{{product.category.category}}</label>
+                    </mat-list-item>
+                </div>
+                <mat-divider></mat-divider>
+                <div fxLayout="row">
+                    <mat-list-item fxFlex="50">
+                        <label>Discount</label>
+                    </mat-list-item>
+                    <mat-list-item fxFlex="50">
+                        <label>{{product.discount}}%</label>
+                    </mat-list-item>
+                </div>
+                <mat-divider></mat-divider>
+                <div fxLayout="row">
+                    <mat-list-item fxFlex="50">
+                        <label>Quantity</label>
+                    </mat-list-item>
+                    <mat-list-item fxFlex="50">
+                        <label>{{product.quantity}}</label>
+                    </mat-list-item>
+                </div>
+                <mat-divider></mat-divider>
+              </mat-list>
+            </mat-expansion-panel>
+            <!-- <mat-expansion-panel (opened)="panelOpenState = true"
+                                 (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Self aware panel
+                </mat-panel-title>
+                <mat-panel-description>
+                  Currently I am {{panelOpenState ? 'open' : 'closed'}}
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <p>I'm visible because I am open</p>
+            </mat-expansion-panel> -->
+          </mat-accordion>
+    </mat-card>
+
+</mat-card>
