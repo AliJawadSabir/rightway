@@ -9,7 +9,8 @@ import { CONNECTION_STRING } from './connection_string';
  */
 import {
   User, NotifyUser, Category, Product, Size, Color, Customer, Order,
-  ProductOrder} from '../../profile/index'
+  ProductOrder
+} from '../../profile/index'
 
 /**
  * Import from product Module
@@ -25,7 +26,7 @@ export class Connection {
   public createConnection(): Sequelize {
     /** Instantiating Sequelize instance for creating connection */
     this.sequelize = new Sequelize(CONNECTION_STRING.database, CONNECTION_STRING.username, CONNECTION_STRING.password,
-    {dialect:'mssql',storage: 'memory'});
+      { dialect: CONNECTION_STRING.dialect, storage: CONNECTION_STRING.storage });
     // this.sequelize = new Sequelize(CONNECTION_STRING);
 
     this.sequelize
