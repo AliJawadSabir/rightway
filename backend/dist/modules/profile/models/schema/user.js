@@ -9,47 +9,51 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.User = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
-let User = class User extends sequelize_typescript_1.Model {
-};
-__decorate([
-    sequelize_typescript_1.Column,
-    __metadata("design:type", String)
-], User.prototype, "name", void 0);
-__decorate([
-    sequelize_typescript_1.Column,
-    __metadata("design:type", String)
-], User.prototype, "email", void 0);
-__decorate([
-    sequelize_typescript_1.Column,
-    __metadata("design:type", String)
-], User.prototype, "mobileNumber", void 0);
-__decorate([
-    sequelize_typescript_1.Column,
-    __metadata("design:type", String)
-], User.prototype, "address", void 0);
-__decorate([
-    sequelize_typescript_1.Column,
-    __metadata("design:type", String)
-], User.prototype, "gender", void 0);
-__decorate([
-    sequelize_typescript_1.Column,
-    __metadata("design:type", String)
-], User.prototype, "password", void 0);
-__decorate([
-    sequelize_typescript_1.Column,
-    __metadata("design:type", Boolean)
-], User.prototype, "isSuperUser", void 0);
-__decorate([
-    sequelize_typescript_1.Column,
-    __metadata("design:type", Number)
-], User.prototype, "createdBy", void 0);
-__decorate([
-    sequelize_typescript_1.Column,
-    __metadata("design:type", Number)
-], User.prototype, "updatedBy", void 0);
-User = __decorate([
-    sequelize_typescript_1.Table({ timestamps: true, freezeTableName: true })
-], User);
+let User = (() => {
+    let User = class User extends sequelize_typescript_1.Model {
+    };
+    __decorate([
+        sequelize_typescript_1.Column,
+        __metadata("design:type", String)
+    ], User.prototype, "name", void 0);
+    __decorate([
+        sequelize_typescript_1.Column,
+        __metadata("design:type", String)
+    ], User.prototype, "email", void 0);
+    __decorate([
+        sequelize_typescript_1.Column,
+        __metadata("design:type", String)
+    ], User.prototype, "mobileNumber", void 0);
+    __decorate([
+        sequelize_typescript_1.Column,
+        __metadata("design:type", String)
+    ], User.prototype, "address", void 0);
+    __decorate([
+        sequelize_typescript_1.Column,
+        __metadata("design:type", String)
+    ], User.prototype, "gender", void 0);
+    __decorate([
+        sequelize_typescript_1.Column,
+        __metadata("design:type", String)
+    ], User.prototype, "password", void 0);
+    __decorate([
+        sequelize_typescript_1.Column,
+        __metadata("design:type", Boolean)
+    ], User.prototype, "isSuperUser", void 0);
+    __decorate([
+        sequelize_typescript_1.Column,
+        __metadata("design:type", Number)
+    ], User.prototype, "createdBy", void 0);
+    __decorate([
+        sequelize_typescript_1.Column,
+        __metadata("design:type", Number)
+    ], User.prototype, "updatedBy", void 0);
+    User = __decorate([
+        sequelize_typescript_1.Table({ timestamps: true, freezeTableName: true })
+    ], User);
+    return User;
+})();
 exports.User = User;
 //# sourceMappingURL=user.js.map

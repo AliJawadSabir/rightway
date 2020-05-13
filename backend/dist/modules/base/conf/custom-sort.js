@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.CustomSort = void 0;
 class CustomSort {
     static sortByValue(a, b) {
         let valueA = a.value.toUpperCase();

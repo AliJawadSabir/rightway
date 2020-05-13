@@ -26,7 +26,7 @@ export class Connection {
   public createConnection(): Sequelize {
     /** Instantiating Sequelize instance for creating connection */
     this.sequelize = new Sequelize(CONNECTION_STRING.database, CONNECTION_STRING.username, CONNECTION_STRING.password,
-      { dialect: CONNECTION_STRING.dialect, storage: CONNECTION_STRING.storage });
+      { dialect: 'mysql', storage: CONNECTION_STRING.storage });
     // this.sequelize = new Sequelize(CONNECTION_STRING);
 
     this.sequelize

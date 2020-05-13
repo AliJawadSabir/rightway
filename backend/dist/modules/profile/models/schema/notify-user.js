@@ -9,23 +9,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.NotifyUser = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
-let NotifyUser = class NotifyUser extends sequelize_typescript_1.Model {
-};
-__decorate([
-    sequelize_typescript_1.Column,
-    __metadata("design:type", String)
-], NotifyUser.prototype, "email", void 0);
-__decorate([
-    sequelize_typescript_1.Column,
-    __metadata("design:type", Number)
-], NotifyUser.prototype, "createdBy", void 0);
-__decorate([
-    sequelize_typescript_1.Column,
-    __metadata("design:type", Number)
-], NotifyUser.prototype, "updatedBy", void 0);
-NotifyUser = __decorate([
-    sequelize_typescript_1.Table({ timestamps: true, freezeTableName: true })
-], NotifyUser);
+let NotifyUser = (() => {
+    let NotifyUser = class NotifyUser extends sequelize_typescript_1.Model {
+    };
+    __decorate([
+        sequelize_typescript_1.Column,
+        __metadata("design:type", String)
+    ], NotifyUser.prototype, "email", void 0);
+    __decorate([
+        sequelize_typescript_1.Column,
+        __metadata("design:type", Number)
+    ], NotifyUser.prototype, "createdBy", void 0);
+    __decorate([
+        sequelize_typescript_1.Column,
+        __metadata("design:type", Number)
+    ], NotifyUser.prototype, "updatedBy", void 0);
+    NotifyUser = __decorate([
+        sequelize_typescript_1.Table({ timestamps: true, freezeTableName: true })
+    ], NotifyUser);
+    return NotifyUser;
+})();
 exports.NotifyUser = NotifyUser;
 //# sourceMappingURL=notify-user.js.map
