@@ -91,7 +91,7 @@
                                 <h6 fxFlex="35">{{item.file.name}}</h6>
                                 <h6 fxFlex="15">{{ item.file.size/1024/1024 | number:'.2' }} MB</h6>
                                 <span fxFlex="15">
-                                    <mat-icon class="done-status" *ngIf="item.isReady || itemisSuccess">file_upload</mat-icon>
+                                    <mat-icon class="done-status" *ngIf="item.isReady">file_upload</mat-icon>
                                     <mat-icon class="done-status" *ngIf="!item.isReady">thumb_down</mat-icon>
                                 </span>
                                 <button type="button" class="removeButton" mat-raised-button color="warn" (click)="item.remove()">Remove</button>
@@ -164,7 +164,7 @@
                         <div fxLayout="row" fxLayoutGap="20px">
                             <mat-form-field appearance="outline" fxFlex="48">
                                 <mat-label>{{componentLabels.sizeId}}</mat-label>
-                                <mat-select [placeholder]="componentLabels.size" formControlName="sizeId" required>
+                                <mat-select [placeholder]="componentLabels.sizeId" formControlName="sizeId" required>
                                     <mat-option *ngFor="let size of sizeList" [value]="size.id">
                                         <!-- {{ educationLevel.instituteType.name }} -  -->
                                         {{ size.size }}

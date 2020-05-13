@@ -215,4 +215,8 @@ export class ProductFormComponent implements OnInit {
     }
   }
 
+  public delete (id: number) {
+
+  }
+
 }
