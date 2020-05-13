@@ -72,7 +72,7 @@
                     <div fxLayout="row" fxLayoutGap="20px">
                         <mat-form-field appearance="outline" fxFlex="48">
                             <mat-label>{{componentLabels.sizeId}}</mat-label>
-                            <mat-select [placeholder]="componentLabels.size" formControlName="sizeId" required>
+                            <mat-select [placeholder]="componentLabels.sizeId" formControlName="sizeId" required>
                                 <mat-option *ngFor="let size of sizeList" [value]="size.id">
                                     <!-- {{ educationLevel.instituteType.name }} -  -->
                                     {{ size.size }}
@@ -179,7 +179,7 @@
                     <div fxLayout="row" fxLayoutGap="20px"> -->
                         <mat-form-field appearance="outline">
                             <mat-label>{{componentLabels.sizeId}}</mat-label>
-                            <mat-select [placeholder]="componentLabels.size" formControlName="sizeId" required>
+                            <mat-select [placeholder]="componentLabels.sizeId" formControlName="sizeId" required>
                                 <mat-option *ngFor="let size of sizeList" [value]="size.id">
                                     <!-- {{ educationLevel.instituteType.name }} -  -->
                                     {{ size.size }}

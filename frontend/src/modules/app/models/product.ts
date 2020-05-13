@@ -5,6 +5,7 @@ import { SizeModel } from './size';
 
 export class ProductModel {
 
+  id: number;
   name: string;
   url: string;
   description: string;

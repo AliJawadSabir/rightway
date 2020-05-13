@@ -47,7 +47,7 @@ export class ProductComponent implements OnInit {
     quantity=1;
     stockAvailability = 'IN STOCK';
     selectedSize;
-    obj={};
+    obj:any;
     loaded = false;
     size = '';
     sizeMsg = '';
@@ -72,7 +72,7 @@ export class ProductComponent implements OnInit {
     productModel:ProductModel;
 
   ngOnInit() {
-
+    this.obj = {};
     this.cartItem = new CartItemModel();
     this.innerWidth = window.innerWidth;
     if(this.innerWidth > 600){

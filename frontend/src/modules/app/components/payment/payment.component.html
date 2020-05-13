@@ -33,10 +33,10 @@
                 </mat-radio-button>
             </mat-radio-group>
             <span class="margin-radio-group">
-                <label *ngIf="methodChoosen == '1'">
+                <label *ngIf="methodChoosen == 1">
                     You will Pay at the time of delivery.
                 </label>
-                <label *ngIf="methodChoosen == '2'">
+                <label *ngIf="methodChoosen == 2">
                     <span fxLayout="row">
                         <label fxFlex="40">Account No.</label>
                         <label fxFlex="40">03216808487</label>
@@ -48,7 +48,7 @@
                     <p>Send us an email with
                         Transaction Id or Screenshot of Transaction.</p>
                 </label>
-                <label *ngIf="methodChoosen == '3'">
+                <label *ngIf="methodChoosen == 3">
                     <span fxLayout="row">
                         <label fxFlex="40">Account No.</label>
                         <label fxFlex="40">03216808487</label>
@@ -62,7 +62,7 @@
                 </label>
             </span>
             <div fxLayout="row">
-                <button mat-raised-button class="paymentButton" type="submit" (click)="confirmOrder()" [disabled]="methodChoosen == '0'">Confirm Order</button>
+                <button mat-raised-button class="paymentButton" type="submit" (click)="confirmOrder()" [disabled]="methodChoosen == 0">Confirm Order</button>
                 <button class="cancelButton" mat-raised-button (click)="cancelClick()">Cancel</button>
             </div>
         </mat-card>
@@ -130,10 +130,10 @@
                 </mat-radio-button>
             </mat-radio-group>
             <span class="margin-radio-group">
-                <label *ngIf="methodChoosen == '1'">
+                <label *ngIf="methodChoosen == 1">
                     You will Pay at the time of delivery.
                 </label>
-                <label *ngIf="methodChoosen == '2'">
+                <label *ngIf="methodChoosen == 2">
                     <span fxLayout="row">
                         <label fxFlex="40">Account Number.</label>
                         <label fxFlex="40">03216808487</label>
@@ -145,7 +145,7 @@
                     <p>Send us an email with
                         Transaction Id or Screenshot of Transaction.</p>
                 </label>
-                <label *ngIf="methodChoosen == '3'">
+                <label *ngIf="methodChoosen == 3">
                     <span fxLayout="row">
                         <label fxFlex="30">Account Number.</label>
                         <label fxFlex="40">03216808487</label>
@@ -159,7 +159,7 @@
                 </label>
             </span>
             <div fxLayout="row">
-                <button mat-raised-button class="paymentButton" type="submit" (click)="confirmOrder()" [disabled]="methodChoosen == '0'">Confirm Order</button>
+                <button mat-raised-button class="paymentButton" type="submit" (click)="confirmOrder()" [disabled]="methodChoosen == 0">Confirm Order</button>
                 <button class="cancelButton" mat-raised-button (click)="cancelClick()">Cancel</button>
             </div>
         </mat-card>
