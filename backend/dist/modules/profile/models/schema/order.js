@@ -9,37 +9,41 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Order = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const customer_1 = require("./customer");
-let Order = class Order extends sequelize_typescript_1.Model {
-};
-__decorate([
-    sequelize_typescript_1.ForeignKey(() => customer_1.Customer),
-    sequelize_typescript_1.Column,
-    __metadata("design:type", Number)
-], Order.prototype, "customerId", void 0);
-__decorate([
-    sequelize_typescript_1.Column,
-    __metadata("design:type", String)
-], Order.prototype, "status", void 0);
-__decorate([
-    sequelize_typescript_1.Column,
-    __metadata("design:type", String)
-], Order.prototype, "amount", void 0);
-__decorate([
-    sequelize_typescript_1.Column,
-    __metadata("design:type", String)
-], Order.prototype, "trackId", void 0);
-__decorate([
-    sequelize_typescript_1.Column,
-    __metadata("design:type", Number)
-], Order.prototype, "createdBy", void 0);
-__decorate([
-    sequelize_typescript_1.Column,
-    __metadata("design:type", Number)
-], Order.prototype, "updatedBy", void 0);
-Order = __decorate([
-    sequelize_typescript_1.Table({ timestamps: true, freezeTableName: true })
-], Order);
+let Order = (() => {
+    let Order = class Order extends sequelize_typescript_1.Model {
+    };
+    __decorate([
+        sequelize_typescript_1.ForeignKey(() => customer_1.Customer),
+        sequelize_typescript_1.Column,
+        __metadata("design:type", Number)
+    ], Order.prototype, "customerId", void 0);
+    __decorate([
+        sequelize_typescript_1.Column,
+        __metadata("design:type", String)
+    ], Order.prototype, "status", void 0);
+    __decorate([
+        sequelize_typescript_1.Column,
+        __metadata("design:type", String)
+    ], Order.prototype, "amount", void 0);
+    __decorate([
+        sequelize_typescript_1.Column,
+        __metadata("design:type", String)
+    ], Order.prototype, "trackId", void 0);
+    __decorate([
+        sequelize_typescript_1.Column,
+        __metadata("design:type", Number)
+    ], Order.prototype, "createdBy", void 0);
+    __decorate([
+        sequelize_typescript_1.Column,
+        __metadata("design:type", Number)
+    ], Order.prototype, "updatedBy", void 0);
+    Order = __decorate([
+        sequelize_typescript_1.Table({ timestamps: true, freezeTableName: true })
+    ], Order);
+    return Order;
+})();
 exports.Order = Order;
 //# sourceMappingURL=order.js.map

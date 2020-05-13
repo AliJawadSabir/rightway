@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ProductRoute = void 0;
 const express = require('express');
 const index_1 = require("../index");
 const multer = require('multer');

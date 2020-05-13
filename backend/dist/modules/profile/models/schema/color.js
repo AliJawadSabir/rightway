@@ -9,27 +9,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Color = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
-let Color = class Color extends sequelize_typescript_1.Model {
-};
-__decorate([
-    sequelize_typescript_1.Column,
-    __metadata("design:type", String)
-], Color.prototype, "color", void 0);
-__decorate([
-    sequelize_typescript_1.Column,
-    __metadata("design:type", String)
-], Color.prototype, "description", void 0);
-__decorate([
-    sequelize_typescript_1.Column,
-    __metadata("design:type", Number)
-], Color.prototype, "createdBy", void 0);
-__decorate([
-    sequelize_typescript_1.Column,
-    __metadata("design:type", Number)
-], Color.prototype, "updatedBy", void 0);
-Color = __decorate([
-    sequelize_typescript_1.Table({ timestamps: true, freezeTableName: true })
-], Color);
+let Color = (() => {
+    let Color = class Color extends sequelize_typescript_1.Model {
+    };
+    __decorate([
+        sequelize_typescript_1.Column,
+        __metadata("design:type", String)
+    ], Color.prototype, "color", void 0);
+    __decorate([
+        sequelize_typescript_1.Column,
+        __metadata("design:type", String)
+    ], Color.prototype, "description", void 0);
+    __decorate([
+        sequelize_typescript_1.Column,
+        __metadata("design:type", Number)
+    ], Color.prototype, "createdBy", void 0);
+    __decorate([
+        sequelize_typescript_1.Column,
+        __metadata("design:type", Number)
+    ], Color.prototype, "updatedBy", void 0);
+    Color = __decorate([
+        sequelize_typescript_1.Table({ timestamps: true, freezeTableName: true })
+    ], Color);
+    return Color;
+})();
 exports.Color = Color;
 //# sourceMappingURL=color.js.map
