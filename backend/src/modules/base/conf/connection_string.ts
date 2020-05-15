@@ -1,8 +1,8 @@
 export const CONNECTION_STRING = {
-  username: 'SA',
-  password: 'Jawad@52923',
+  username: 'root',
+  password: 'Rightway@52923',
   database: 'rightway_db',
-  dialect: 'mssql',
+  dialect: 'mysql',
   storage: 'memory' //TODO:low: Need to check what it does.
   // pool: {
   //   max: 5,

@@ -1,10 +1,10 @@
 {
   "development": {
-    "username": "SA",
-    "password": "Jawad@52923",
+    "username": "root",
+    "password": "Rightway@52923",
     "database": "rightway_db",
     "host": "127.0.0.1",
-    "dialect": "mssql",
+    "dialect": "mysql",
     "seederStorage": "sequelize"
   },
   "test": {
