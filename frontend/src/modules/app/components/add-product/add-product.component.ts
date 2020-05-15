@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -25,6 +25,8 @@ export class AddProductComponent implements OnInit {
   public sizeList: SizeModel[];
   public colorList: ColorModel[];
   public seasonList = ['Summer', 'Winter', 'Autum', 'Spring'];
+  public innerWidth: number;
+  public isMobileScreen: boolean;
   response:string;
   imageURL:string;
   uploader:FileUploader = new FileUploader({url:uploadAPI});
@@ -74,7 +76,12 @@ export class AddProductComponent implements OnInit {
     //      alert('Your file has been uploaded successfully');
     // };
 
-
+    this.innerWidth = window.innerWidth;
+    if(this.innerWidth > 600){
+      this.isMobileScreen = false;
+    }else{
+      this.isMobileScreen = true;
+    }
     this.getCategoryList();
     this.getSizeList();
     this.getColorList();
@@ -84,6 +91,16 @@ export class AddProductComponent implements OnInit {
   }
 
 
+  // code for checking size of screen
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.innerWidth = window.innerWidth;
+    if(this.innerWidth > 600){
+      this.isMobileScreen = false;
+    }else{
+      this.isMobileScreen = true;
+    }
+  }
 
   getCategoryList() {
     this.categoryService.findAll().subscribe(

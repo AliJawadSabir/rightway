@@ -70,7 +70,8 @@ import {
   SharedDataService,
   CustomerService,
   ColorService,
-  OrderService
+  OrderService,
+  AuthorizationService
 } from './services';
 import { MainNavComponent } from './components/main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -146,7 +147,8 @@ import { MatListModule } from '@angular/material/list';
     SharedDataService,
     CustomerService,
     ColorService,
-    OrderService
+    OrderService,
+    AuthorizationService
   ],
   entryComponents: [SnackBarComponent],
   bootstrap: [AppComponent]

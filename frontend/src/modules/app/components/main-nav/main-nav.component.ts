@@ -43,15 +43,17 @@ export class MainNavComponent {
     // In login component
     this.sharedDataService.currentSuperUser.subscribe
     (superUser => this.isSuperUser = superUser);
+
     // In Add To Cart Component
     this.sharedDataService.currentItemsInCart.subscribe
     (items => this.itemsInCart = items);
-    this.isSuperUser = sessionStorage.getItem('value');
-    // if(this.innerWidth > 850){
-    //   this.flexForIcons = 12;
-    // }else{
-    //   this.flexForIcons = 15;
-    // }
+
+    // BECAUSE SUPER USER VALUE IS STRING TYPE IN SESSION STORAGE
+    if(sessionStorage.getItem('value') == 'false'){
+      this.isSuperUser = false;
+    }else{
+      this.isSuperUser = true;
+    }
   }
 
   // newMessage() {
@@ -90,6 +92,8 @@ export class MainNavComponent {
   }
 
   logOut(){
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('id');
     sessionStorage.setItem('value', 'false')
     this.isSuperUser = false;
   }

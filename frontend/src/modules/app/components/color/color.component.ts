@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import {ColorService} from '../../services';
@@ -15,6 +15,8 @@ export class ColorComponent implements OnInit {
 
   public fg: FormGroup;
   public colorModel: ColorModel;
+  public innerWidth: number;
+  public isMobileScreen: boolean;
   public componentLabels = ColorModel.attributesLabels;
 
   constructor(
@@ -24,7 +26,7 @@ export class ColorComponent implements OnInit {
     private colorService: ColorService
     ) { }
   
-    im = {"id":1,"name":"../../assets/im8.jpeg",
+    im = {"id":1,"name":"../../assets/img4.jpg",
     "description":"Incidunt et magni",
     "price":"170.00","quantity":56840};
     imageLink = this.im.name;
@@ -33,8 +35,26 @@ export class ColorComponent implements OnInit {
     obj={};
     loaded = false;
   ngOnInit() {
+
+    this.innerWidth = window.innerWidth;
+    if(this.innerWidth > 600){
+      this.isMobileScreen = false;
+    }else{
+      this.isMobileScreen = true;
+    }
     this.colorModel = new ColorModel();
     this.fg = this.fb.group(new ColorModel().validationRules());
+  }
+
+  // code for checking size of screen
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.innerWidth = window.innerWidth;
+    if(this.innerWidth > 600){
+      this.isMobileScreen = false;
+    }else{
+      this.isMobileScreen = true;
+    }
   }
 
 

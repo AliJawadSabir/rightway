@@ -48,7 +48,6 @@
 
     .formClass{
         margin-left: 25px;
-        font-family: 'Playfair Display', serif;
     }
 
     .addCategoryButton{
@@ -73,3 +72,9 @@
         background-color: rgb(186, 189, 8);
         color: black;
     }
+@media(max-width:600px){
+    .formClass{
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+}
