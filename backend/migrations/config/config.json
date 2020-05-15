@@ -4,7 +4,7 @@
     "password": "Jawad@52923",
     "database": "rightway_db",
     "host": "127.0.0.1",
-    "dialect": "mssql",
+    "dialect": "mysql",
     "seederStorage": "sequelize"
   },
   "test": {
@@ -12,13 +12,13 @@
     "password": null,
     "database": "database_test",
     "host": "127.0.0.1",
-    "dialect": "mssql"
+    "dialect": "mysql"
   },
   "production": {
     "username": "root",
     "password": null,
     "database": "database_production",
     "host": "127.0.0.1",
-    "dialect": "mssql"
+    "dialect": "mysql"
   }
 }

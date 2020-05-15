@@ -1,51 +1,11 @@
-<!-- <div > -->
-    <!-- <mat-spinner class="spinner" *ngIf="!loaded"></mat-spinner> -->
-    <!-- <mat-toolbar color="primary" class="matCard">
-        <span fxLayout="row" fxFlex="90" class="matCardButtons">
-        <h1 class="matHeading">  Right Way  </h1>  
-        <button mat-button routerLink="/">Sales</button>  
-        <button mat-button routerLink="/about">Winter Collection</button>
-        <button mat-button routerLink="/about">New Designs</button>
-        <button mat-button routerLink="/about">UnStitched</button>
-        <button mat-button routerLink="/about">Stitched</button>
-        </span>
-        <span fxFlex="15" fxLayout="row" fxLayoutGap="10px">
-            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-                <mat-icon>account_circle</mat-icon>
-              </button>
-              <mat-menu #menu="matMenu">
-                <button mat-menu-item routerLink="/login">
-                  <span>Login</span>
-                </button>
-                <button mat-menu-item routerLink="/register">
-                  <span>Sign Up</span>
-                </button>
-              </mat-menu>
-              <button mat-icon-button aria-label="Example icon-button with a menu">
-                <mat-icon>shopping_cart</mat-icon>
-              </button>
-              
-        </span>
-    </mat-toolbar> -->
-    
-    <!-- <div class="productPage" fxLayout="row">
-        <div fxFlex="50">
-            <img class="img" src="{{imageLink}}">
-        </div>
-        <div fxFlex="50">
-            <div fxLayout="column">
-
-            </div>
-        </div>
-    </div> -->
     <div class="pagePath">
         RightWay<span class="sign">></span>Add Category
     </div>
-    <div class="productPage">
-        <div fxLayout="row">
+    <div class="productPage" *ngIf="!isMobileScreen">
+        <!-- <div fxLayout="row">
             <a id="right">Right Way</a>
             <label class="prodLabel">{{im.description}}</label>
-        </div>
+        </div> -->
         <mat-card fxLayout="row">
             <div fxFlex="50">
                 <img class="img" src="{{imageLink}}">
@@ -57,13 +17,41 @@
                         <mat-label>Category</mat-label>
                         <input matInput [placeholder]="componentLabels.category" formControlName="category" required>
                         <mat-error *ngIf="fg.get('category').hasError('required')">Enter Category</mat-error>
-                        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
                     </mat-form-field>
                     <mat-form-field appearance="outline">
                         <mat-label>Description</mat-label>
                         <input matInput [placeholder]="componentLabels.description" formControlName="description" required>
                         <mat-error *ngIf="fg.get('description').hasError('required')">Enter Description</mat-error>
-                        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                    </mat-form-field>
+                    <div fxLayout="row">
+                        <button mat-raised-button class="addCategoryButton" type="submit" [disabled]="fg.invalid">ADD Category</button>
+                        <button class="cancelButton" mat-raised-button [routerLink]="['/home']">Cancel</button>
+                    </div>
+                </form>
+                </div>
+        </mat-card>
+    </div>
+    <div class="productPage" *ngIf="isMobileScreen">
+        <!-- <div fxLayout="row">
+            <a id="right">Right Way</a>
+            <label class="prodLabel">{{im.description}}</label>
+        </div> -->
+        <mat-card fxLayout="column">
+            <div fxFlex="50">
+                <img class="img" src="{{imageLink}}">
+            </div>
+            <div fxFlex="50" class="formClass">
+                <form novalidate [formGroup]="fg" (ngSubmit)="addCategory(fg.value)" fxLayout="column" fxLayoutGap="20px">
+                <h4>Add Category</h4>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Category</mat-label>
+                        <input matInput [placeholder]="componentLabels.category" formControlName="category" required>
+                        <mat-error *ngIf="fg.get('category').hasError('required')">Enter Category</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Description</mat-label>
+                        <input matInput [placeholder]="componentLabels.description" formControlName="description" required>
+                        <mat-error *ngIf="fg.get('description').hasError('required')">Enter Description</mat-error>
                     </mat-form-field>
                     <div fxLayout="row">
                         <button mat-raised-button class="addCategoryButton" type="submit" [disabled]="fg.invalid">ADD Category</button>
@@ -74,38 +62,3 @@
         </mat-card>
     </div>
     <app-footer></app-footer>
-<!-- <div class="homePage" fxLayout="column">
-    <span *ngFor="let product of products; let i = index">
-    <div class="imageRow" fxLayout="row" fxLayoutGap="10px">
-        <span *ngFor="let prod of product; let j = index" fxFlex="31.5">
-            <img class="img" src="{{prod.name}}" [routerLink]="['/home/product', prod.id]">
-            <div class="middle">
-                <div class="text">John Doe</div>
-            </div>
-        </span>
-    </div>
-    </span>
-</div> -->
-
-<!-- <html>
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap" rel="stylesheet">
-    <div class="image">
-        <div class="heading">
-            <p id="awesome">Building Something Awesome</p>
-            <h1>Coming Soon!</h1>
-            <hr>
-            <p id="timer"></p>
-            <form novalidate [formGroup]="fg" fxLayout="row" fxLayoutGap="10px" (ngSubmit)="onSave(fg.value)">
-
-            <mat-form-field fxFlex="70%">
-                <input class="emailInput" matInput placeholder="Get Notify by Email" formControlName="email" required>
-                <mat-error *ngIf="fg.get('email').hasError('email')">Invalid Email</mat-error>
-                <mat-error *ngIf="fg.get('email').hasError('required')">Enter Email</mat-error>
-              </mat-form-field>
-              <button fxFlex="30%" class="saveButton" type="submit" [disabled]="fg.invalid" mat-raised-button color="primary">Notify Me!</button>
-            </form>
-        </div>
-    </div>
-</html> -->
-
-  <!-- <router-outlet></router-outlet> -->

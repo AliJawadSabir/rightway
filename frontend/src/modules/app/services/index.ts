@@ -10,3 +10,4 @@ export * from './shared-data.service';
 export * from './customer.service';
 export * from './color.service';
 export * from './order.service';
+export * from './authorization.service';

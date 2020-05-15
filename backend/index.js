@@ -98,7 +98,8 @@ const PUBLIC_URLS = [
 ];
 //cors
 app.use(cors());
-var invalidLogin = { error: true, status: 404, message: 'Invalid username or password.', code: 101 };
+var invalidLogin = { error: true, status: 404, message: 'Invalid username or password.', 
+code: 101 };
 
 //
 // app.use(function(req, res, next) {
@@ -173,7 +174,7 @@ app.use(express.static(path.join(__dirname, 'uploads')));
           } else {
 
             let userId = decoded.id;
-
+            next();
             // Set identity here to be used in base model for created/updated by and for some other cases.
             // CONFIGURATIONS.identity = { userId: userId }
 
@@ -192,7 +193,7 @@ app.use(express.static(path.join(__dirname, 'uploads')));
 
 // let router: express.Router;
 router = express.Router();
-// router.use(authorize);
+router.use(authorize);
 // new BaseRoute(router);
 // below line is bcz we need to import base route
 new route.BaseRoute(router);

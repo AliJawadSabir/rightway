@@ -21,9 +21,10 @@ import {
   ProductFormComponent,
 } from './components';
 import { GLOBALS } from './config';
+import { AuthorizationService } from './services';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'home/product/1', pathMatch: 'full'},
+  { path: '', redirectTo: 'home', pathMatch: 'full'},
   { 
     path: 'home',
     data:{act:GLOBALS.pageActions.home},
@@ -46,9 +47,17 @@ export const routes: Routes = [
   { path: 'contact-us', component: ContactUsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'addProduct', component: AddProductComponent },
-  { path: 'addCategory', component: AddCategoryComponent },
-  { path: 'addColor', component: ColorComponent },
+  { 
+    path: 'addProduct', 
+    component: AddProductComponent ,
+    canActivate: [AuthorizationService],
+  },
+  { 
+    path: 'addCategory', 
+    component: AddCategoryComponent, 
+    canActivate: [AuthorizationService], 
+  },
+  { path: 'addColor', component: ColorComponent, canActivate: [AuthorizationService], },
   { path: 'unstitch', component: UnStitchComponent },
   {
     path: 'sale',
@@ -71,14 +80,20 @@ export const routes: Routes = [
   {
     path: 'orders',
     children:[
-      { path: '',component: OrderListComponent },
+      {
+        path: '',
+        component: OrderListComponent,
+        // canActivate: [AuthorizationService],
+      },
       { 
         path: 'view/:id',
+        canActivate: [AuthorizationService],
         component: OrderFormComponent,
         data: { act: GLOBALS.pageActions.view }
       },
       { 
         path: 'update/:id',
+        canActivate: [AuthorizationService],
         component: OrderFormComponent,
         data: { act: GLOBALS.pageActions.update }
       },
@@ -90,11 +105,13 @@ export const routes: Routes = [
       { path: '',component: ProductListComponent },
       { 
         path: 'view/:id',
+        canActivate: [AuthorizationService],
         component: ProductFormComponent,
         data: { act: GLOBALS.pageActions.view }
       },
       { 
         path: 'update/:id',
+        canActivate: [AuthorizationService],
         component: ProductFormComponent,
         data: { act: GLOBALS.pageActions.update }
       },
