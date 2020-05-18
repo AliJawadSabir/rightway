@@ -58,11 +58,13 @@ var route = require('./dist/modules/base/router/base-route.js');
 var app = express();
 
 
-var http = express.createServer();
-// set up a route to redirect http to https
-http.get('*', function(req, res) {  
-    res.redirect('https://' + req.headers.host + req.url);
-})
+// var http = express.createServer();
+// http.get('*', function(req, res) {  
+//     res.redirect('https://' + req.headers.host + req.url);
+// })
+app.get("*", function(request, response){
+  response.redirect("https://" + request.headers.host + request.url);
+});
 
 
 // port number
