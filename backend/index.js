@@ -56,6 +56,15 @@ var jwt = require('jsonwebtoken');
 var route = require('./dist/modules/base/router/base-route.js');
 
 var app = express();
+
+
+var http = express.createServer();
+// set up a route to redirect http to https
+http.get('*', function(req, res) {  
+    res.redirect('https://' + req.headers.host + req.url);
+})
+
+
 // port number
 const port = 3000;
 const SECRET = 'rightway_secret_value';
