@@ -61,6 +61,7 @@ export class UserModel extends BaseModel {
 
         return this.verifyPassword(item.password, userRes.password).then(match => {
 
+          console.log('------------------------------password', match);
           if (res && match) {
 
             console.log('------------------------------success');

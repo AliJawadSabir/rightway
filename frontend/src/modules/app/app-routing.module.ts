@@ -83,7 +83,7 @@ export const routes: Routes = [
       {
         path: '',
         component: OrderListComponent,
-        // canActivate: [AuthorizationService],
+        canActivate: [AuthorizationService],
       },
       { 
         path: 'view/:id',

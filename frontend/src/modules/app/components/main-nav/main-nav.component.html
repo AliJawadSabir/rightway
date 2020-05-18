@@ -69,15 +69,15 @@
               <mat-icon>account_circle</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-              <button mat-menu-item *ngIf="!isSuperUser" routerLink="/login">
+              <button mat-menu-item *ngIf="!user" routerLink="/login">
                 <mat-icon>account_box</mat-icon>
                 <span>Login</span>
               </button>
-              <button mat-menu-item *ngIf="isSuperUser" (click)="logOut()" routerLink="/home">
+              <button mat-menu-item *ngIf="user" (click)="logOut()" routerLink="/home">
                 <mat-icon>account_box</mat-icon>
                 <span>Log Out</span>
               </button>
-              <button mat-menu-item *ngIf="!isSuperUser" routerLink="/register">
+              <button mat-menu-item *ngIf="!user" routerLink="/register">
                 <mat-icon>supervisor_account</mat-icon>
                 <span>Sign Up</span>
               </button>
@@ -107,15 +107,15 @@
               <mat-icon>account_circle</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-              <button mat-menu-item *ngIf="!isSuperUser" routerLink="/login">
+              <button mat-menu-item *ngIf="!user" routerLink="/login">
                 <mat-icon>account_box</mat-icon>
                 <span>Login</span>
               </button>
-              <button mat-menu-item *ngIf="isSuperUser" (click)="logOut()" routerLink="/home">
+              <button mat-menu-item *ngIf="user" (click)="logOut()" routerLink="/home">
                 <mat-icon>account_box</mat-icon>
                 <span>Log Out</span>
               </button>
-              <button mat-menu-item *ngIf="!isSuperUser" routerLink="/register">
+              <button mat-menu-item *ngIf="!user" routerLink="/register">
                 <mat-icon>supervisor_account</mat-icon>
                 <span>Sign Up</span>
               </button>

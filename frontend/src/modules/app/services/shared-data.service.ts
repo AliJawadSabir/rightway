@@ -18,6 +18,9 @@ export class SharedDataService {
 
   private superUser = new BehaviorSubject(false);
   currentSuperUser = this.superUser.asObservable();
+
+  private user = new BehaviorSubject(false);
+  isUser = this.user.asObservable();
   
   private userSource = new BehaviorSubject({});
   currentUser = this.userSource.asObservable();
@@ -40,6 +43,11 @@ export class SharedDataService {
   // Change superuser to true when superuser login
   changeSuperUser(isSuperUser: boolean) {
     this.superUser.next(isSuperUser)
+  }
+
+  // Change superuser to true when superuser login
+  changeUser(user: boolean) {
+    this.user.next(user)
   }
 
   // change number of items choosen in an order

@@ -65,7 +65,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->\n<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->\n<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->\n<!-- * * * * * * * to get started with your project! * * * * * * * * -->\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n\n\n<app-main-nav>\n<router-outlet (activate)=\"onActivate($event, outlet)\" #outlet></router-outlet>\n</app-main-nav>";
+    __webpack_exports__["default"] = "<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->\n<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->\n<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->\n<!-- * * * * * * * to get started with your project! * * * * * * * * -->\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n\n<app-main-nav>\n<router-outlet (activate)=\"onActivate($event, outlet)\" #outlet></router-outlet>\n</app-main-nav>";
     /***/
   },
 
@@ -265,7 +265,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<mat-sidenav-container class=\"sidenav-container\">\n  <mat-sidenav #drawer class=\"sidenav\" fixedInViewport=\"false\"\n      [attr.role]=\"'main'\"\n      [mode]=\"'over'\">\n\n    <mat-toolbar class=\"sideNav-toolbar\">Right Way</mat-toolbar>\n    <mat-nav-list class=\"nav-list\">\n      <a mat-list-item (click)=\"drawer.toggle()\" routerLink=\"/newArrival\">New Arrival</a>\n      <a mat-list-item (click)=\"drawer.toggle()\" routerLink=\"/sale\">Sale Items</a>\n      <a mat-list-item (click)=\"drawer.toggle()\" routerLink=\"/unstitch\">UnStitched</a>\n      <a mat-list-item (click)=\"drawer.toggle()\" routerLink=\"/summerCollection\">Summer Collection</a>\n      <a mat-list-item (click)=\"drawer.toggle()\" *ngIf=\"isSuperUser\" routerLink=\"/addColor\">Add Color</a>\n      <a mat-list-item (click)=\"drawer.toggle()\" *ngIf=\"isSuperUser\" routerLink=\"/addCategory\">Add Category</a>\n      <a mat-list-item (click)=\"drawer.toggle()\" *ngIf=\"isSuperUser\" routerLink=\"/addProduct\">Add Product</a>\n      <a mat-list-item (click)=\"drawer.toggle()\" *ngIf=\"isSuperUser\" routerLink=\"/orders\">Orders</a>\n      <a mat-list-item (click)=\"drawer.toggle()\" *ngIf=\"isSuperUser\" routerLink=\"/products\">Products</a>\n      <a mat-list-item (click)=\"drawer.toggle()\" routerLink=\"/contact-us\">Contact Us</a>\n      <a mat-list-item (click)=\"drawer.toggle()\" routerLink=\"/about-us\">About</a>\n    </mat-nav-list>\n  </mat-sidenav>\n  <!-- <mat-sidenav #drawer class=\"sidenav\" fixedInViewport\n      [attr.role]=\"(isHandset$ | async) ? 'dialog' : 'navigation'\"\n      [mode]=\"(isHandset$ | async) ? 'over' : 'side'\"\n      [opened]=\"(isHandset$ | async) === false\">\n    <mat-toolbar>Menu</mat-toolbar>\n    <mat-nav-list>\n      <a mat-list-item  routerLink=\"/about\">Link 1</a>\n      <a mat-list-item  routerLink=\"/about\">Link 2</a>\n      <a mat-list-item  routerLink=\"/about\">Link 3</a>\n    </mat-nav-list>\n  </mat-sidenav> -->\n  <mat-sidenav-content>\n\n    <div class=\"topToolbar\">\n        <span fxLayout=\"row\" class=\"topToolbarButtons\">\n          <p fxFlex=\"100\"class=\"topToolbarHeading\">  Due to coronavirus emergency and lockdown situation,\n             please expect some delay in your online order delieveries. Stay Safe. Stay Healthy.  </p>  \n        </span>\n      </div>\n\n    <mat-toolbar color=\"primary\" class=\"toolbar\" *ngIf=\"!isMobileScreen\">\n      <span fxLayout=\"row\" fxFlex=\"85\">\n        <button type=\"button\" aria-label=\"Toggle sidenav\"\n          mat-icon-button (click)=\"drawer.toggle()\">\n          <mat-icon aria-label=\"Side nav toggle icon\" class=\"menu-icon\">menu</mat-icon>\n        </button>\n        <!-- <button type=\"button\" aria-label=\"Toggle sidenav\"\n          mat-icon-button (click)=\"drawer.toggle()\" *ngIf=\"isHandset$ | async\">\n          <mat-icon aria-label=\"Side nav toggle icon\">menu</mat-icon>\n        </button> -->\n\n        <span fxLayout=\"row\" class=\"toolbarButtons\" *ngIf=\"innerWidth > 850\">\n          <h1 class=\"toolbarHeading\" routerLink=\"/home\">  Right Way  </h1>  \n          <!-- <span routerLink=\"/\">Sales</span>   -->\n          <button mat-button routerLink=\"/sale\">Sale</button>\n          <button mat-button routerLink=\"/summerCollection\">Summer Collection</button>\n          <button mat-button routerLink=\"/newArrival\">New Arrival</button>\n          <button mat-button routerLink=\"/unstitch\">UnStitched</button>\n          <button mat-button routerLink=\"/about-us\">About</button>\n        </span>\n        <span fxLayout=\"row\" class=\"toolbarButtons\" *ngIf=\"innerWidth < 851\">\n          <h1 class=\"toolbarHeading\" routerLink=\"/home\">  Right Way  </h1>  \n          <button mat-button routerLink=\"/sale\">Sale</button>  \n          <button mat-button routerLink=\"/summerCollection\">Summer</button>\n        </span>\n      </span>\n      <span fxFlex=\"15\" fxLayout=\"row\" fxFlexAlign=\"end\" fxLayoutGap=\"5px\" class=\"left-icons\">\n          <button mat-icon-button [matMenuTriggerFor]=\"menu\" aria-label=\"Example icon-button with a menu\">\n              <mat-icon>account_circle</mat-icon>\n            </button>\n            <mat-menu #menu=\"matMenu\">\n              <button mat-menu-item *ngIf=\"!isSuperUser\" routerLink=\"/login\">\n                <mat-icon>account_box</mat-icon>\n                <span>Login</span>\n              </button>\n              <button mat-menu-item *ngIf=\"isSuperUser\" (click)=\"logOut()\" routerLink=\"/home\">\n                <mat-icon>account_box</mat-icon>\n                <span>Log Out</span>\n              </button>\n              <button mat-menu-item *ngIf=\"!isSuperUser\" routerLink=\"/register\">\n                <mat-icon>supervisor_account</mat-icon>\n                <span>Sign Up</span>\n              </button>\n            </mat-menu>\n            <!-- <button mat-icon-button aria-label=\"Example icon-button with a menu\" *ngIf=\"products == 0\">\n              <mat-icon matBadge=\"\" matBadgeColor=\"warn\">shopping_cart</mat-icon>\n            </button> -->\n            <button mat-icon-button aria-label=\"Example icon-button with a menu\">\n              <mat-icon matBadge=\"{{itemsInCart}}\" matBadgeColor=\"warn\">shopping_cart</mat-icon>\n            </button>\n      </span>\n  </mat-toolbar>\n\n    <mat-toolbar color=\"primary\" class=\"toolbar\" *ngIf=\"isMobileScreen\">\n      <span fxLayout=\"row\" fxFlex=\"80\">\n        <button type=\"button\" aria-label=\"Toggle sidenav\"\n          mat-icon-button (click)=\"drawer.toggle()\">\n          <mat-icon aria-label=\"Side nav toggle icon\" class=\"menu-icon\">menu</mat-icon>\n        </button>\n\n        <span fxLayout=\"row\" class=\"toolbarButtons\">\n          <h1 class=\"toolbarHeading\" routerLink=\"/home\">  Right Way  </h1>  \n        </span>\n      </span>\n      <span fxLayout=\"row\" fxFlex=\"20\" fxFlexAlign=\"end\" class=\"left-icons\">\n          <button mat-icon-button [matMenuTriggerFor]=\"menu\" aria-label=\"Example icon-button with a menu\">\n              <mat-icon>account_circle</mat-icon>\n            </button>\n            <mat-menu #menu=\"matMenu\">\n              <button mat-menu-item *ngIf=\"!isSuperUser\" routerLink=\"/login\">\n                <mat-icon>account_box</mat-icon>\n                <span>Login</span>\n              </button>\n              <button mat-menu-item *ngIf=\"isSuperUser\" (click)=\"logOut()\" routerLink=\"/home\">\n                <mat-icon>account_box</mat-icon>\n                <span>Log Out</span>\n              </button>\n              <button mat-menu-item *ngIf=\"!isSuperUser\" routerLink=\"/register\">\n                <mat-icon>supervisor_account</mat-icon>\n                <span>Sign Up</span>\n              </button>\n            </mat-menu>\n            <!-- <button mat-icon-button aria-label=\"Example icon-button with a menu\" *ngIf=\"products == 0\">\n              <mat-icon matBadge=\"\" matBadgeColor=\"warn\">shopping_cart</mat-icon>\n            </button> -->\n            <button mat-icon-button aria-label=\"Example icon-button with a menu\">\n              <mat-icon matBadge=\"{{itemsInCart}}\" matBadgeColor=\"warn\">shopping_cart</mat-icon>\n            </button>\n            \n      </span>\n  </mat-toolbar>\n    \n\n\n    <!-- Add Content Here -->\n    <ng-content></ng-content>\n  </mat-sidenav-content>\n</mat-sidenav-container>\n";
+    __webpack_exports__["default"] = "<mat-sidenav-container class=\"sidenav-container\">\n  <mat-sidenav #drawer class=\"sidenav\" fixedInViewport=\"false\"\n      [attr.role]=\"'main'\"\n      [mode]=\"'over'\">\n\n    <mat-toolbar class=\"sideNav-toolbar\">Right Way</mat-toolbar>\n    <mat-nav-list class=\"nav-list\">\n      <a mat-list-item (click)=\"drawer.toggle()\" routerLink=\"/newArrival\">New Arrival</a>\n      <a mat-list-item (click)=\"drawer.toggle()\" routerLink=\"/sale\">Sale Items</a>\n      <a mat-list-item (click)=\"drawer.toggle()\" routerLink=\"/unstitch\">UnStitched</a>\n      <a mat-list-item (click)=\"drawer.toggle()\" routerLink=\"/summerCollection\">Summer Collection</a>\n      <a mat-list-item (click)=\"drawer.toggle()\" *ngIf=\"isSuperUser\" routerLink=\"/addColor\">Add Color</a>\n      <a mat-list-item (click)=\"drawer.toggle()\" *ngIf=\"isSuperUser\" routerLink=\"/addCategory\">Add Category</a>\n      <a mat-list-item (click)=\"drawer.toggle()\" *ngIf=\"isSuperUser\" routerLink=\"/addProduct\">Add Product</a>\n      <a mat-list-item (click)=\"drawer.toggle()\" *ngIf=\"isSuperUser\" routerLink=\"/orders\">Orders</a>\n      <a mat-list-item (click)=\"drawer.toggle()\" *ngIf=\"isSuperUser\" routerLink=\"/products\">Products</a>\n      <a mat-list-item (click)=\"drawer.toggle()\" routerLink=\"/contact-us\">Contact Us</a>\n      <a mat-list-item (click)=\"drawer.toggle()\" routerLink=\"/about-us\">About</a>\n    </mat-nav-list>\n  </mat-sidenav>\n  <!-- <mat-sidenav #drawer class=\"sidenav\" fixedInViewport\n      [attr.role]=\"(isHandset$ | async) ? 'dialog' : 'navigation'\"\n      [mode]=\"(isHandset$ | async) ? 'over' : 'side'\"\n      [opened]=\"(isHandset$ | async) === false\">\n    <mat-toolbar>Menu</mat-toolbar>\n    <mat-nav-list>\n      <a mat-list-item  routerLink=\"/about\">Link 1</a>\n      <a mat-list-item  routerLink=\"/about\">Link 2</a>\n      <a mat-list-item  routerLink=\"/about\">Link 3</a>\n    </mat-nav-list>\n  </mat-sidenav> -->\n  <mat-sidenav-content>\n\n    <div class=\"topToolbar\">\n        <span fxLayout=\"row\" class=\"topToolbarButtons\">\n          <p fxFlex=\"100\"class=\"topToolbarHeading\">  Due to coronavirus emergency and lockdown situation,\n             please expect some delay in your online order delieveries. Stay Safe. Stay Healthy.  </p>  \n        </span>\n      </div>\n\n    <mat-toolbar color=\"primary\" class=\"toolbar\" *ngIf=\"!isMobileScreen\">\n      <span fxLayout=\"row\" fxFlex=\"85\">\n        <button type=\"button\" aria-label=\"Toggle sidenav\"\n          mat-icon-button (click)=\"drawer.toggle()\">\n          <mat-icon aria-label=\"Side nav toggle icon\" class=\"menu-icon\">menu</mat-icon>\n        </button>\n        <!-- <button type=\"button\" aria-label=\"Toggle sidenav\"\n          mat-icon-button (click)=\"drawer.toggle()\" *ngIf=\"isHandset$ | async\">\n          <mat-icon aria-label=\"Side nav toggle icon\">menu</mat-icon>\n        </button> -->\n\n        <span fxLayout=\"row\" class=\"toolbarButtons\" *ngIf=\"innerWidth > 850\">\n          <h1 class=\"toolbarHeading\" routerLink=\"/home\">  Right Way  </h1>  \n          <!-- <span routerLink=\"/\">Sales</span>   -->\n          <button mat-button routerLink=\"/sale\">Sale</button>\n          <button mat-button routerLink=\"/summerCollection\">Summer Collection</button>\n          <button mat-button routerLink=\"/newArrival\">New Arrival</button>\n          <button mat-button routerLink=\"/unstitch\">UnStitched</button>\n          <button mat-button routerLink=\"/about-us\">About</button>\n        </span>\n        <span fxLayout=\"row\" class=\"toolbarButtons\" *ngIf=\"innerWidth < 851\">\n          <h1 class=\"toolbarHeading\" routerLink=\"/home\">  Right Way  </h1>  \n          <button mat-button routerLink=\"/sale\">Sale</button>  \n          <button mat-button routerLink=\"/summerCollection\">Summer</button>\n        </span>\n      </span>\n      <span fxFlex=\"15\" fxLayout=\"row\" fxFlexAlign=\"end\" fxLayoutGap=\"5px\" class=\"left-icons\">\n          <button mat-icon-button [matMenuTriggerFor]=\"menu\" aria-label=\"Example icon-button with a menu\">\n              <mat-icon>account_circle</mat-icon>\n            </button>\n            <mat-menu #menu=\"matMenu\">\n              <button mat-menu-item *ngIf=\"!user\" routerLink=\"/login\">\n                <mat-icon>account_box</mat-icon>\n                <span>Login</span>\n              </button>\n              <button mat-menu-item *ngIf=\"user\" (click)=\"logOut()\" routerLink=\"/home\">\n                <mat-icon>account_box</mat-icon>\n                <span>Log Out</span>\n              </button>\n              <button mat-menu-item *ngIf=\"!user\" routerLink=\"/register\">\n                <mat-icon>supervisor_account</mat-icon>\n                <span>Sign Up</span>\n              </button>\n            </mat-menu>\n            <!-- <button mat-icon-button aria-label=\"Example icon-button with a menu\" *ngIf=\"products == 0\">\n              <mat-icon matBadge=\"\" matBadgeColor=\"warn\">shopping_cart</mat-icon>\n            </button> -->\n            <button mat-icon-button aria-label=\"Example icon-button with a menu\">\n              <mat-icon matBadge=\"{{itemsInCart}}\" matBadgeColor=\"warn\">shopping_cart</mat-icon>\n            </button>\n      </span>\n  </mat-toolbar>\n\n    <mat-toolbar color=\"primary\" class=\"toolbar\" *ngIf=\"isMobileScreen\">\n      <span fxLayout=\"row\" fxFlex=\"80\">\n        <button type=\"button\" aria-label=\"Toggle sidenav\"\n          mat-icon-button (click)=\"drawer.toggle()\">\n          <mat-icon aria-label=\"Side nav toggle icon\" class=\"menu-icon\">menu</mat-icon>\n        </button>\n\n        <span fxLayout=\"row\" class=\"toolbarButtons\">\n          <h1 class=\"toolbarHeading\" routerLink=\"/home\">  Right Way  </h1>  \n        </span>\n      </span>\n      <span fxLayout=\"row\" fxFlex=\"20\" fxFlexAlign=\"end\" class=\"left-icons\">\n          <button mat-icon-button [matMenuTriggerFor]=\"menu\" aria-label=\"Example icon-button with a menu\">\n              <mat-icon>account_circle</mat-icon>\n            </button>\n            <mat-menu #menu=\"matMenu\">\n              <button mat-menu-item *ngIf=\"!user\" routerLink=\"/login\">\n                <mat-icon>account_box</mat-icon>\n                <span>Login</span>\n              </button>\n              <button mat-menu-item *ngIf=\"user\" (click)=\"logOut()\" routerLink=\"/home\">\n                <mat-icon>account_box</mat-icon>\n                <span>Log Out</span>\n              </button>\n              <button mat-menu-item *ngIf=\"!user\" routerLink=\"/register\">\n                <mat-icon>supervisor_account</mat-icon>\n                <span>Sign Up</span>\n              </button>\n            </mat-menu>\n            <!-- <button mat-icon-button aria-label=\"Example icon-button with a menu\" *ngIf=\"products == 0\">\n              <mat-icon matBadge=\"\" matBadgeColor=\"warn\">shopping_cart</mat-icon>\n            </button> -->\n            <button mat-icon-button aria-label=\"Example icon-button with a menu\">\n              <mat-icon matBadge=\"{{itemsInCart}}\" matBadgeColor=\"warn\">shopping_cart</mat-icon>\n            </button>\n            \n      </span>\n  </mat-toolbar>\n    \n\n\n    <!-- Add Content Here -->\n    <ng-content></ng-content>\n  </mat-sidenav-content>\n</mat-sidenav-container>\n";
     /***/
   },
 
@@ -1327,7 +1327,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       path: 'orders',
       children: [{
         path: '',
-        component: _components__WEBPACK_IMPORTED_MODULE_3__["OrderListComponent"]
+        component: _components__WEBPACK_IMPORTED_MODULE_3__["OrderListComponent"],
+        canActivate: [_services__WEBPACK_IMPORTED_MODULE_5__["AuthorizationService"]]
       }, {
         path: 'view/:id',
         canActivate: [_services__WEBPACK_IMPORTED_MODULE_5__["AuthorizationService"]],
@@ -3543,6 +3544,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.loginUser = new _models__WEBPACK_IMPORTED_MODULE_4__["LoginModel"]();
           this.sharedDataService.currentSuperUser.subscribe(function (superUser) {
             return _this11.isSuperUser = superUser;
+          });
+          this.sharedDataService.isUser.subscribe(function (user) {
+            return _this11.user = user;
           }); // this.fg = this.fb.group({email: new FormControl('', [<any>Validators.required, Validators.email])});
 
           this.fg = this.fb.group(new _models__WEBPACK_IMPORTED_MODULE_4__["LoginModel"]().validationRules()); // this.showTimer();
@@ -3558,12 +3562,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           } else {
             this.flexSize = 80;
           }
-        } // change number of items added in Shopping Cart
+        } // change super user value
 
       }, {
         key: "changeSuperUser",
         value: function changeSuperUser() {
           this.sharedDataService.changeSuperUser(this.isSuperUser);
+        } // change user value
+
+      }, {
+        key: "changeUser",
+        value: function changeUser() {
+          this.sharedDataService.changeUser(this.user);
         } // getErrorMessage() {
         //   return this.email.hasError('required') ? 'You must enter email id' :
         //       this.email.hasError('email') ? 'Not a valid email' :
@@ -3577,13 +3587,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           this.loginUser = user;
           this.loginService.login(this.loginUser).subscribe(function (response) {
-            _this12.isSuperUser = response;
+            console.log('user response', response);
+            _this12.isSuperUser = response['isSuperUser'];
+            _this12.user = true;
 
             _this12.snackBar.open('User Log in Successfully', 'Dismiss', {
               duration: 3000
             });
 
             _this12.changeSuperUser();
+
+            _this12.changeUser();
 
             _this12.router.navigate(["/home"]);
           }, function (error) {
@@ -3717,16 +3731,32 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           this.sharedDataService.currentSuperUser.subscribe(function (superUser) {
             return _this13.isSuperUser = superUser;
+          });
+          this.loadCart(); // In login component
+
+          this.sharedDataService.isUser.subscribe(function (user) {
+            return _this13.user = user;
           }); // In Add To Cart Component
 
           this.sharedDataService.currentItemsInCart.subscribe(function (items) {
             return _this13.itemsInCart = items;
           }); // BECAUSE SUPER USER VALUE IS STRING TYPE IN SESSION STORAGE
 
-          if (sessionStorage.getItem('value') == 'false') {
+          console.log('main nav', sessionStorage.getItem('value'));
+
+          if (sessionStorage.getItem('value') == 'false' || sessionStorage.getItem('value') == null) {
+            console.log('main nav', sessionStorage.getItem('value'));
             this.isSuperUser = false;
           } else {
             this.isSuperUser = true;
+          }
+
+          if (sessionStorage.getItem('token') == null) {
+            console.log('user is true');
+            this.user = false;
+          } else {
+            console.log('user is false');
+            this.user = true;
           }
         } // newMessage() {
         //   this.sharedDataService.changeAmount(this.total);
@@ -3773,6 +3803,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           sessionStorage.removeItem('id');
           sessionStorage.setItem('value', 'false');
           this.isSuperUser = false;
+          this.user = false;
         }
       }]);
 
@@ -5658,8 +5689,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.registerService.register(this.registerUser).subscribe(function (response) {
             _this28.snackBar.open('Successful Registration', 'Dismiss', {
               duration: 3000
-            }); // this.router.navigate([`/home`]);
+            });
 
+            _this28.router.navigate(["/login"]);
           }, function (error) {
             _this28.snackBar.open('Registration Failed', 'Dismiss', {
               duration: 3000
@@ -8776,7 +8808,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             sessionStorage.setItem('email', res['email']);
             sessionStorage.setItem('value', res['isSuperUser']);
             sessionStorage.setItem('token', res['token']);
-            return res['isSuperUser']; // return true;
+            return res; // return true;
           }); //.catch(this.handleError);
         }
       }]);
@@ -9293,6 +9325,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.currentItemsInCart = this.itemsInCart.asObservable();
         this.superUser = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](false);
         this.currentSuperUser = this.superUser.asObservable();
+        this.user = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](false);
+        this.isUser = this.user.asObservable();
         this.userSource = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"]({});
         this.currentUser = this.userSource.asObservable();
         /**
@@ -9315,6 +9349,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "changeSuperUser",
         value: function changeSuperUser(isSuperUser) {
           this.superUser.next(isSuperUser);
+        } // Change superuser to true when superuser login
+
+      }, {
+        key: "changeUser",
+        value: function changeUser(user) {
+          this.user.next(user);
         } // change number of items choosen in an order
 
       }, {

@@ -21,6 +21,7 @@ export class MainNavComponent {
   public itemsInCart: number = 0;
   public isMobileScreen: boolean;
   public isSuperUser;
+  public user;
   public flexForIcons;
   public products = 0;
 
@@ -43,16 +44,30 @@ export class MainNavComponent {
     // In login component
     this.sharedDataService.currentSuperUser.subscribe
     (superUser => this.isSuperUser = superUser);
+    this.loadCart();
+    
+    // In login component
+    this.sharedDataService.isUser.subscribe
+    (user => this.user = user);
 
     // In Add To Cart Component
     this.sharedDataService.currentItemsInCart.subscribe
     (items => this.itemsInCart = items);
 
     // BECAUSE SUPER USER VALUE IS STRING TYPE IN SESSION STORAGE
-    if(sessionStorage.getItem('value') == 'false'){
+    console.log('main nav', sessionStorage.getItem('value'));
+    if(sessionStorage.getItem('value') == 'false' || sessionStorage.getItem('value') == null){
+      console.log('main nav', sessionStorage.getItem('value'));
       this.isSuperUser = false;
     }else{
       this.isSuperUser = true;
+    }
+    if(sessionStorage.getItem('token') == null) {
+      console.log('user is true');
+      this.user = false;
+    }else{
+      console.log('user is false');
+      this.user = true;
     }
   }
 
@@ -96,5 +111,6 @@ export class MainNavComponent {
     sessionStorage.removeItem('id');
     sessionStorage.setItem('value', 'false')
     this.isSuperUser = false;
+    this.user = false;
   }
 }

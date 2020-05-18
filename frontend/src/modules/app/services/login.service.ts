@@ -14,7 +14,7 @@ export class LoginService {
 
   constructor(protected http: HttpClient) {}
 
-  login(item: LoginModel): Observable<boolean> {
+  login(item: LoginModel): Observable<Object> {
     return this.http.post(`${this.routeURL}/login`, item)
       .map(response => {
         // let res = response.json();
@@ -27,7 +27,7 @@ export class LoginService {
         sessionStorage.setItem('value', res['isSuperUser']);
         sessionStorage.setItem('token', res['token']);
 
-        return res['isSuperUser'];
+        return res;
         // return true;
       })
       //.catch(this.handleError);

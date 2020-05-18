@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   public innerWidth: number;
   public flexSize: number;
   public isSuperUser: boolean;
+  public user: boolean;
   public componentLabels = LoginModel.attributesLabels;
   constructor(
     private router: Router,
@@ -47,6 +48,9 @@ export class LoginComponent implements OnInit {
     this.loginUser = new LoginModel();
     this.sharedDataService.currentSuperUser.subscribe
     (superUser => this.isSuperUser = superUser);
+
+    this.sharedDataService.isUser.subscribe
+    (user => this.user = user);
     // this.fg = this.fb.group({email: new FormControl('', [<any>Validators.required, Validators.email])});
     this.fg = this.fb.group(new LoginModel().validationRules());
     // this.showTimer();
@@ -65,9 +69,14 @@ export class LoginComponent implements OnInit {
   }
 
 
-  // change number of items added in Shopping Cart
+  // change super user value
   changeSuperUser() {
     this.sharedDataService.changeSuperUser(this.isSuperUser);
+  }
+
+  // change user value
+  changeUser() {
+    this.sharedDataService.changeUser(this.user);
   }
 
   // getErrorMessage() {
@@ -79,11 +88,14 @@ export class LoginComponent implements OnInit {
   onSave(user) {
     this.loginUser = user;
     this.loginService.login(this.loginUser).subscribe(response => {
-      this.isSuperUser = response;
+      console.log('user response', response)
+      this.isSuperUser = response['isSuperUser'];
+      this.user = true;
       this.snackBar.open('User Log in Successfully','Dismiss' ,{
         duration: 3000,
       });
       this.changeSuperUser();
+      this.changeUser();
       this.router.navigate([`/home`]);
     },
     error =>{

@@ -75,7 +75,7 @@ export class RegisterComponent implements OnInit {
       this.snackBar.open('Successful Registration','Dismiss' ,{
         duration: 3000,
       });
-      // this.router.navigate([`/home`]);
+      this.router.navigate([`/login`]);
     },
     error =>{
       this.snackBar.open('Registration Failed','Dismiss' ,{

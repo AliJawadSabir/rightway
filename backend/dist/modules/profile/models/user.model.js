@@ -35,6 +35,7 @@ class UserModel extends base_model_1.BaseModel {
             if (res) {
                 let userRes = res;
                 return this.verifyPassword(item.password, userRes.password).then(match => {
+                    console.log('------------------------------password', match);
                     if (res && match) {
                         console.log('------------------------------success');
                         console.log(res);
