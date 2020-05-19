@@ -112,7 +112,7 @@ var whitelist = ['http://rightwaycollection.com', 'https://rightwaycollection.co
 var corsOptions = {
   origin: function (origin, callback) {
     console.log('origin: ', origin);
-    if (whitelist.indexOf(origin) !== -1) {
+    if (origin && whitelist.indexOf(origin) !== -1) {
       callback(null, true)
     } else {
       callback(new Error('Not allowed by CORS'))
