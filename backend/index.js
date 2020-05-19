@@ -109,8 +109,11 @@ const PUBLIC_URLS = [
 ];
 //cors
 var whitelist = [
+  'https://www.rightwaycollection.com',
+  'http://www.rightwaycollection.com',
   'http://rightwaycollection.com',
   'https://rightwaycollection.com',
+  'rightwaycollection.com',
   'http://ec2-34-229-20-55.compute-1.amazonaws.com',
   'http://localhost:4200'
 ]
