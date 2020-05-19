@@ -1,4 +1,4 @@
 export const environment = {
-  apiBaseUrl: 'https://rightwaycollection.com:3000/',
+  apiBaseUrl: 'https://rightwaycollection.com/api/',
   production: true
 };
