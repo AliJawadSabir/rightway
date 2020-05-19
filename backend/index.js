@@ -108,9 +108,10 @@ const PUBLIC_URLS = [
   // '/category/create',
 ];
 //cors
-var whitelist = ['https://rightwaycollection.com']
+var whitelist = ['https://rightwaycollection.com', 'https://rightwaycollection.com']
 var corsOptions = {
   origin: function (origin, callback) {
+    console.log('origin: ', origin);
     if (whitelist.indexOf(origin) !== -1) {
       callback(null, true)
     } else {
