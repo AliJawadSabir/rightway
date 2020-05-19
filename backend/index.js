@@ -62,9 +62,9 @@ var app = express();
 // http.get('*', function(req, res) {  
 //     res.redirect('https://' + req.headers.host + req.url);
 // })
-app.get("*", function(request, response){
-  response.redirect("https://" + request.headers.host + request.url);
-});
+// app.get("*", function(request, response){
+//   response.redirect("https://" + request.headers.host + request.url);
+// });
 
 
 // port number
