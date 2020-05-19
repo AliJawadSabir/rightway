@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrderRoute = void 0;
 const index_1 = require("../index");
 class OrderRoute {
     constructor(router) {

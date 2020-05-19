@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProfileBaseRoute = void 0;
 const index_1 = require("../../index");
 const index_2 = require("../../index");
 const index_3 = require("../../index");

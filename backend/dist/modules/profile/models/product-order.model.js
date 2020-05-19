@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProductOrderModel = void 0;
 const base_model_1 = require("../../base/models/base.model");
 const index_1 = require("../index");
 class ProductOrderModel extends base_model_1.BaseModel {

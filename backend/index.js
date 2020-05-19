@@ -108,7 +108,12 @@ const PUBLIC_URLS = [
   // '/category/create',
 ];
 //cors
-var whitelist = ['http://rightwaycollection.com', 'https://rightwaycollection.com', 'http://ec2-34-229-20-55.compute-1.amazonaws.com']
+var whitelist = [
+  'http://rightwaycollection.com',
+  'https://rightwaycollection.com',
+  'http://ec2-34-229-20-55.compute-1.amazonaws.com',
+  'http://localhost:4200'
+]
 var corsOptions = {
   origin: function (origin, callback) {
     console.log('origin: ', origin);

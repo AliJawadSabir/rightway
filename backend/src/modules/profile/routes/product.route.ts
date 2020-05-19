@@ -54,38 +54,39 @@ export class ProductRoute {
     this.router.route('/product/findByType/:type').get(controller.findByType);
 
     this.router.route('/product/findAll').get(controller.findAll);
+    this.router.route('/product/uploadImage').post(controller.uploadImage);
     
-    var store = multer.diskStorage({
-      destination: function (req, file, cb) {
-        cb(null, 'uploads')
-      },
-      filename: function (req, file, cb) {
-        cb(null, Date.now() + '.' + file.originalname)
-      }
-    })
+    // var store = multer.diskStorage({
+    //   destination: function (req, file, cb) {
+    //     cb(null, 'uploads')
+    //   },
+    //   filename: function (req, file, cb) {
+    //     cb(null, Date.now() + '.' + file.originalname)
+    //   }
+    // })
      
-    var upload = multer({ storage: store });
+    // var upload = multer({ storage: store });
 
-    this.router.post('/product/uploadImage',upload.single('file'), function (req, res, next) {
+    // this.router.post('/product/uploadImage',upload.single('file'), function (req, res, next) {
 
-    console.log('=====================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
-    console.log('UPLOAD IMAGE CALLED IN ROUTER')
-    console.log('=====================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
-      // upload(req,res,function(err){
-      //   if (err){
-      //     return ErrorHandler.sendFileTypeError(err, res, next);
-      //   }
-      //   return res.json({originalname:req.file.originalname, uploadname:req.file.filename});
-      // })
-      if (!req.file) {
-        return res.send({
-          success: false
-        });
-      } else {
-        let status = {success:true, file:req.file};
-        return res.send(status);
-      }
-    })
+    // console.log('=====================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+    // console.log('UPLOAD IMAGE CALLED IN ROUTER')
+    // console.log('=====================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+    //   // upload(req,res,function(err){
+    //   //   if (err){
+    //   //     return ErrorHandler.sendFileTypeError(err, res, next);
+    //   //   }
+    //   //   return res.json({originalname:req.file.originalname, uploadname:req.file.filename});
+    //   // })
+    //   if (!req.file) {
+    //     return res.send({
+    //       success: false
+    //     });
+    //   } else {
+    //     let status = {success:true, file:req.file};
+    //     return res.send(status);
+    //   }
+    // })
     // this.router.route('/product/uploadImage', function(req,res,next){
       
     // });

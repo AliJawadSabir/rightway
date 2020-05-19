@@ -24,10 +24,11 @@ export class BaseModel {
     // this.connection.connect();
     if (!CONFIGURATIONS.connection) 
     {
+      CONFIGURATIONS.connection = new Connection().createConnection();
       console.log('-----------------------------------------------------------');
       console.log('Db Connection is created (' + new Date() + ')');
+      // console.log('connection: ', CONFIGURATIONS.connection);
       console.log('-----------------------------------------------------------');
-      CONFIGURATIONS.connection = new Connection().createConnection();
     }
     this.connection = CONFIGURATIONS.connection;
   }

@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BaseModel = void 0;
 const connection_1 = require("../conf/connection");
 const configurations_1 = require("../conf/configurations");
 class BaseModel {
@@ -10,10 +9,10 @@ class BaseModel {
     }
     openConnection() {
         if (!configurations_1.CONFIGURATIONS.connection) {
+            configurations_1.CONFIGURATIONS.connection = new connection_1.Connection().createConnection();
             console.log('-----------------------------------------------------------');
             console.log('Db Connection is created (' + new Date() + ')');
             console.log('-----------------------------------------------------------');
-            configurations_1.CONFIGURATIONS.connection = new connection_1.Connection().createConnection();
         }
         this.connection = configurations_1.CONFIGURATIONS.connection;
     }

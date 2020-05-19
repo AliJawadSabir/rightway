@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProductController = void 0;
 const conf_1 = require("../../base/conf");
 const index_1 = require("../index");
 class ProductController {
@@ -109,6 +108,11 @@ class ProductController {
         })
             .catch(err => {
         });
+    }
+    uploadImage(req, res, next) {
+        console.log('req.file: ', req['file']);
+        console.log('req.body: ', req.body);
+        res.send({ h: 'ellow' });
     }
 }
 exports.ProductController = ProductController;

@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Server = void 0;
 const express = require("express");
 const base_route_1 = require("./base/router/base-route");
 class Server {

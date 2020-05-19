@@ -9,31 +9,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Category = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
-let Category = (() => {
-    let Category = class Category extends sequelize_typescript_1.Model {
-    };
-    __decorate([
-        sequelize_typescript_1.Column,
-        __metadata("design:type", String)
-    ], Category.prototype, "category", void 0);
-    __decorate([
-        sequelize_typescript_1.Column,
-        __metadata("design:type", String)
-    ], Category.prototype, "description", void 0);
-    __decorate([
-        sequelize_typescript_1.Column,
-        __metadata("design:type", Number)
-    ], Category.prototype, "createdBy", void 0);
-    __decorate([
-        sequelize_typescript_1.Column,
-        __metadata("design:type", Number)
-    ], Category.prototype, "updatedBy", void 0);
-    Category = __decorate([
-        sequelize_typescript_1.Table({ timestamps: true, freezeTableName: true })
-    ], Category);
-    return Category;
-})();
+let Category = class Category extends sequelize_typescript_1.Model {
+};
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", String)
+], Category.prototype, "category", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", String)
+], Category.prototype, "description", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], Category.prototype, "createdBy", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], Category.prototype, "updatedBy", void 0);
+Category = __decorate([
+    sequelize_typescript_1.Table({ timestamps: true, freezeTableName: true })
+], Category);
 exports.Category = Category;
 //# sourceMappingURL=category.js.map

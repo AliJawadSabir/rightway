@@ -247,6 +247,19 @@ export class ProductController {
       });
   }
 
+  /**
+   * uploadImage
+   *
+   * @param req express.Request
+   * @param res express.Response
+   * @param next express.NextFunction
+   */
+  uploadImage(req: express.Request, res: express.Response, next: express.NextFunction) {
+    console.log('req.file: ', req['file']);
+    console.log('req.body: ', req.body);
+    res.send({h: 'ellow'});
+  }
+
   // /**
   //  * ForgotPassword
   //  *

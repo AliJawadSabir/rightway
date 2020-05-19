@@ -27,16 +27,16 @@ export class Connection {
     /** Instantiating Sequelize instance for creating connection */
     this.sequelize = new Sequelize(CONNECTION_STRING.database, 
       CONNECTION_STRING.username, CONNECTION_STRING.password,
-      { dialect: 'mysql', storage: CONNECTION_STRING.storage });
+      { host: '34.229.20.55', port: 3306, dialect: 'mysql', storage: CONNECTION_STRING.storage });
     // this.sequelize = new Sequelize(CONNECTION_STRING);
 
     this.sequelize
       .authenticate()
       .then(() => {
-        // console.log('Connection has been established successfully.');
+        console.log('Connection has been established successfully.');
       })
       .catch(err => {
-        // console.error('Unable to connect to the database:', err);
+        console.error('Unable to connect to the database:', err);
       });
     this.sequelize.addModels([
       User,
