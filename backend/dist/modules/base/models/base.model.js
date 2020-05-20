@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.BaseModel = void 0;
 const connection_1 = require("../conf/connection");
 const configurations_1 = require("../conf/configurations");
 class BaseModel {

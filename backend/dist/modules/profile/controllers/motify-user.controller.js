@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.NotifyUserController = void 0;
 const conf_1 = require("../../base/conf");
 const index_1 = require("../index");
 class NotifyUserController {

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Connection = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const connection_string_1 = require("./connection_string");
 const index_1 = require("../../profile/index");

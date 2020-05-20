@@ -84,6 +84,7 @@ const PUBLIC_URLS = [
   '/product/findBySeason',
   '/product/findByType',
   '/product/findAll',
+  '/product/uploadImage',
   // '/order/findAll',
   '/order/create',
   '/customer/create',
@@ -115,8 +116,8 @@ var whitelist = [
   'http://localhost:4200'
 ]
 var corsOptions = {
+  credentials: true,
   origin: function (origin, callback) {
-    console.log('origin: ', origin);
     if (origin) {
       if (whitelist.indexOf(origin) !== -1) {
         callback(null, true)
@@ -126,8 +127,8 @@ var corsOptions = {
     } else {
       callback(null, true)
     }
-
   }
+  
 }
 
 app.use(cors(corsOptions));

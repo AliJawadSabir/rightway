@@ -77,7 +77,6 @@ export class ProductFormComponent implements OnInit {
     this.categoryService.findAll().subscribe(
       response => {
         this.categoryList = <any>response;
-        console.log('category List -->>'+ this.categoryList);
       },
       error => console.log(error),
       () => { }
@@ -174,7 +173,6 @@ export class ProductFormComponent implements OnInit {
 
 
   saveData(product: ProductModel){
-    console.log('save data called', product)
     // this.loaded = false;
     // if (this.pageAct === this.pageActions.create) {
     //   this.productService.create(product).subscribe(

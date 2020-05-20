@@ -91,7 +91,6 @@ export class OrderListComponent implements OnInit {
     }else{
       this.isMobileScreen = true;
     }
-    console.log(this.isMobileScreen, this.innerWidth);
   }
 
   // imageClick(){
@@ -118,7 +117,6 @@ export class OrderListComponent implements OnInit {
             amount:response[i].amount, status:response[i].status};
             this.data1.push(obj);
           }
-          console.log('data response', this.data)
           this.dataSource = new MatTableDataSource(this.data1);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;

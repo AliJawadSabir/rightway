@@ -257,7 +257,7 @@ export class ProductController {
   uploadImage(req: express.Request, res: express.Response, next: express.NextFunction) {
     console.log('req.file: ', req['file']);
     console.log('req.body: ', req.body);
-    res.send({h: 'ellow'});
+    // res.send({h: 'ellow'});
   }
 
   // /**

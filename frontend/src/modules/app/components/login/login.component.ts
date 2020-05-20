@@ -88,7 +88,6 @@ export class LoginComponent implements OnInit {
   onSave(user) {
     this.loginUser = user;
     this.loginService.login(this.loginUser).subscribe(response => {
-      console.log('user response', response)
       this.isSuperUser = response['isSuperUser'];
       this.user = true;
       this.snackBar.open('User Log in Successfully','Dismiss' ,{

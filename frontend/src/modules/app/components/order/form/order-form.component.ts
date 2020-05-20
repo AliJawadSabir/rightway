@@ -71,7 +71,6 @@ export class OrderFormComponent implements OnInit {
     }else{
       this.isMobileScreen = true;
     }
-    console.log(this.isMobileScreen, this.innerWidth);
   }
 
 
@@ -93,7 +92,6 @@ export class OrderFormComponent implements OnInit {
         response => {
           if (response) {
             this.orderModel = <OrderModel>response;
-            console.log('order model', this.orderModel)
 
             // this.fg.patchValue(this.orderModel);
 

@@ -55,18 +55,14 @@ export class MainNavComponent {
     (items => this.itemsInCart = items);
 
     // BECAUSE SUPER USER VALUE IS STRING TYPE IN SESSION STORAGE
-    console.log('main nav', sessionStorage.getItem('value'));
     if(sessionStorage.getItem('value') == 'false' || sessionStorage.getItem('value') == null){
-      console.log('main nav', sessionStorage.getItem('value'));
       this.isSuperUser = false;
     }else{
       this.isSuperUser = true;
     }
     if(sessionStorage.getItem('token') == null) {
-      console.log('user is true');
       this.user = false;
     }else{
-      console.log('user is false');
       this.user = true;
     }
   }

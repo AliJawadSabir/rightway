@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.NotifyUserModel = void 0;
 const base_model_1 = require("../../base/models/base.model");
 const notify_user_1 = require("./schema/notify-user");
 class NotifyUserModel extends base_model_1.BaseModel {
