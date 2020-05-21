@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SharedDataService, ProductService } from '../../services';
 import { CartItemModel, ProductModel } from '../../models';
 import { MatSnackBar } from '@angular/material';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-product',
@@ -55,7 +56,7 @@ export class ProductComponent implements OnInit {
     color = '';
     colorArray = [];
     // colorArray = ['red', 'green', 'yellow'];
-    public imageAddress = 'http://localhost:3000/';
+    public imageAddress = environment.apiBaseUrl;
     sizeArray = [];
     // sizeArray = ['S', 'M', 'L'];
     public innerWidth: any;
@@ -125,6 +126,7 @@ export class ProductComponent implements OnInit {
       this.checkColorSizeExist(response[i]);
       this.imageInterval.push(prod);
     }
+    this.loaded = true;
   }
 
   checkColorSizeExist(response){
@@ -161,29 +163,29 @@ export class ProductComponent implements OnInit {
     }
   }
 
-  getId() {
-    this.cartItem = new CartItemModel();
-    for (let i = 0; i < this.products.length; i++) {
-      let product = this.products[i];
-      for (let j = 0; j < product.length; j++) {
-        let prod = product[j];
-        this.route.params.subscribe(params => {
-          if (prod.id == +params['id']){
-            this.imageLink = prod.name;
-            this.obj = prod;
-            this.cartItem.id = prod.id;
-            this.cartItem.name = prod.name;
-            this.cartItem.quantity = this.quantity;
-            this.cartItem.description = prod.description;
-            this.cartItem.price = prod.price;
-            this.cartItem.category = prod.category;
-            this.cartItem.size = prod.Size;
-          }
-        });
-      }
-    }
-    this.loaded = true;
-  }
+  // getId() {
+  //   this.cartItem = new CartItemModel();
+  //   for (let i = 0; i < this.products.length; i++) {
+  //     let product = this.products[i];
+  //     for (let j = 0; j < product.length; j++) {
+  //       let prod = product[j];
+  //       this.route.params.subscribe(params => {
+  //         if (prod.id == +params['id']){
+  //           this.imageLink = prod.name;
+  //           this.obj = prod;
+  //           this.cartItem.id = prod.id;
+  //           this.cartItem.name = prod.name;
+  //           this.cartItem.quantity = this.quantity;
+  //           this.cartItem.description = prod.description;
+  //           this.cartItem.price = prod.price;
+  //           this.cartItem.category = prod.category;
+  //           this.cartItem.size = prod.Size;
+  //         }
+  //       });
+  //     }
+  //   }
+  //   this.loaded = true;
+  // }
 
   getProduct(){
     this.route.params.subscribe(params => {

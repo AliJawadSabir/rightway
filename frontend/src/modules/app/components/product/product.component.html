@@ -38,6 +38,10 @@
             </div>
         </div>
     </div> -->
+<mat-progress-spinner class="mat-spinner" *ngIf="!loaded"
+    mode="indeterminate" value="50" color="warn">
+</mat-progress-spinner>
+<div *ngIf="loaded">
     <div class="pagePath">
         RightWay<span class="sign">></span>Home<span class="sign">></span>Product
     </div>
@@ -177,6 +181,7 @@
         </mat-card>
     </div>
     <app-footer></app-footer>
+</div>
 <!-- <div class="homePage" fxLayout="column">
     <span *ngFor="let product of products; let i = index">
     <div class="imageRow" fxLayout="row" fxLayoutGap="10px">

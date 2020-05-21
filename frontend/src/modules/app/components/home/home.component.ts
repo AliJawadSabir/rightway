@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {ProductService, HomeService, OrderService} from '../../services';
 import {NotifyUserModel} from '../../models';
 import {GLOBALS} from '../../config';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -18,8 +19,9 @@ export class HomeComponent implements OnInit {
   email:string;
   public innerWidth: any;
   public isMobileScreen: boolean;
+  public loaded: boolean = false;
   public url;
-  public imageAddress = 'http://localhost:3000/';
+  public imageAddress = environment.apiBaseUrl;
   public pageActions = GLOBALS.pageActions;
   public pageAct: string;
   public page: string;
@@ -117,7 +119,7 @@ export class HomeComponent implements OnInit {
       this.isMobileScreen = true;
     }
 
-    this.url = 'http://localhost:3000/img1.jpg';
+    this.url = `${environment.apiBaseUrl}img1.jpg`;
     this.notifyUser = new NotifyUserModel();
     // this.fg = this.fb.group({email: new FormControl('', [<any>Validators.required, Validators.email])});
     this.fg = this.fb.group(new NotifyUserModel().validationRules());
@@ -162,6 +164,7 @@ export class HomeComponent implements OnInit {
       // this.imageInterval2[j].push(obj2);
       // this.imageInterval2[j].push(obj3);
     }
+    this.loaded = true;
   }
 
   // code for checking size of screen

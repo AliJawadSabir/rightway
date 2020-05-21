@@ -8,8 +8,9 @@ import { ProductService, AddCategoryService, SizeService, ColorService, SharedDa
 import {  FileUploader } from 'ng2-file-upload';
 import { MatSnackBar } from '@angular/material';
 import { SnackBarComponent } from '../snack-bar/snack-bar.component';
+import { environment } from 'src/environments/environment';
 
-const uploadAPI = 'http://localhost:3000/product/uploadImage';
+const uploadAPI = `${environment.apiBaseUrl}product/uploadImage`;
 
 @Component({
   selector: 'app-add-product',

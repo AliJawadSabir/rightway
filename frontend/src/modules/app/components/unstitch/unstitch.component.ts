@@ -3,6 +3,7 @@ import {FormControl, Validators} from '@angular/forms';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import {RegisterService, ProductService, HomeService} from '../../services';
 import {NotifyUserModel} from '../../models';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-unstitch',
@@ -96,7 +97,8 @@ export class UnStitchComponent implements OnInit {
     }
 
     var imageAddress = '../../assets/im1.jpg';
-    this.url = 'http://localhost:3000/uploads/img1.jpg';
+    this.url = `${environment.apiBaseUrl}img1.jpg`;
+    // this.url = 'http://localhost:3000/uploads/img1.jpg';
     this.notifyUser = new NotifyUserModel();
     // this.fg = this.fb.group({email: new FormControl('', [<any>Validators.required, Validators.email])});
     this.fg = this.fb.group(new NotifyUserModel().validationRules());

@@ -427,4 +427,11 @@
         bottom: 20px;
         opacity: 0.8;
     }
+    .continueShoppingButton{
+        margin-top: 20px;
+        background-color: black;
+        color: white;
+        height: 40px;
+        width: 100%;
+    }
 }

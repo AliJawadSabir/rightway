@@ -26,95 +26,100 @@
               
         </span>
     </mat-toolbar> -->
-    <div class="pagePath">
-      RightWay<span class="sign">></span>{{page}}
+<mat-progress-spinner class="mat-spinner" *ngIf="!loaded"
+ mode="indeterminate" value="50" color="warn">
+</mat-progress-spinner>
+<div *ngIf="loaded">
+  <div class="pagePath">
+    RightWay<span class="sign">></span>{{page}}
   </div>
-<mat-card class="homePage" fxLayout="column" *ngIf="innerWidth<600">
-  <span fxLayout="row">
-    <mat-card class="sliderMatCard">
-        <img class="imgSlider" fxFlex="100" src={{image}}>
-            <div class="sliderText">
-                <h1 class="offHeading">UP TO 20% OFF</h1>
+  <mat-card class="homePage" fxLayout="column" *ngIf="innerWidth<600">
+    <span fxLayout="row">
+      <mat-card class="sliderMatCard">
+          <img class="imgSlider" fxFlex="100" src={{image}}>
+              <div class="sliderText">
+                  <h1 class="offHeading">UP TO 20% OFF</h1>
+                  <p>
+                      <!-- This kurta is designed by right way. -->
+                  </p>
+              </div>
+      </mat-card>
+    </span>
+      <div class="imageRow" fxLayout="row" fxLayoutGap="10px" *ngFor="let prod of imageInterval; let j = index">
+          <mat-card class="homeMatCard" fxFlex="100">
+            <mat-card class="imgOverflow">
+              <img class="img" src="{{prod.url}}" [routerLink]="['/home/product', prod.id]">
+              <!-- <div class="hoverTextbox">
+                <h2>{{prod.name}}</h2>
                 <p>
-                    <!-- This kurta is designed by right way. -->
+                    This kurta is designed by right way.
                 </p>
-            </div>
-    </mat-card>
-  </span>
-    <div class="imageRow" fxLayout="row" fxLayoutGap="10px" *ngFor="let prod of imageInterval; let j = index">
-        <mat-card class="homeMatCard" fxFlex="100">
-          <mat-card class="imgOverflow">
-            <img class="img" src="{{prod.url}}" [routerLink]="['/home/product', prod.id]">
-            <!-- <div class="hoverTextbox">
-              <h2>{{prod.name}}</h2>
-              <p>
-                  This kurta is designed by right way.
-              </p>
-            </div> -->
-            <div class="sliderText">
-              <h1 class="offHeading">{{prod.discount}}% OFF</h1>
-            </div>
-          </mat-card>
+              </div> -->
+              <div class="sliderText">
+                <h1 class="offHeading">{{prod.discount}}% OFF</h1>
+              </div>
+            </mat-card>
 
+              <div class="middle">
+                  <div class="text">{{prod.name}}</div>
+                  <P class="paragraph">{{prod.description}}</P>
+                    <label class="label">SHOP NOW</label>
+              </div>
+          </mat-card>
+      </div>
+  </mat-card>
+  <mat-card class="homePage" fxLayout="column" *ngIf="innerWidth>=600 && innerWidth<750">
+    <span *ngFor="let product of imageInterval1; let i = index">
+      <div class="imageRow" fxLayout="row" fxLayoutGap="10px">
+          <mat-card class="homeMatCard" *ngFor="let prod of product; let j = index" fxFlex="50">
+            <mat-card class="imgOverflow">
+              <img class="img" src="{{prod.url}}" [routerLink]="['/home/product', prod.id]">
+              <!-- <div class="hoverTextbox">
+                <h2>{{prod.name}}</h2>
+                <p>
+                    This kurta is designed by right way.
+                </p>
+              </div> -->
+              <div class="sliderText">
+                <h1 class="offHeading">{{prod.discount}}% OFF</h1>
+              </div>
+            </mat-card>
             <div class="middle">
-                <div class="text">{{prod.name}}</div>
-                <P class="paragraph">{{prod.description}}</P>
-                  <label class="label">SHOP NOW</label>
-            </div>
-        </mat-card>
-    </div>
-</mat-card>
-<mat-card class="homePage" fxLayout="column" *ngIf="innerWidth>=600 && innerWidth<750">
-  <span *ngFor="let product of imageInterval1; let i = index">
-    <div class="imageRow" fxLayout="row" fxLayoutGap="10px">
-        <mat-card class="homeMatCard" *ngFor="let prod of product; let j = index" fxFlex="50">
-          <mat-card class="imgOverflow">
-            <img class="img" src="{{prod.url}}" [routerLink]="['/home/product', prod.id]">
-            <!-- <div class="hoverTextbox">
-              <h2>{{prod.name}}</h2>
-              <p>
-                  This kurta is designed by right way.
-              </p>
-            </div> -->
-            <div class="sliderText">
-              <h1 class="offHeading">{{prod.discount}}% OFF</h1>
+              <div class="text">{{prod.name}}</div>
+              <P class="paragraph">{{prod.description}}</P>
+              <label class="label">SHOP NOW</label>
             </div>
           </mat-card>
-          <div class="middle">
-            <div class="text">{{prod.name}}</div>
-            <P class="paragraph">{{prod.description}}</P>
-            <label class="label">SHOP NOW</label>
-          </div>
-        </mat-card>
-    </div>
-  </span>
-</mat-card>
-<mat-card class="homePage" fxLayout="column" *ngIf="innerWidth>=750">
-  <span *ngFor="let product of imageInterval2; let i = index">
-    <div class="imageRow" fxLayout="row" fxLayoutGap="10px">
-        <mat-card class="homeMatCard" *ngFor="let prod of product; let j = index" fxFlex="33">
-          <mat-card class="imgOverflow">
-            <img class="img" src="{{prod.url}}" [routerLink]="['/home/product', prod.id]">
-            <!-- <div class="hoverTextbox">
-              <h2>{{prod.name}}</h2>
-              <p>
-                  This kurta is designed by right way.
-              </p>
-            </div> -->
-            <div class="sliderText">
-              <h1 class="offHeading">{{prod.discount}}% OFF</h1>
+      </div>
+    </span>
+  </mat-card>
+  <mat-card class="homePage" fxLayout="column" *ngIf="innerWidth>=750">
+    <span *ngFor="let product of imageInterval2; let i = index">
+      <div class="imageRow" fxLayout="row" fxLayoutGap="10px">
+          <mat-card class="homeMatCard" *ngFor="let prod of product; let j = index" fxFlex="33">
+            <mat-card class="imgOverflow">
+              <img class="img" src="{{prod.url}}" [routerLink]="['/home/product', prod.id]">
+              <!-- <div class="hoverTextbox">
+                <h2>{{prod.name}}</h2>
+                <p>
+                    This kurta is designed by right way.
+                </p>
+              </div> -->
+              <div class="sliderText">
+                <h1 class="offHeading">{{prod.discount}}% OFF</h1>
+              </div>
+            </mat-card>
+            <div class="middle">
+              <div class="text">{{prod.name}}</div>
+              <P class="paragraph">{{prod.description}}</P>
+              <label class="label">SHOP NOW</label>
             </div>
           </mat-card>
-          <div class="middle">
-            <div class="text">{{prod.name}}</div>
-            <P class="paragraph">{{prod.description}}</P>
-            <label class="label">SHOP NOW</label>
-          </div>
-        </mat-card>
-    </div>
-  </span>
-</mat-card>
+      </div>
+    </span>
+  </mat-card>
   <app-footer></app-footer>
+</div>
 <!-- <mat-card class="homePage" fxLayout="column" *ngIf="innerWidth>=600 && innerWidth<992">
     <span *ngFor="let product of products; let i = index">
     <div class="imageRow" fxLayout="row" fxLayoutGap="10px">

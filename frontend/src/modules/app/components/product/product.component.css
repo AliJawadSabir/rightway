@@ -33,6 +33,10 @@
     /**
     These are the other designs for the page
     **/
+    .mat-spinner{
+        margin-left: 40%;
+        margin-top: 200px;
+      }
 
     .productPage{
         margin: 30px;
